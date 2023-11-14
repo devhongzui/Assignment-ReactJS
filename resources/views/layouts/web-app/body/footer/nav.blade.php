@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" aria-label="@lang('About me')"
+        <a href="{{ route('about-me') }}" aria-label="@lang('About me')"
            class="nav-link text-center text-xl-end @if ($about_me_page ?? false) active @endif">
             @lang('About me')
         </a>

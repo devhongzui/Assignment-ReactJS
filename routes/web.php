@@ -17,4 +17,6 @@ Route::get('/', fn() => view('pages.home'))->name('home');
 
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
+Route::get('/about-me', fn() => view('pages.about-me'))->name('about-me');
+
 require __DIR__ . '/auth.php';

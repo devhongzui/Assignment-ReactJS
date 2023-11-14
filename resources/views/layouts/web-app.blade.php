@@ -4,7 +4,7 @@
         'lang' => config('app.locale'),
         'theme' => session('data-bs-theme', 'dark'),
         'title' => $web_title ?? config('app.name'),
-        'short_icon' => url('favicon.ico'),
+        'short_icon' => asset('favicon.ico'),
         'description' => implode('. ', [
             0 => __('devhongzui.com - Collection of tools and APIs to support programming for IT students in Vietnam'),
             __('Explore rich resources and diverse utilities to develop your programming skills'),
@@ -12,7 +12,7 @@
         ]),
         'url' => url()->full(),
         'type' => 'website',
-        'image' => $web_image ?? url('logo.png'),
+        'image' => $web_image ?? asset('logo.png'),
         'site_name' => config('app.name'),
         'site_name_html' => config('app.name_html'),
         'card' => 'summary',
