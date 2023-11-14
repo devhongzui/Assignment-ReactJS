@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('pages.home'))->name('home');
 
+Route::get('/contact', fn() => view('pages.contact'))->name('contact');
+
 require __DIR__ . '/auth.php';

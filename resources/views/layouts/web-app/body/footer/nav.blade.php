@@ -1,6 +1,6 @@
 <ul class="navbar-nav">
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Contact')"
+        <a href="{{ route('contact') }}" aria-label="@lang('Contact')"
            class="nav-link text-center text-xl-end @if ($contact_page ?? false) active @endif">
             @lang('Contact')
         </a>
