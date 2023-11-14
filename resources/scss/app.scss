@@ -1,0 +1,35 @@
+@import "bootstrap/scss/bootstrap";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300;1,500&family=Quicksand:wght@600&display=swap");
+
+html {
+    scroll-padding-top: 50px;
+}
+
+body {
+    font-family: "Montserrat", "Quicksand", sans-serif;
+}
+
+pre {
+    font-family: unset;
+    font-weight: unset;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+main {
+    padding-top: 50px;
+}
+
+@include media-breakpoint-up(xl) {
+    html {
+        scroll-padding-top: 74px;
+    }
+
+    main {
+        padding-top: 74px;
+    }
+}
