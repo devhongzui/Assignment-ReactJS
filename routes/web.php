@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Actions\ChangeThemeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', fn() => view('pages.home'))->name('home');
+
+Route::post('theme', [ChangeThemeController::class, 'store'])->name('theme');
 
 Route::get('/contact', fn() => view('pages.contact'))->name('contact');
 
