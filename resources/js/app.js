@@ -6,6 +6,16 @@ $("img").Lazy({
     visibleOnly: true,
 });
 
+$("modal-lazy").each((_, element) => {
+    let modal = $(element);
+
+    modal.html($("#loader").clone());
+
+    axios
+        .get(modal.attr("data-src"))
+        .then((success) => $(element).replaceWith(success.data));
+});
+
 $("#change-theme").on("click", (event) => {
     let currentTarget = $(event.currentTarget);
 

@@ -26,6 +26,10 @@
 @include('layouts.web-app.body.header')
 <main>
     @yield('main')
+
+    @include('layouts.web-app.body.main.toast')
+    @include('layouts.web-app.body.main.modals')
+    @include('layouts.web-app.body.main.spinner')
 </main>
 @include('layouts.web-app.body.footer')
 </body>
