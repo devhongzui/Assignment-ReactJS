@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Privacy Policy')"
+        <a href="{{ route('privacy-policy') }}" aria-label="@lang('Privacy Policy')"
            class="nav-link text-center text-xl-end @if ($private_policy_page ?? false) active @endif">
             @lang('Privacy Policy')
         </a>
