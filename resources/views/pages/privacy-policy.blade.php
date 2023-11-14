@@ -3,6 +3,7 @@
 @php
     $web_title = __('Privacy Policy');
     $web_image = asset('storage/images/undraw/Data_processing.png');
+    $private_policy_page = true;
 @endphp
 
 @section('main')

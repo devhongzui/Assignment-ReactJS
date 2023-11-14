@@ -18,7 +18,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Security Policy')"
+        <a href="{{ route('security-policy') }}" aria-label="@lang('Security Policy')"
            class="nav-link text-center text-xl-end @if ($security_policy_page ?? false) active @endif">
             @lang('Security Policy')
         </a>
