@@ -7,7 +7,7 @@
 @endphp
 
 @section('main')
-    <img src="{{ url('logo.png') }}" data-src="{{ $web_image }}" alt="{{ $web_title }}" style="height: 300px"
+    <img src="{{ asset('logo.png') }}" data-src="{{ $web_image }}" alt="{{ $web_title }}" style="height: 300px"
          class="w-100 object-fit-cover object-fit-md-contain bg-white">
 
     <div class="container">

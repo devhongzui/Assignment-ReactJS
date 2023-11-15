@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +23,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'birthdate',
+        'gender',
         'password',
+        'email',
+        'avatar',
+        'email_verified_at',
+        'phone_number',
+        'phone_number_verified_at',
+        'country_code',
+        'province_code',
+        'district_code',
+        'sub_district_code',
+        'address_detail',
     ];
 
     /**
@@ -40,6 +55,21 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_number_verified_at' => 'datetime',
+        'birthdate' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return array
+     */
+    public function getGendersOption(): array
+    {
+        return [
+            null => __('Choose'),
+            0 => __('Male'),
+            __('Female'),
+            __('N/A')
+        ];
+    }
 }

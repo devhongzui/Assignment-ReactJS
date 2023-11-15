@@ -1,4 +1,5 @@
 import "./bootstrap.js";
+import request from "./ajax.js";
 
 $("img").Lazy({
     scrollDirection: "vertical",
@@ -16,26 +17,25 @@ $("modal-lazy").each((_, element) => {
         .then((success) => $(element).replaceWith(success.data));
 });
 
-$("#change-theme").on("click", (event) => {
-    let currentTarget = $(event.currentTarget);
+$("#change-theme-form")
+    .find("[type=submit]")
+    .on("click", (event) => {
+        let currentTarget = $(event.currentTarget);
 
-    let themeIcon = currentTarget.find(".fa-solid");
+        let themeIcon = currentTarget.find(".fa-solid");
 
-    let theme = themeIcon.hasClass("fa-sun") ? "dark" : "light";
+        $("body").attr(
+            "data-bs-theme",
+            themeIcon.hasClass("fa-sun") ? "dark" : "light",
+        );
 
-    $("body").attr("data-bs-theme", theme);
+        $("header").toggleClass("bg-dark bg-light");
 
-    $("header").toggleClass("bg-dark bg-light");
+        $("footer").toggleClass("bg-dark bg-light");
 
-    $("footer").toggleClass("bg-dark bg-light");
+        $("#notification").toggleClass("bg-dark bg-light");
 
-    themeIcon.toggleClass("fa-sun fa-moon");
-
-    let dataForm = currentTarget.find(".data-api");
-
-    axios({
-        method: dataForm.attr("data-method"),
-        url: dataForm.attr("data-action"),
-        data: { "data-bs-theme": theme },
+        themeIcon.toggleClass("fa-sun fa-moon");
     });
-});
+
+request("change-theme-form");

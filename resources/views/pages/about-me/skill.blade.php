@@ -1,4 +1,4 @@
-<section class="bg-dark-subtle rounded-2 mb-5 px-2 py-3">
+<section class="bg-dark-subtle rounded-2 mb-3 px-2 py-3">
     <h3 class="text-center">@lang('Personal skills')</h3>
     @php
         $cards = [
