@@ -24,7 +24,7 @@
             </li>
             <li>
                 <a class="dropdown-item @if ($change_password_page ?? false) active @endif" role="link"
-                   href="{{ '' }}" aria-label="@lang('Change password')">
+                   href="{{ route('user-password.request') }}" aria-label="@lang('Change password')">
                     @lang('Change password')
                 </a>
             </li>

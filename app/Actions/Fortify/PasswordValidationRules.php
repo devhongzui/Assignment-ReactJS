@@ -12,11 +12,9 @@ trait PasswordValidationRules
      *
      * @return array<int, Rule|array|string>
      */
-    protected function passwordRules(): array
+    protected function passwordCurrent(): array
     {
-        $password = Password::min(9)->numbers()->mixedCase()->symbols()->uncompromised();
-
-        return ['string', 'max:20', 'confirmed', $password];
+        return ['required', 'string', 'max:20', 'min:9', 'current_password:web'];
     }
 
     /**

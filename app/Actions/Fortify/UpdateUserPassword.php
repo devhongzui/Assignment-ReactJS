@@ -3,7 +3,6 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
@@ -18,15 +17,15 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update(User $user, array $input): void
     {
-        Validator::make($input, [
-            'current_password' => ['required', 'string', 'current_password:web'],
-            'password' => $this->passwordRules(),
-        ], [
-            'current_password.current_password' => __('The provided password does not match your current password.'),
-        ])->validateWithBag('updatePassword');
+        $validated = Validator::validate($input, [
+            'password_current' => $this->passwordCurrent(),
+            'password' => $this->passwordRegister(),
+        ]);
 
-        $user->forceFill([
-            'password' => Hash::make($input['password']),
-        ])->save();
+        $password = bcrypt($validated['password']);
+
+        $user
+            ->forceFill(['password' => $password])
+            ->save();
     }
 }

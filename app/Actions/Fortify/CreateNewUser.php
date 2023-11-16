@@ -23,15 +23,14 @@ class CreateNewUser implements CreatesNewUsers
         $before = Carbon::parse('this day 10 years ago');
         $user = User::class;
 
-        $validated = Validator::validate($input, array_merge([
+        $validated = Validator::validate($input, [
             'name' => ['required', 'string', 'max:50'],
             'birthdate' => ['required', 'date', 'after:' . $after, 'before:' . $before],
             'gender' => ['required', 'int'],
             'email' => ['required', 'email:rfc,dns', 'max:50', 'unique:' . $user],
             'terms' => ['required', 'accepted'],
-        ], [
-            'password' => $this->passwordRegister()
-        ]));
+            'password' => $this->passwordRegister(),
+        ]);
 
         $validated['avatar'] = app(Avatar::class)->create($validated['email'])->toGravatar();
         $validated['password'] = bcrypt($validated['password']);

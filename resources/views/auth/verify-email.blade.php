@@ -1,9 +1,9 @@
+@extends('templates.form')
+
 @php
     $web_title = __('Verify email');
     $web_image = asset('storage/images/undraw/Verified.png');
 @endphp
-
-@extends('templates.form')
 
 @section('right-content')
     @vite('resources/js/auth/verify-email.js')

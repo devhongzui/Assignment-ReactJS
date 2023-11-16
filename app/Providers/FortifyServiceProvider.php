@@ -23,6 +23,7 @@ use Laravel\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Http\Responses\FailedPasswordResetResponse;
 use Laravel\Fortify\Http\Responses\LoginResponse;
 use Laravel\Fortify\Http\Responses\LogoutResponse;
+use Laravel\Fortify\Http\Responses\PasswordUpdateResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -32,6 +33,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        Fortify::ignoreRoutes();
+
         // Responses
         $this->app->bind(
             EmailVerificationNotificationSentResponse::class,
@@ -56,6 +59,10 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->bind(
             PasswordResetResponse::class,
             \App\Http\Responses\Auth\PasswordResetResponse::class
+        );
+        $this->app->bind(
+            PasswordUpdateResponse::class,
+            \App\Http\Responses\Auth\PasswordUpdateResponse::class
         );
         $this->app->bind(
             RegisterResponse::class,
@@ -103,7 +110,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
-
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
 
         RateLimiter::for('login', function (Request $request) {
