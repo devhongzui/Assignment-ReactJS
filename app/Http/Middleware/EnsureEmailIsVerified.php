@@ -3,25 +3,25 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified as Middleware;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
 
-class EnsureEmailIsVerified
+class EnsureEmailIsVerified extends Middleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param Request $request
+     * @param Closure $next
+     * @param string|null $redirectToRoute
+     * @return Response|RedirectResponse|null
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next, $redirectToRoute = null): Response|RedirectResponse|null
     {
-        if (!$request->user() ||
-            ($request->user() instanceof MustVerifyEmail &&
-                !$request->user()->hasVerifiedEmail())) {
-            return response()->json(['message' => 'Your email address is not verified.'], 409);
-        }
-
-        return $next($request);
+        return $request->user()
+            ? parent::handle($request, $next, $redirectToRoute)
+            : $next($request);
     }
 }

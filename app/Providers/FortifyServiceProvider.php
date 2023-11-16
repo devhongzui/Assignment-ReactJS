@@ -15,8 +15,10 @@ use Illuminate\View\View;
 use Laravel\Fortify\Contracts\PasswordResetResponse;
 use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
 use Laravel\Fortify\Http\Controllers\NewPasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Responses\EmailVerificationNotificationSentResponse;
 use Laravel\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Http\Responses\FailedPasswordResetResponse;
 use Laravel\Fortify\Http\Responses\LoginResponse;
@@ -31,6 +33,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Responses
+        $this->app->bind(
+            EmailVerificationNotificationSentResponse::class,
+            \App\Http\Responses\Auth\EmailVerificationNotificationSentResponse::class
+        );
         $this->app->bind(
             FailedPasswordResetLinkRequestResponse::class,
             \App\Http\Responses\Auth\FailedPasswordResetLinkRequestResponse::class
@@ -61,6 +67,10 @@ class FortifyServiceProvider extends ServiceProvider
         );
 
         // Controllers
+        $this->app->bind(
+            EmailVerificationNotificationController::class,
+            \App\Http\Controllers\Auth\EmailVerificationNotificationController::class
+        );
         $this->app->bind(
             NewPasswordController::class,
             \App\Http\Controllers\Auth\NewPasswordController::class
