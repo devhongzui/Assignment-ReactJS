@@ -25,5 +25,3 @@ Route::get('/about-me', fn() => view('pages.about-me'))->name('about-me');
 Route::get('/privacy-policy', fn() => view('pages.privacy-policy'))->name('privacy-policy');
 
 Route::get('/security-policy', fn() => view('pages.security-policy'))->name('security-policy');
-
-require __DIR__ . '/auth.php';

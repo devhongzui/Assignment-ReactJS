@@ -7,16 +7,13 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
-use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
-use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
 use Laravel\Fortify\Http\Responses\LoginResponse;
 use Laravel\Fortify\Http\Responses\LogoutResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
@@ -28,82 +25,21 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->overrideLoginResponse();
-        $this->overrideRegisterResponse();
-        $this->overrideLogoutResponse();
-    }
-
-    /**
-     * @return void
-     */
-    protected function overrideLoginResponse(): void
-    {
-        $this->app->instance(
+        $this->app->bind(
             LoginResponse::class,
-            new class implements LoginResponseContract {
-                /**
-                 * Create an HTTP response that represents the object.
-                 *
-                 * @param Request $request
-                 * @return JsonResponse
-                 */
-                public function toResponse($request): JsonResponse
-                {
-                    return response()->json([
-                        'reload' => true,
-                        'message' => __('Logged in successfully!')
-                    ]);
-                }
-            }
+            \App\Http\Responses\Auth\LoginResponse::class
         );
-    }
-
-    /**
-     * @return void
-     */
-    protected function overrideRegisterResponse(): void
-    {
-        $this->app->instance(
+        $this->app->bind(
             RegisterResponse::class,
-            new class implements RegisterResponseContract {
-                /**
-                 * Create an HTTP response that represents the object.
-                 *
-                 * @param Request $request
-                 * @return JsonResponse
-                 */
-                public function toResponse($request): JsonResponse
-                {
-                    return response()->json([
-                        'reload' => true,
-                        'message' => __('Register successfully!')
-                    ]);
-                }
-            }
+            \App\Http\Responses\Auth\RegisterResponse::class
         );
-    }
-
-    /**
-     * @return void
-     */
-    protected function overrideLogoutResponse(): void
-    {
-        $this->app->instance(LogoutResponse::class,
-            new class implements LogoutResponseContract {
-                /**
-                 * Create an HTTP response that represents the object.
-                 *
-                 * @param Request $request
-                 * @return JsonResponse
-                 */
-                public function toResponse($request): JsonResponse
-                {
-                    return response()->json([
-                        'reload' => true,
-                        'message' => __('Signed out successfully!')
-                    ]);
-                }
-            }
+        $this->app->bind(
+            LogoutResponse::class,
+            \App\Http\Responses\Auth\LogoutResponse::class
+        );
+        $this->app->bind(
+            PasswordResetLinkController::class,
+            \App\Http\Controllers\Auth\PasswordResetLinkController::class
         );
     }
 
@@ -112,6 +48,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Fortify::viewPrefix('auth.');
+
         Fortify::loginView(
             fn(Request $request): View => $request->ajax()
                 ? view('auth.lazy.login')
@@ -125,10 +63,10 @@ class FortifyServiceProvider extends ServiceProvider
         );
 
         Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
-        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());

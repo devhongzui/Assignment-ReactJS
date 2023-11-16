@@ -2,38 +2,34 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Validation\ValidationException;
+use Laravel\Fortify\Contracts\FailedPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Fortify;
 
-class PasswordResetLinkController extends Controller
+class PasswordResetLinkController extends \Laravel\Fortify\Http\Controllers\PasswordResetLinkController
 {
     /**
-     * Handle an incoming password reset link request.
+     * Send a reset link to the given user.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @param Request $request
+     * @return Responsable
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request): Responsable
     {
-        $request->validate([
-            'email' => ['required', 'email'],
+        $validated = $request->validate([
+            Fortify::email() => 'required', 'email:rfc', 'max:50'
         ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        $status = $this->broker()->sendResetLink($validated);
 
-        if ($status != Password::RESET_LINK_SENT) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
-            ]);
-        }
-
-        return response()->json(['status' => __($status)]);
+        return $status == Password::RESET_LINK_SENT
+            ? app(SuccessfulPasswordResetLinkRequestResponse::class, ['status' => $status])
+            : app(FailedPasswordResetLinkRequestResponse::class, ['status' => $status]);
     }
 }
