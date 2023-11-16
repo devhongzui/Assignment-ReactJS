@@ -307,5 +307,6 @@
     "Province": "Tỉnh/Thành phố",
     "District": "Quận/Huyện/Thị xã",
     "Sub district": "Xã/Phường/Thị trấn",
-    "Two step authentication": "Xác thực 2 bước"
+    "Two step authentication": "Xác thực 2 bước",
+    "Fast authentication": "Xác thực nhanh"
 }

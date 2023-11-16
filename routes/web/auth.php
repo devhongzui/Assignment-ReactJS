@@ -33,3 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('change-password', fn() => view('auth.change-password'))
         ->name('user-password.request');
 });
+
+Route::get('auth/redirect/{provider}', [OpenAuthController::class, 'redirect'])
+    ->name('oauth.redirect');
+
+Route::get('auth/callback/{provider}', [OpenAuthController::class, 'callback'])
+    ->name('oauth.callback');

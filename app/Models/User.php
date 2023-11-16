@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -60,11 +61,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getGender(): string
+    public function getGender(): ?string
     {
-        return static::getGendersOption()[$this->gender];
+        return is_int($this->gender)
+            ? static::getGendersOption()[$this->gender]
+            : null;
     }
 
     /**
@@ -78,5 +81,13 @@ class User extends Authenticatable implements MustVerifyEmail
             __('Female'),
             __('N/A')
         ];
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function socials(): HasMany
+    {
+        return $this->hasMany(OpenAuth::class);
     }
 }

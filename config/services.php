@@ -31,4 +31,52 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/facebook',
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/google',
+    ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/github',
+    ],
+
+    'spotify' => [
+        'client_id' => env('SPOTIFY_CLIENT_ID'),
+        'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/spotify',
+    ],
+
+    'twitter-oauth-2' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/twitter-oauth-2',
+    ],
+
+    'yahoo' => [
+        'client_id' => env('YAHOO_CLIENT_ID'),
+        'client_secret' => env('YAHOO_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/yahoo',
+    ],
+
+    'zalo' => [
+        'client_id' => env('ZALO_CLIENT_ID'),
+        'client_secret' => env('ZALO_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/zalo',
+    ],
+
+    'disqus' => [
+        'client_id' => env('DISQUS_CLIENT_ID'),
+        'client_secret' => env('DISQUS_CLIENT_SECRET'),
+        'redirect' => '/auth/callback/disqus',
+    ],
+
 ];

@@ -106,6 +106,44 @@
     <div class="row mb-3">
         <div class="offset-md-1 col-md-3 text-primary fw-bold">@lang('Socials')</div>
         <div class="col-md-7">
+            @php
+                /** @var \App\Models\OpenAuth $social */
+            @endphp
+            @foreach ($user->socials as $social)
+                @switch($social->getServiceName())
+                    @case('facebook')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-facebook-f"></i></span>
+                        @break
+
+                    @case('google')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-google"></i></span>
+                        @break
+
+                    @case('github')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-github"></i></span>
+                        @break
+
+                    @case('spotify')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-spotify"></i></span>
+                        @break
+
+                    @case('yahoo')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-yahoo"></i></span>
+                        @break
+
+                    @case('twitter-oauth-2')
+                        <span class="fs-5 me-2"><i class="fa-brands fa-twitter"></i></span>
+                        @break
+
+                    @case('zalo')
+                        <span class="fs-5 me-2"><i class="fa-solid fa-z"></i></span>
+                        @break
+
+                    @case('zalo')
+                        <span class="fs-5 me-2"><i class="fa-solid fa-d"></i></span>
+                        @break
+                @endswitch
+            @endforeach
         </div>
     </div>
     <div class="offset-md-4">

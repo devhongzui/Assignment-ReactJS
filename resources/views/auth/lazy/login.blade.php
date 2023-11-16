@@ -32,4 +32,4 @@
     @include('auth.components.forgot-password-button')
 </form>
 
-{{-- <x-auth.o-auth/> --}}
+@include('auth.components.open-auth')
