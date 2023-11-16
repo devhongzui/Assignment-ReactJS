@@ -40,7 +40,7 @@
             <div class="form-floating mb-3">
                 @php
                     echo html()
-                        ->select('gender', app(\App\Models\User::class)->getGendersOption())
+                        ->select('gender', \App\Models\User::getGendersOption())
                         ->id('gender-register-form')
                         ->class('form-select');
                 @endphp

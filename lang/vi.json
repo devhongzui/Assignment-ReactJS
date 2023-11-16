@@ -294,6 +294,18 @@
     "Dashboard": "Bảng điều khiển",
     "Profile": "Hồ sơ",
     "Change password": "Đổi mật khẩu",
+    "Profile edit": "Sửa hồ sơ",
+    "Profile destroy": "Xóa hồ sơ",
+    "Enabled": "Đã bật",
+    "Enable": "Bật",
+    "Disabled": "Đã tắt",
+    "Disable": "Tắt",
+    "Setup": "Thiết lập",
     "Logout": "Đăng xuất",
-    "Submit": "Xác nhận"
+    "Submit": "Xác nhận",
+    "Avatar": "Ảnh đại diện",
+    "Province": "Tỉnh/Thành phố",
+    "District": "Quận/Huyện/Thị xã",
+    "Sub district": "Xã/Phường/Thị trấn",
+    "Two step authentication": "Xác thực 2 bước"
 }

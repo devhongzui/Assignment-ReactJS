@@ -18,7 +18,7 @@
             </li>
             <li>
                 <a class="dropdown-item @if ($profile_detail_page ?? false) active @endif" role="link"
-                   href="{{ '' }}" aria-label="@lang('Profile')">
+                   href="{{ route('user-profile-information.request') }}" aria-label="@lang('Profile')">
                     @lang('Profile')
                 </a>
             </li>

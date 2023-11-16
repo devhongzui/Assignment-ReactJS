@@ -56,14 +56,21 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'phone_number_verified_at' => 'datetime',
-        'birthdate' => 'datetime',
         'password' => 'hashed',
     ];
 
     /**
+     * @return string
+     */
+    public function getGender(): string
+    {
+        return static::getGendersOption()[$this->gender];
+    }
+
+    /**
      * @return array
      */
-    public function getGendersOption(): array
+    public static function getGendersOption(): array
     {
         return [
             null => __('Choose'),
