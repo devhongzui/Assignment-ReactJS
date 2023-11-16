@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Laravel\Fortify\Contracts\PasswordResetResponse;
+use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Controllers\NewPasswordController;
 use Laravel\Fortify\Http\Controllers\PasswordResetLinkController;
+use Laravel\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse;
+use Laravel\Fortify\Http\Responses\FailedPasswordResetResponse;
 use Laravel\Fortify\Http\Responses\LoginResponse;
 use Laravel\Fortify\Http\Responses\LogoutResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
@@ -25,17 +30,40 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Responses
+        $this->app->bind(
+            FailedPasswordResetLinkRequestResponse::class,
+            \App\Http\Responses\Auth\FailedPasswordResetLinkRequestResponse::class
+        );
+        $this->app->bind(
+            FailedPasswordResetResponse::class,
+            \App\Http\Responses\Auth\FailedPasswordResetResponse::class
+        );
         $this->app->bind(
             LoginResponse::class,
             \App\Http\Responses\Auth\LoginResponse::class
+        );
+        $this->app->bind(
+            LogoutResponse::class,
+            \App\Http\Responses\Auth\LogoutResponse::class
+        );
+        $this->app->bind(
+            PasswordResetResponse::class,
+            \App\Http\Responses\Auth\PasswordResetResponse::class
         );
         $this->app->bind(
             RegisterResponse::class,
             \App\Http\Responses\Auth\RegisterResponse::class
         );
         $this->app->bind(
-            LogoutResponse::class,
-            \App\Http\Responses\Auth\LogoutResponse::class
+            SuccessfulPasswordResetLinkRequestResponse::class,
+            \App\Http\Responses\Auth\SuccessfulPasswordResetLinkRequestResponse::class
+        );
+
+        // Controllers
+        $this->app->bind(
+            NewPasswordController::class,
+            \App\Http\Controllers\Auth\NewPasswordController::class
         );
         $this->app->bind(
             PasswordResetLinkController::class,
@@ -64,9 +92,9 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
 
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());

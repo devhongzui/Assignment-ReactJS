@@ -15,7 +15,7 @@ class FailedPasswordResetResponse extends \Laravel\Fortify\Http\Responses\Failed
     public function toResponse($request)
     {
         throw ValidationException::withMessages([
-            'email' => __($this->status)
+            'email' => __($this->status),
         ]);
     }
 }

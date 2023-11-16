@@ -17,7 +17,7 @@ class LogoutResponse extends \Laravel\Fortify\Http\Responses\LogoutResponse
     {
         return response()->json([
             'reload' => true,
-            'message' => __('Signed out successfully!')
+            'message' => __('Signed out successfully!'),
         ]);
     }
 }

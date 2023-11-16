@@ -16,7 +16,7 @@ class SuccessfulPasswordResetLinkRequestResponse extends \Laravel\Fortify\Http\R
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'message' => __($this->status)
+            'message' => __($this->status),
         ]);
     }
 }

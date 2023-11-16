@@ -4,8 +4,9 @@ namespace App\Http\Responses\Auth;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
-class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
+class FailedPasswordResetLinkRequestResponse extends \Laravel\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse
 {
     /**
      * Create an HTTP response that represents the object.
@@ -15,9 +16,8 @@ class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
      */
     public function toResponse($request): JsonResponse
     {
-        return response()->json([
-            'reload' => true,
-            'message' => __('Logged in successfully!'),
+        throw ValidationException::withMessages([
+            'email' => __($this->status),
         ]);
     }
 }

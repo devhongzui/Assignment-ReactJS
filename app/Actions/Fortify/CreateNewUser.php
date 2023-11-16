@@ -3,7 +3,6 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -37,10 +36,6 @@ class CreateNewUser implements CreatesNewUsers
         $validated['avatar'] = app(Avatar::class)->create($validated['email'])->toGravatar();
         $validated['password'] = bcrypt($validated['password']);
 
-        $user = User::create($validated);
-
-        event(new Registered($user));
-
-        return $user;
+        return User::create($validated);
     }
 }

@@ -14,7 +14,9 @@ trait PasswordValidationRules
      */
     protected function passwordRules(): array
     {
-        return [];
+        $password = Password::min(9)->numbers()->mixedCase()->symbols()->uncompromised();
+
+        return ['string', 'max:20', 'confirmed', $password];
     }
 
     /**

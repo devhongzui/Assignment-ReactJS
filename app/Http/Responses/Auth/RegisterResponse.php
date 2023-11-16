@@ -17,7 +17,7 @@ class RegisterResponse extends \Laravel\Fortify\Http\Responses\RegisterResponse
     {
         return response()->json([
             'reload' => true,
-            'message' => __('Register successfully!')
+            'message' => __('Register successfully!'),
         ]);
     }
 }

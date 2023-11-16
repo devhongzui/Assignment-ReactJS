@@ -20,7 +20,7 @@ class PasswordResetLinkController extends \Laravel\Fortify\Http\Controllers\Pass
     public function store(Request $request): Responsable
     {
         $validated = $request->validate([
-            Fortify::email() => 'required', 'email:rfc', 'max:50'
+            Fortify::email() => 'required', 'email:rfc', 'max:50',
         ]);
 
         // We will send the password reset link to this user. Once we have attempted

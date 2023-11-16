@@ -2,10 +2,11 @@
 
 namespace App\Http\Responses\Auth;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
+class PasswordResetResponse extends \Laravel\Fortify\Http\Responses\PasswordResetResponse
 {
     /**
      * Create an HTTP response that represents the object.
@@ -16,8 +17,10 @@ class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'reload' => true,
-            'message' => __('Logged in successfully!'),
+            'redirect' => auth()->check()
+                ? url(RouteServiceProvider::HOME)
+                : route('login'),
+            'message' => __($this->status),
         ]);
     }
 }
