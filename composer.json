@@ -17,6 +17,7 @@
         "laravel/socialite": "^5.10",
         "laravel/tinker": "^2.8",
         "laravolt/avatar": "^5.0",
+        "mcamara/laravel-localization": "^1.8",
         "socialiteproviders/disqus": "^4.1",
         "socialiteproviders/spotify": "^4.1",
         "socialiteproviders/yahoo": "^4.1",
