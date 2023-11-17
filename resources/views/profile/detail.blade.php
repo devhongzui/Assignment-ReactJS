@@ -147,16 +147,14 @@
         </div>
     </div>
     <div class="offset-md-4">
-        <button type="button" role="button" class="btn btn-primary me-2 mb-2" aria-label="@lang('Profile edit')"
-                @if (request()->get('profile_edit_page', false)) disabled
-                @else data-bs-toggle="modal" data-bs-target="#profile-edit-modal" @endif>
+        <a role="link" class="btn btn-primary me-2 mb-2" aria-label="@lang('Profile edit')"
+           href="{{ route('user-profile-information.edit') }}">
             @lang('Profile edit')
-        </button>
-        <button type="button" role="button" class="btn btn-warning me-2 mb-2" aria-label="@lang('Change password')"
-                @if (request()->get('change_password_page', false)) disabled
-                @else data-bs-toggle="modal" data-bs-target="#change-password-modal" @endif>
+        </a>
+        <a role="link" class="btn btn-warning me-2 mb-2" aria-label="@lang('Change password')"
+           href="{{ route('user-password.request') }}">
             @lang('Change password')
-        </button>
+        </a>
         <button type="button" role="button" class="btn btn-danger me-2 mb-2" aria-label="@lang('Profile destroy')"
                 @if (request()->get('profile_destroy_page', false)) disabled
                 @else  data-bs-toggle="modal" data-bs-target="#profile-destroy-modal" @endif>

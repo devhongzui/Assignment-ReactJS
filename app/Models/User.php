@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -59,6 +60,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @param int $provider_code
+     * @param string $provider_id
+     * @param string $provider_email
+     * @return User|null
+     */
+    public static function getUserByOpenAuth(int $provider_code, string $provider_id, string $provider_email): ?User
+    {
+        $open_auth = app(OpenAuth::class)->getTable();
+
+        return static::where('users.email', $provider_email)
+            ->orWhere(fn(Builder $query) => $query
+                ->where("$open_auth.provider_code", $provider_code)
+                ->where("$open_auth.provider_id", $provider_id))
+            ->join($open_auth, "$open_auth.user_id", '=', 'users.id', 'left')
+            ->select('users.*')
+            ->withTrashed()
+            ->first();
+    }
 
     /**
      * @return ?string

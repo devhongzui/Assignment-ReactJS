@@ -3,7 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
@@ -17,27 +17,28 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+        $after = Carbon::parse('this day 100 years ago');
+        $before = Carbon::parse('this day 14 years ago');
+        $unique = Rule::unique(User::class)->ignore($user->id);
 
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique('users')->ignore($user->id),
-            ],
-        ])->validateWithBag('updateProfileInformation');
+        $validated = Validator::validate($input, [
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'email:rfc,dns', 'max:50', $unique],
+            'phone_number' => ['nullable', 'numeric', 'digits:10'],
+            'country_code' => ['nullable', 'numeric'],
+            'province_code' => ['required_with:country_code', 'numeric'],
+            'district_code' => ['required_with:country_code', 'numeric'],
+            'sub_district_code' => ['required_with:country_code', 'numeric'],
+            'address_detail' => ['required_with:country_code', 'nullable', 'string', 'max:100'],
+            'birthdate' => ['required', 'date', 'after:' . $after, 'before:' . $before],
+            'gender' => ['required', 'int'],
+        ]);
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
-            $this->updateVerifiedUser($user, $input);
-        } else {
-            $user->forceFill([
-                'name' => $input['name'],
-                'email' => $input['email'],
-            ])->save();
-        }
+        $user->fill($validated);
+
+        $this->updateVerifiedUser($user, $input);
+
+        $user->save();
     }
 
     /**
@@ -47,12 +48,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     protected function updateVerifiedUser(User $user, array $input): void
     {
-        $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
-        ])->save();
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
+        }
 
-        $user->sendEmailVerificationNotification();
+        if ($user->isDirty('phone_number'))
+            $user->phone_number_verified_at = null;
     }
 }
