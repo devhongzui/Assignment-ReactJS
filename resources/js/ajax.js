@@ -15,31 +15,34 @@ export default (form_id) => {
         })
             .finally(() => setTimeout(() => spinner.hide(), 1000))
             .then((success) => {
-                setTimeout(() => toast(success.data.message), 1000);
+                toast(success.data.message);
 
-                setTimeout(() => {
-                    let redirect = success.data.redirect;
-                    if (redirect) location.href = redirect;
-
-                    let reload = success.data.reload;
-                    if (reload) location.reload();
-                }, 3000);
+                runActions(success.data.redirect, success.data.reload);
             })
             .catch((error) => {
-                setTimeout(() => {
-                    spinner.hide();
+                let errors = error.response.data.errors;
 
-                    let errors = error.response.data.errors;
+                if (errors) {
+                    $.each(errors, (key, value) => {
+                        form.find(`[name=${key}]`).addClass("is-invalid");
+                        form.find(`#${key}-${form_id}-error`).text(
+                            value.shift(),
+                        );
+                    });
+                } else toast(error.response.data.message);
 
-                    if (errors) {
-                        $.each(errors, (key, value) => {
-                            form.find(`[name=${key}]`).addClass("is-invalid");
-                            form.find(`#${key}-${form_id}-error`).text(
-                                value.shift(),
-                            );
-                        });
-                    } else toast(error.response.data.message);
-                }, 1000);
+                runActions(
+                    error.response.data.redirect,
+                    error.response.data.reload,
+                );
             });
     });
 };
+
+function runActions(redirect, reload) {
+    setTimeout(() => {
+        if (redirect) location.href = redirect;
+
+        if (reload) location.reload();
+    }, 3000);
+}

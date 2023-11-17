@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -63,18 +64,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * @param int $provider_code
-     * @param string $provider_id
-     * @param string $provider_email
+     * @param ProviderUser $provider_user
      * @return User|null
      */
-    public static function getUserByOpenAuth(int $provider_code, string $provider_id, string $provider_email): ?User
+    public static function getUserByOpenAuth(int $provider_code, ProviderUser $provider_user): ?User
     {
         $open_auth = app(OpenAuth::class)->getTable();
 
-        return static::where('users.email', $provider_email)
+        return static::where('users.email', $provider_user->getEmail())
             ->orWhere(fn(Builder $query) => $query
                 ->where("$open_auth.provider_code", $provider_code)
-                ->where("$open_auth.provider_id", $provider_id))
+                ->where("$open_auth.provider_id", $provider_user->getId()))
             ->join($open_auth, "$open_auth.user_id", '=', 'users.id', 'left')
             ->select('users.*')
             ->withTrashed()

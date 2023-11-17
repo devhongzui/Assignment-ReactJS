@@ -6,6 +6,8 @@
 @endphp
 
 @section('right-content')
+    @vite('resources/js/profile/detail.js')
+
     @php
         $user = request()->user();
     @endphp
@@ -110,25 +112,18 @@
                 /** @var \App\Models\OpenAuth $social */
             @endphp
             @foreach ($user->socials as $social)
-                @switch($social->getServiceName())
+                @php
+                    $service_name = $social->getServiceName();
+                @endphp
+                @switch($service_name)
                     @case('facebook')
-                        <span class="fs-5 me-2"><i class="fa-brands fa-facebook-f"></i></span>
-                        @break
-
                     @case('google')
-                        <span class="fs-5 me-2"><i class="fa-brands fa-google"></i></span>
-                        @break
 
                     @case('github')
-                        <span class="fs-5 me-2"><i class="fa-brands fa-github"></i></span>
-                        @break
-
                     @case('spotify')
-                        <span class="fs-5 me-2"><i class="fa-brands fa-spotify"></i></span>
-                        @break
 
                     @case('yahoo')
-                        <span class="fs-5 me-2"><i class="fa-brands fa-yahoo"></i></span>
+                        <span class="fs-5 me-2"><i class="fa-brands fa-{{ $service_name }}"></i></span>
                         @break
 
                     @case('twitter-oauth-2')
@@ -146,7 +141,7 @@
             @endforeach
         </div>
     </div>
-    <div class="offset-md-4">
+    <div class="offset-md-4 d-flex flex-column flex-xl-row">
         <a role="link" class="btn btn-primary me-2 mb-2" aria-label="@lang('Profile edit')"
            href="{{ route('user-profile-information.edit') }}">
             @lang('Profile edit')
@@ -155,10 +150,12 @@
            href="{{ route('user-password.request') }}">
             @lang('Change password')
         </a>
-        <button type="button" role="button" class="btn btn-danger me-2 mb-2" aria-label="@lang('Profile destroy')"
-                @if (request()->get('profile_destroy_page', false)) disabled
-                @else  data-bs-toggle="modal" data-bs-target="#profile-destroy-modal" @endif>
-            @lang('Profile destroy')
-        </button>
+        <form action="{{ route('user-profile-information.destroy') }}" method="delete" id="destroy-profile-form"
+              class="me-2 mb-2">
+            @csrf
+            <button type="submit" role="button" class="btn btn-danger w-100" aria-label="@lang('Profile destroy')">
+                @lang('Profile destroy')
+            </button>
+        </form>
     </div>
 @endsection

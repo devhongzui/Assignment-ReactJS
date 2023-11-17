@@ -17,9 +17,7 @@ class PasswordResetResponse extends \Laravel\Fortify\Http\Responses\PasswordRese
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'redirect' => auth()->check()
-                ? url(RouteServiceProvider::HOME)
-                : route('login'),
+            'redirect' => auth()->check() ? url(RouteServiceProvider::HOME) : route('login'),
             'message' => __($this->status),
         ]);
     }

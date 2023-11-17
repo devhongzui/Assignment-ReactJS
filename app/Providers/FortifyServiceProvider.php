@@ -23,6 +23,7 @@ use Laravel\Fortify\Http\Responses\FailedPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Http\Responses\FailedPasswordResetResponse;
 use Laravel\Fortify\Http\Responses\LoginResponse;
 use Laravel\Fortify\Http\Responses\LogoutResponse;
+use Laravel\Fortify\Http\Responses\PasswordConfirmedResponse;
 use Laravel\Fortify\Http\Responses\PasswordUpdateResponse;
 use Laravel\Fortify\Http\Responses\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
@@ -56,6 +57,10 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->bind(
             LogoutResponse::class,
             \App\Http\Responses\Auth\LogoutResponse::class
+        );
+        $this->app->bind(
+            PasswordConfirmedResponse::class,
+            \App\Http\Responses\Auth\PasswordConfirmedResponse::class
         );
         $this->app->bind(
             PasswordResetResponse::class,

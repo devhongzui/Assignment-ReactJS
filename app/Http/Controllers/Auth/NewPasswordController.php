@@ -27,7 +27,7 @@ class NewPasswordController extends \Laravel\Fortify\Http\Controllers\NewPasswor
         $validated = $request->validate([
             'token' => ['required'],
             Fortify::email() => ['required', 'email:rfc,dns', 'max:50'],
-            'password' => $this->passwordRules(),
+            'password' => $this->passwordRegister(),
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we
