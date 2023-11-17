@@ -87,19 +87,24 @@
         <div class="offset-md-1 col-md-3 text-primary fw-bold">@lang('Two step authentication')</div>
         <div class="col-md-7">
             <div class="d-flex align-items-center">
-                @if ($user->hasEnabledTwoFactorAuthentication())
-                    <button class="btn btn-outline-success mb-2 me-2" role="button" type="button" disabled
-                            aria-label="@lang('Enabled')">
-                        @lang('Enabled')
-                    </button>
-                @else
-                    <button class="btn btn-outline-danger mb-2 me-2" role="button" type="button" disabled
-                            aria-label="@lang('Disabled')">
-                        @lang('Disabled')
-                    </button>
-                @endif
-                <a href="{{ '' }}" class="btn btn-primary mb-2 me-2" role="link"
-                   aria-label="@lang('Setup')">
+                @php
+                    $button = $user->hasEnabledTwoFactorAuthentication()
+                        ? (object) [
+                            'class' => 'btn-outline-success',
+                            'text' => __('Enabled'),
+                        ]
+                        : (object) [
+                            'class' => 'btn-outline-danger',
+                            'text' => __('Disabled'),
+                        ];
+                @endphp
+                <button class="btn {{ $button->class }} mb-2 me-2" role="button" type="button" disabled
+                        aria-label="{{ $button->text }}">
+                    {{ $button->text }}
+                </button>
+                <a href="{{ route('user-profile-information.two-step-authentication') }}"
+                   class="btn btn-primary mb-2 me-2"
+                   role="link" aria-label="@lang('Setup')">
                     @lang('Setup')
                 </a>
             </div>

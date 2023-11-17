@@ -1,4 +1,4 @@
-export default (form_id) => {
+export default (form_id, successCallback) => {
     let form = $("#" + form_id);
 
     form.find("[type=submit]").on("click", (event) => {
@@ -16,6 +16,8 @@ export default (form_id) => {
             .finally(() => setTimeout(() => spinner.hide(), 1000))
             .then((success) => {
                 toast(success.data.message);
+
+                if (successCallback) successCallback(success);
 
                 runActions(success.data.redirect, success.data.reload);
             })

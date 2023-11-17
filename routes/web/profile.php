@@ -14,4 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('profile-destroy', [ProfileController::class, 'destroy'])
         ->middleware('password.confirm')
         ->name('user-profile-information.destroy');
+
+    Route::get('profile-two-step-authentication', fn() => view('profile.two-step-authentication'))
+        ->name('user-profile-information.two-step-authentication');
 });

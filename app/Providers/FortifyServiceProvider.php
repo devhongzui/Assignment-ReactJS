@@ -27,6 +27,9 @@ use Laravel\Fortify\Http\Responses\PasswordConfirmedResponse;
 use Laravel\Fortify\Http\Responses\PasswordUpdateResponse;
 use Laravel\Fortify\Http\Responses\ProfileInformationUpdatedResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
+use Laravel\Fortify\Http\Responses\TwoFactorConfirmedResponse;
+use Laravel\Fortify\Http\Responses\TwoFactorDisabledResponse;
+use Laravel\Fortify\Http\Responses\TwoFactorEnabledResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -80,7 +83,19 @@ class FortifyServiceProvider extends ServiceProvider
         );
         $this->app->bind(
             ProfileInformationUpdatedResponse::class,
-            \App\Http\Responses\ProfileInformationUpdatedResponse::class
+            \App\Http\Responses\Profile\ProfileInformationUpdatedResponse::class
+        );
+        $this->app->bind(
+            TwoFactorConfirmedResponse::class,
+            \App\Http\Responses\Profile\TwoFactorConfirmedResponse::class
+        );
+        $this->app->bind(
+            TwoFactorDisabledResponse::class,
+            \App\Http\Responses\Profile\TwoFactorDisabledResponse::class
+        );
+        $this->app->bind(
+            TwoFactorEnabledResponse::class,
+            \App\Http\Responses\Profile\TwoFactorEnabledResponse::class
         );
 
         // Controllers
