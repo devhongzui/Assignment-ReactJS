@@ -288,6 +288,7 @@
     "and": "và",
     "Loading...": "Đang tải...",
     "Recovery Codes": "Mã khôi phục",
+    "Recovery Code": "Mã khôi phục",
     "Scan the QR code and enter the confirmation code to complete": "Quét mã QR và nhập mã xác nhận để hoàn tất",
     "The provided two factor authentication code was invalid.": "Mã xác thực hai yếu tố được cung cấp không hợp lệ.",
     "Enabled two-step verification successfully!": "Bật xác thực hai bước thành công!",
@@ -322,5 +323,7 @@
     "District": "Quận/Huyện/Thị xã",
     "Sub district": "Xã/Phường/Thị trấn",
     "Two step authentication": "Xác thực 2 bước",
-    "Fast authentication": "Xác thực nhanh"
+    "Fast authentication": "Xác thực nhanh",
+    "Complete two-step verification to sign in": "Hoàn tất xác minh hai bước để đăng nhập",
+    "Complete two-step verification!": "Hoàn tất xác minh hai bước!"
 }

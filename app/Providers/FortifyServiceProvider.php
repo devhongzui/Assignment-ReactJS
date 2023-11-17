@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\PasswordResetResponse;
 use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
 use Laravel\Fortify\Fortify;
@@ -30,6 +31,7 @@ use Laravel\Fortify\Http\Responses\RegisterResponse;
 use Laravel\Fortify\Http\Responses\TwoFactorConfirmedResponse;
 use Laravel\Fortify\Http\Responses\TwoFactorDisabledResponse;
 use Laravel\Fortify\Http\Responses\TwoFactorEnabledResponse;
+use Laravel\Fortify\Http\Responses\TwoFactorLoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,12 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         Fortify::ignoreRoutes();
+
+        // Actions
+        $this->app->bind(
+            RedirectIfTwoFactorAuthenticatable::class,
+            \App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable::class
+        );
 
         // Responses
         $this->app->bind(
@@ -81,6 +89,11 @@ class FortifyServiceProvider extends ServiceProvider
             SuccessfulPasswordResetLinkRequestResponse::class,
             \App\Http\Responses\Auth\SuccessfulPasswordResetLinkRequestResponse::class
         );
+        $this->app->bind(
+            TwoFactorLoginResponse::class,
+            \App\Http\Responses\Auth\TwoFactorLoginResponse::class
+        );
+
         $this->app->bind(
             ProfileInformationUpdatedResponse::class,
             \App\Http\Responses\Profile\ProfileInformationUpdatedResponse::class

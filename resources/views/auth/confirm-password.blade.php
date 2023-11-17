@@ -1,9 +1,9 @@
+@extends('templates.form')
+
 @php
     $web_title = __('Confirm password');
     $web_image = asset('storage/images/undraw/Authentication.png');
 @endphp
-
-@extends('templates.form')
 
 @section('right-content')
     @vite('resources/js/auth/confirm-password.js')
