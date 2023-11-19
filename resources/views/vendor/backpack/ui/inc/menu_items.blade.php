@@ -8,3 +8,12 @@
                        :link="backpack_url('elfinder')" />
 <x-backpack::menu-item :title="__('backpack::logmanager.logs')" :link="backpack_url('log')"
                        icon="fa-solid fa-terminal" />
+<x-backpack::menu-dropdown :title="__('Add-ons')" icon="fa-solid fa-puzzle-piece">
+    <x-backpack::menu-dropdown-header :title="__('Authentication')" />
+    <x-backpack::menu-dropdown-item :title="__('backpack::permissionmanager.users')"
+                                    :link="backpack_url('user')" icon="fa-solid fa-user" />
+    <x-backpack::menu-dropdown-item :title="__('backpack::permissionmanager.roles')"
+                                    :link="backpack_url('role')" icon="fa-solid fa-users" />
+    <x-backpack::menu-dropdown-item :title="__('backpack::permissionmanager.permission_plural')"
+                                    :link="backpack_url('permission')" icon="fa-solid fa-key" />
+</x-backpack::menu-dropdown>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Backpack\ActivityLog\Http\Controllers\ActivityLogCrudController;
+use Backpack\PermissionManager\app\Http\Controllers\UserCrudController;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ActivityLogCrudController::class,
             \App\Http\Controllers\Admin\ActivityLogCrudController::class
+        );
+
+        $this->app->bind(
+            UserCrudController::class,
+            \App\Http\Controllers\Admin\UserCrudController::class
         );
     }
 }

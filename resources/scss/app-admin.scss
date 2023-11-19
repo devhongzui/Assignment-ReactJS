@@ -9,3 +9,7 @@ pre {
     font-family: unset;
     font-weight: unset;
 }
+
+[data-bs-theme="dark"] .swal-button--cancel {
+    background-color: inherit !important;
+}

@@ -325,5 +325,11 @@
     "Two step authentication": "Xác thực 2 bước",
     "Fast authentication": "Xác thực nhanh",
     "Complete two-step verification to sign in": "Hoàn tất xác minh hai bước để đăng nhập",
-    "Complete two-step verification!": "Hoàn tất xác minh hai bước!"
+    "Complete two-step verification!": "Hoàn tất xác minh hai bước!",
+    "Authentication": "Xác thục",
+    "Add-ons": "Tiện ích bổ sung",
+    "Select New Administrator": "Chọn Quản trị viên mới",
+    "Empty board!": "Bảng trống!",
+    "Select Permissions": "Chọn Quyền",
+    "Added Administrator successfully!": "Thêm Quản trị viên thành công!"
 }
