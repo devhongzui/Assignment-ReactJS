@@ -20,6 +20,10 @@
             </a>
             <div class="dropdown-divider"></div>
         @endif
+        <a href="{{ route('home') }}" target="_blank" class="dropdown-item">
+            <i class="fa-solid fa-house-user"></i>
+            @lang('Customer view')
+        </a>
         <a href="{{ backpack_url('logout') }}" class="dropdown-item">
             <i class="fa-solid fa-lock"></i>
             {{ trans('backpack::base.logout') }}
