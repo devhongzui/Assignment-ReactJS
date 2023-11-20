@@ -1,5 +1,14 @@
 {
     "Courses": "Khóa học",
+    "Course": "Khóa học",
+    "Subjects": "Môn học",
+    "Subject": "Môn học",
+    "Lessons": "Bài học",
+    "Lesson": "Bài học",
+    "Channels": "Kênh",
+    "Channel": "Kênh",
+    "Thumbnails": "Hình thu nhỏ",
+    "Thumbnail": "Hình thu nhỏ",
     "Tools": "Công cụ",
     "Musics": "Âm nhạc",
     "Theme": "Giao diện",
@@ -332,5 +341,6 @@
     "Empty board!": "Bảng trống!",
     "Select Permissions": "Chọn Quyền",
     "Added Administrator successfully!": "Thêm Quản trị viên thành công!",
-    "Customer view": "Trang người dùng"
+    "Customer view": "Trang người dùng",
+    "Models": "Mô hình"
 }

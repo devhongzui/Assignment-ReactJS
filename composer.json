@@ -17,6 +17,7 @@
         "backpack/filemanager": "^3.0",
         "backpack/logmanager": "^5.0",
         "backpack/permissionmanager": "^7.1",
+        "backpack/revise-operation": "^2.0",
         "backpack/settings": "^3.1",
         "backpack/theme-tabler": "^1.1",
         "doctrine/dbal": "^3.5.1",

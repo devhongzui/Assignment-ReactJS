@@ -16,4 +16,9 @@ Route::group([
     ),
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () {
+    Route::crud('course', 'CourseCrudController');
+    Route::crud('subject', 'SubjectCrudController');
+    Route::crud('lesson', 'LessonCrudController');
+    Route::crud('channel', 'ChannelCrudController');
+    Route::crud('thumbnail', 'ThumbnailCrudController');
 });
