@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xxl-3">
-        <img src="{{ $default_image }}" data-src="{{ $image }}" alt="{{ $title }}"
-             class="bg-light rounded-2 mb-2" style="height: 50px; width: 50px;">
+        <img data-src="{{ $image }}" alt="{{ $title }}" class="bg-light rounded-2 mb-2"
+             style="height: 50px; width: 50px;">
     </div>
     <div class="col-xxl-9">
         <strong>{{ $title }}</strong>

@@ -8,7 +8,10 @@
                     'type' => __('Enterprise'),
                     'tech' => 'Magento 2',
                     'short_introduce' => __('Genki Sushi Hong Kong bestsellers comprise sushi, sashimi, light foods, hot dishes, desserts and kids'),
-                    'image' => asset('storage/images/others/genki.png'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/others/genki.png'),
+                        'class' => 'object-fit-cover',
+                    ],
                     'url' => 'https://order.genkisushi.com.hk/en',
                 ],
                 (object) [
@@ -16,7 +19,10 @@
                     'type' => __('Enterprise'),
                     'tech' => 'Magento 2',
                     'short_introduce' => __('Galle Genuine Watch System is gradually increasing its position as the number 1 watch distributor in Vietnam'),
-                    'image' => asset('storage/images/others/gallewatch.png'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/others/gallewatch.png'),
+                        'class' => 'object-fit-cover',
+                    ],
                     'url' => 'https://galle.vn',
                 ],
                 (object) [
@@ -24,7 +30,10 @@
                     'type' => __('Enterprise'),
                     'tech' => 'Magento 2',
                     'short_introduce' => __('Shop thousands products (beauty, clothing, lifestyle) and order takeaway foods from Lee Gardens'),
-                    'image' => asset('storage/images/others/hy.jpg'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/others/hy.jpg'),
+                        'class' => 'object-fit-cover',
+                    ],
                     'url' => 'https://hyleegardens.com.hk/en',
                 ],
                 (object) [
@@ -32,7 +41,10 @@
                     'type' => __('Enterprise'),
                     'tech' => 'Magento 2',
                     'short_introduce' => __('ROUTINE is a famous, high-end fashion clothing brand in Vietnam, specializing in genuine everyday wear'),
-                    'image' => asset('storage/images/others/routine.jpg'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/others/routine.jpg'),
+                        'class' => 'object-fit-cover',
+                    ],
                     'url' => 'https://routine.vn',
                 ],
                 (object) [
@@ -40,7 +52,10 @@
                     'type' => __('Individual'),
                     'tech' => 'Laravel',
                     'short_introduce' => __('Practice CRUD, Authentication, OAuth operations on Laravel with MySQL Database'),
-                    'image' => asset('logo.png'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/pngwing/laravel.png'),
+                        'class' => 'object-fit-contain bg-light p-2',
+                    ],
                     'url' => config('app.url'),
                 ],
                 (object) [
@@ -48,7 +63,10 @@
                     'type' => __('Individual'),
                     'tech' => 'NodeJs',
                     'short_introduce' => __('Get familiar with Back-end development using NodeJs, MongoDB, GraphQL. Deploy the project on the Product environment (Ubuntu)'),
-                    'image' => asset('logo.png'),
+                    'image' => (object) [
+                        'data_src' => asset('storage/images/brandfetch/nodejs.png'),
+                        'class' => 'object-fit-contain bg-light p-2',
+                    ],
                     'url' => config('app.api_url'),
                 ],
             ];
@@ -57,9 +75,8 @@
             <div class="col-xl-4 mt-3 mb-5">
                 <div class="card mx-auto">
                     <a href="{{ $card->url }}" target="_blank" role="link" aria-label="{{ $card->project_name }}">
-                        <img src="{{ asset('logo.png') }}" data-src="{{ $card->image }}"
-                             class="card-img-top object-fit-cover" alt="{{ $card->project_name }}"
-                             style="height: 300px">
+                        <img data-src="{{ $card->image->data_src }}" class="card-img-top {{ $card->image->class }}"
+                             alt="{{ $card->project_name }}" style="height: 300px">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title text-center fw-bold">{{ $card->project_name }}</h5>

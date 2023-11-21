@@ -2,8 +2,8 @@
 
 <div class="dropdown ms-auto">
     <button class="btn btn-outline-primary mb-2" type="button" role="button" data-bs-toggle="dropdown">
-        <img src="{{ asset('logo.png') }}" data-src="{{ asset(request()->user()->avatar) }}" alt="@lang('Avatar')"
-             class="rounded-5" style="width: 25px; height: 25px">
+        <img data-src="{{ asset(request()->user()->avatar) }}" alt="@lang('Avatar')" class="rounded-5"
+             style="width: 25px; height: 25px">
         <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="@lang('Account management')">
             {{ request()->user()->name }}
         </span>

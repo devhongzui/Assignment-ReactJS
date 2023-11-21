@@ -5,9 +5,9 @@
     @foreach ($courses as $course)
         <div class="col-sm-6 col-xl-3 mb-3">
             <div class="card">
-                <img src="{{ asset('logo.png') }}" data-src="{{ asset($course->image) }}"
-                     class="card-img-top img-fluid bg-light object-fit-contain p-2" alt="{{ $course->title }}"
-                     style="height: 100px">
+                <img data-src="{{ asset($course->image) }}"
+                     class="card-img-top img-fluid bg-light object-fit-contain p-2"
+                     alt="{{ $course->title }}" style="height: 100px">
                 <div class="card-body">
                     <h5 class="card-title">{{ $course->title }}</h5>
                     <p class="card-text overflow-hidden" data-bs-toggle="tooltip" data-bs-placement="bottom"

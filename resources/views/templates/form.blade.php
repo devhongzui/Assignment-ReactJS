@@ -4,8 +4,7 @@
     <div class="container">
         <div class="row mb-3">
             <div class="col-xl-4 d-none d-xl-flex align-items-center">
-                <img src="{{ asset('logo.png') }}" data-src="{{ $web_image }}" alt="{{ $web_title }}"
-                     class="rounded-3 img-fluid object-fit-contain">
+                <img data-src="{{ $web_image }}" alt="{{ $web_title }}" class="rounded-3 img-fluid object-fit-contain">
             </div>
 
             <div class="col-12 col-xl-8">

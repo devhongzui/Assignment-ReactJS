@@ -74,8 +74,7 @@
                             <div class="mb-2 me-2">
                                 <a href="{{ $social->link }}" target="_blank" role="link"
                                    aria-label="{{ $social->label }}">
-                                    <img src="{{ asset('logo.png') }}" data-src="{{ $social->image }}"
-                                         alt="{{ $social->label }}" style="width: 30px">
+                                    <img data-src="{{ $social->image }}" alt="{{ $social->label }}" style="width: 30px">
                                 </a>
                             </div>
                         @endforeach
@@ -86,7 +85,7 @@
     </div>
 
     <div class="col-xl-6 d-flex justify-content-center">
-        <img src="{{ asset('logo.png') }}" data-src="{{ asset('storage/images/freepik/7036172.jpg') }}"
-             alt="@lang('Personal information')" class="rounded-2 object-fit-cover img-fluid" style="height: 500px;">
+        <img data-src="{{ asset('storage/images/freepik/7036172.jpg') }}" alt="@lang('Personal information')"
+             class="rounded-2 object-fit-cover img-fluid" style="height: 500px;">
     </div>
 </section>

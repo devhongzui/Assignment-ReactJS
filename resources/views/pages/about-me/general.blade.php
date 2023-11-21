@@ -7,7 +7,7 @@
         <p>@lang('I love the Information Technology field and have a passion for Web Programming.')</p>
     </div>
     <div class="col-xl-6 d-xl-flex justify-content-xl-end">
-        <img src="{{ asset('logo.png') }}" data-src="{{ asset('storage/images/freepik/7036084.jpg') }}"
-             alt="@lang('Overview')" class="rounded-2 object-fit-cover img-fluid" style="height: 500px;">
+        <img data-src="{{ asset('storage/images/freepik/7036084.jpg') }}" alt="@lang('Overview')"
+             class="rounded-2 object-fit-cover img-fluid" style="height: 500px;">
     </div>
 </section>

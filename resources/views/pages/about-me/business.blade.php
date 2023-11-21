@@ -24,7 +24,7 @@
             @for ($i = 0; $i < 3; $i++)
                 @foreach ($images as $image)
                     <div class="swiper-slide">
-                        <img src="{{ asset('logo.png') }}" data-src="{{ $image->href }}" alt="{{ $image->alt }}"
+                        <img data-src="{{ $image->href }}" alt="{{ $image->alt }}"
                              class="d-block w-100 object-fit-contain" style="height: 60px">
                     </div>
                 @endforeach
