@@ -5,6 +5,9 @@ $("img").Lazy({
     scrollDirection: "vertical",
     effect: "fadeIn",
     visibleOnly: true,
+    beforeLoad: (element) => $(element).toggleClass("placeholder"),
+    afterLoad: (element) =>
+        setTimeout(() => $(element).toggleClass("placeholder"), 500),
 });
 
 $("modal-lazy").each((_, element) => {

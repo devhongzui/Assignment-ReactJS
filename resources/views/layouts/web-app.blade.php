@@ -5,11 +5,13 @@
         'theme' => session('data-bs-theme', 'dark'),
         'title' => $web_title ?? config('app.name'),
         'short_icon' => asset('favicon.ico'),
-        'description' => implode('. ', [
-            0 => __('devhongzui.com - Collection of tools and APIs to support programming for IT students in Vietnam'),
-            __('Explore rich resources and diverse utilities to develop your programming skills'),
-            __('Find out now!'),
-        ]),
+        'description' =>
+            $web_description ??
+            implode('. ', [
+                0 => __('devhongzui.com - Collection of tools and APIs to support programming for IT students in Vietnam'),
+                __('Explore rich resources and diverse utilities to develop your programming skills'),
+                __('Find out now!'),
+            ]),
         'url' => url()->full(),
         'type' => 'website',
         'image' => $web_image ?? asset('logo.png'),

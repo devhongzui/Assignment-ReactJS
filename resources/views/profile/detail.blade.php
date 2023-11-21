@@ -14,7 +14,7 @@
     <div class="row mb-3">
         <div class="offset-md-1 col-md-3 text-primary fw-bold">@lang('Avatar')</div>
         <div class="col-md-7">
-            <img src="{{ url('logo.png') }}" alt="@lang('Avatar')" style="width: 40px; height: 40px"
+            <img src="{{ asset('logo.png') }}" alt="@lang('Avatar')" style="width: 40px; height: 40px"
                  data-src="{{ asset(request()->user()->avatar) }}" class="rounded-5">
         </div>
     </div>

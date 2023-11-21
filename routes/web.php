@@ -32,3 +32,4 @@ Route::post('theme', [ChangeThemeController::class, 'store'])->name('theme');
 require base_path('vendor/laravel/fortify/routes/routes.php');
 require __DIR__ . '/web/auth.php';
 require __DIR__ . '/web/profile.php';
+require __DIR__ . '/web/study.php';

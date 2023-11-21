@@ -342,5 +342,15 @@
     "Select Permissions": "Chọn Quyền",
     "Added Administrator successfully!": "Thêm Quản trị viên thành công!",
     "Customer view": "Trang người dùng",
-    "Models": "Mô hình"
+    "Models": "Mô hình",
+    "Summary of programming courses": "Tổng hợp Khóa học lập trình",
+    "The subject is already in the Database": "Môn học đã có trong Cơ sở dữ liệu",
+    "Welcome to the top programming course aggregator!": "Chào mừng bạn đến với trang tổng hợp khóa học lập trình hàng đầu!",
+    "We offer a variety of programming courses, from basic to advanced, to help you improve your programming skills.": "Chúng tôi cung cấp các khóa học lập trình đa dạng, từ cơ bản đến nâng cao, giúp bạn nâng cao kỹ năng lập trình của mình.",
+    "With courses in Python, Java, JavaScript, and many other languages, you have the opportunity to learn syntax, programming logic, and practice through real-life projects.": "Với các khóa học về Python, Java, JavaScript, và nhiều ngôn ngữ khác, bạn có cơ hội học cú pháp, logic lập trình và thực hành thông qua dự án thực tế.",
+    "Experienced teaching staff ensure your learning brings real value. Explore new opportunities with us today!": "Đội ngũ giảng viên giàu kinh nghiệm đảm bảo việc học của bạn mang lại giá trị thực tế. Hãy khám phá cơ hội mới cùng chúng tôi ngay hôm nay!",
+    "Showing": "Hiển thị",
+    "to": "đến",
+    "of": "của",
+    "results": "kết quả"
 }

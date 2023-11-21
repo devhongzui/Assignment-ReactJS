@@ -1,6 +1,6 @@
 <ul class="navbar-nav">
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Courses')"
+        <a href="{{ route('courses') }}" aria-label="@lang('Courses')"
            class="nav-link text-end @if ($course_page ?? false) active @endif">
             @lang('Courses')
         </a>
