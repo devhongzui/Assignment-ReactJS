@@ -47,18 +47,18 @@ class Thumbnail extends Model
      * @param string $type_name
      * @return string|false
      */
-    public function getTypeCode(string $type_name): string|false
+    public static function getTypeCode(string $type_name): string|false
     {
         return array_search(
             strtolower($type_name),
-            $this->getTypesOption()
+            static::getTypesOption()
         );
     }
 
     /**
      * @return string[]
      */
-    public function getTypesOption(): array
+    public static function getTypesOption(): array
     {
         return [
             'default',

@@ -24,7 +24,7 @@
                     @else
                         <a class="text-decoration-none dropdown-item"
                            href="{{ LaravelLocalization::getLocalizedURL($key) }}" role="link"
-                           aria-label="{{ $language['native'] }}" style="color: unset">
+                           aria-label="{{ $language['native'] }}">
                             {{ $language['native'] }}
                         </a>
                     @endif

@@ -12,6 +12,7 @@ class Subject extends Model
 {
     use CrudTrait;
     use RevisionableTrait;
+    use ThumbnailTrait;
 
     /**
      * @var string[]

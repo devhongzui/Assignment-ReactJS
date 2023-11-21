@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Study;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,7 +16,9 @@ class CourseController extends Controller
      */
     public function show(Request $request): View
     {
-        $courses = Course::paginate($request->get('s', 8));
+        $courses = Course
+            ::paginate($request->get('s', 8))
+            ->appends($request->query());
 
         return $request->wantsJson()
             ? view('study.courses.lazy')->with([
@@ -33,5 +36,42 @@ class CourseController extends Controller
                 'courses' => $courses,
                 'course_page' => true,
             ]);
+    }
+
+    /**
+     * @param int $course_id
+     * @param Request $request
+     * @return View
+     */
+    public function subject(int $course_id, Request $request): View
+    {
+        $page_size = $request->get('s', 8);
+        $query = $request->query();
+
+        if ($request->wantsJson()) {
+            $subjects = Subject
+                ::whereCourseId($course_id)
+                ->paginate($page_size)
+                ->appends($query);
+
+            return view('study.course.lazy')->with([
+                'subjects' => $subjects,
+                'is_lazy' => true,
+            ]);
+        } else {
+            $course = Course::find($course_id);
+            $subjects = $course
+                ->subjects()
+                ->paginate($page_size)
+                ->appends($query);
+
+            return view('study.course')->with([
+                'web_title' => $course->title,
+                'web_description' => $course->description,
+                'course' => $course,
+                'subjects' => $subjects,
+                'course_page' => true,
+            ]);
+        }
     }
 }
