@@ -43,7 +43,7 @@ class CourseController extends Controller
      * @param Request $request
      * @return View
      */
-    public function subject(int $course_id, Request $request): View
+    public function subjects(int $course_id, Request $request): View
     {
         $page_size = $request->get('s', 8);
         $query = $request->query();
@@ -55,7 +55,8 @@ class CourseController extends Controller
                 ->appends($query);
 
             return view('study.course.lazy')->with([
-                'subjects' => $subjects,
+                'data' => $subjects,
+                'route' => 'subject',
                 'is_lazy' => true,
             ]);
         } else {
@@ -69,7 +70,8 @@ class CourseController extends Controller
                 'web_title' => $course->title,
                 'web_description' => $course->description,
                 'course' => $course,
-                'subjects' => $subjects,
+                'data' => $subjects,
+                'route' => 'subject',
                 'course_page' => true,
             ]);
         }

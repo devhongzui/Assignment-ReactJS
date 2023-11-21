@@ -11,6 +11,7 @@ class Lesson extends Model
 {
     use CrudTrait;
     use RevisionableTrait;
+    use ThumbnailTrait;
 
     /**
      * @var string[]
