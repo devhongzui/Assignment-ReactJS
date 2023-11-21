@@ -352,5 +352,9 @@
     "Showing": "Hiển thị",
     "to": "đến",
     "of": "của",
-    "results": "kết quả"
+    "results": "kết quả",
+    ":number lessons": ":number bài học",
+    ":number subjects": ":number môn học",
+    "Summary of :name courses from Youtube": "Tổng hợp khóa học :name từ Youtube",
+    "Publish at :time": "Xuất bản lúc :time"
 }

@@ -14,7 +14,7 @@
                  data-bs-title="{{ $description }}"
                  style="display: -webkit-box;
                         -webkit-box-orient: vertical;
-                        -webkit-line-clamp: 2;">{{ $description }}</pre>
+                        -webkit-line-clamp: 1;">{{ $description }}</pre>
             <div class="card-text mb-2">
                 @foreach ($pills as $pill)
                     <span class="badge rounded-pill {{ $pill->class }} shadow-lg">{{ $pill->description }}</span>
@@ -43,7 +43,7 @@
              data-bs-title="{{ $description }}"
              style="display: -webkit-box;
                     -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 4;">{{ $description }}</pre>
+                    -webkit-line-clamp: 3;">{{ $description }}</pre>
         <div class="mb-2">
             @foreach ($pills as $pill)
                 <span class="badge rounded-pill {{ $pill->class }} shadow-lg">{{ $pill->description }}</span>

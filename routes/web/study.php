@@ -12,3 +12,6 @@ Route::get('course/{course_id}', [CourseController::class, 'subjects'])
 
 Route::get('subject/{subject_id}', [SubjectController::class, 'lessons'])
     ->name('subject');
+
+Route::get('channel/{channel_id}', [ChannelController::class, 'detail'])
+    ->name('channel');

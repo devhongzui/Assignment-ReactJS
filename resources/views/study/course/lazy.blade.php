@@ -2,12 +2,12 @@
     @foreach ($data as $item)
         <div class="col-sm-6 col-xl-3 mb-3">
             <div class="card border-0">
+                @php
+                    $src_subject = $item->getThumbnail('maxres')->url ?? asset('logo.png');
+                    $channel = $item->channel;
+                    $src_channel = $channel->getThumbnail('medium')->url ?? asset('logo.png');
+                @endphp
                 <a href="{{ route($route, $item->id) }}" aria-label="{{ $item->title }}">
-                    @php
-                        $src_subject = $item->getThumbnail('maxres')->url ?? asset('logo.png');
-                        $channel = $item->channel;
-                        $src_channel = $channel->getThumbnail('medium')->url ?? asset('logo.png');
-                    @endphp
                     <img data-src="{{ $src_subject }}"
                          class="card-img-top img-fluid bg-light object-fit-cover rounded-2"
                          alt="{{ $item->title }}" style="height: 100px">
@@ -15,8 +15,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <img data-src="{{ $src_channel }}" class="rounded-5" alt="{{ $channel->title }}"
-                                 style="width: 45px; height: 45px;">
+                            <a href="{{ route('channel', $channel->id) }}" aria-label="{{ $channel->description }}">
+                                <img data-src="{{ $src_channel }}" class="rounded-5" alt="{{ $channel->title }}"
+                                     style="width: 45px; height: 45px;">
+                            </a>
                         </div>
                         <div class="col-9">
                             <a href="{{ route($route, $item->id) }}" aria-label="{{ $item->title }}">
@@ -35,7 +37,11 @@
                                       -webkit-line-clamp: 3;">
                                 {{ $item->description }}
                             </p>
-                            <p class="fw-bolder">{{ $channel->title }}</p>
+                            <a href="{{ route('channel', $channel->id) }}" aria-label="{{ $channel->description }}">
+                                <p class="fw-bolder">
+                                    {{ $channel->title }}
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>

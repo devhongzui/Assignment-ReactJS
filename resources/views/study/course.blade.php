@@ -8,7 +8,8 @@
             @endphp
             <x-page.detail :link="route('course', $course->id)"
                            :image="(object) ['data_src' => asset($course->image), 'class' => 'object-fit-contain p-2']"
-                           sub-title="" :title="$web_title" :description="$web_description"
+                           :sub-title="__('Summary of :name courses from Youtube', ['name' => $web_title])"
+                           :title="$web_title" :description="$web_description"
                            :pills="[
                     (object) [
                         'class' => 'bg-primary',
