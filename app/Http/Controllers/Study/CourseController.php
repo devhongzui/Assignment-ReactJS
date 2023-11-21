@@ -18,7 +18,10 @@ class CourseController extends Controller
         $courses = Course::paginate($request->get('s', 8));
 
         return $request->wantsJson()
-            ? view('study.courses.lazy')->with('courses', $courses)
+            ? view('study.courses.lazy')->with([
+                'courses' => $courses,
+                'is_lazy' => true,
+            ])
             : view('study.courses')->with([
                 'web_title' => __('Summary of programming courses'),
                 'web_description' => implode(' ', [
