@@ -26,7 +26,7 @@
 
 <body>
 @include('layouts.web-app.body.header')
-<main>
+<main style="min-height: 600px">
     @yield('main')
 
     @include('layouts.web-app.body.main.toast')

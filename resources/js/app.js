@@ -1,6 +1,11 @@
 import "./bootstrap.js";
 import request from "./ajax.js";
 
+$("main").css(
+    "min-height",
+    window.innerHeight - $("header").height() - $("footer").height(),
+);
+
 $("img").Lazy({
     scrollDirection: "vertical",
     effect: "fadeIn",
