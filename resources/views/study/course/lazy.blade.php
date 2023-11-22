@@ -1,7 +1,7 @@
 <div class="row">
     @foreach ($data as $item)
         <div class="col-sm-6 col-xl-3 mb-3">
-            <div class="card border-0">
+            <div class="card mt-3 mb-5 border-0 bg-dark-subtle">
                 @php
                     $src_subject = $item->getThumbnail('maxres')->url ?? asset('logo.png');
                     $channel = $item->channel;
@@ -30,15 +30,18 @@
                                 </h5>
                             </a>
                             <p class="card-text overflow-hidden" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                               data-bs-title="{{ $item->description ?: __('N/A') }}"
+                               data-bs-title="{{ __('Introduce: :description', ['description' => $item->description]) }}"
                                style="min-height: 70px;
                                       display: -webkit-box;
                                       -webkit-box-orient: vertical;
                                       -webkit-line-clamp: 3;">
-                                {{ $item->description }}
+                                {{ __('Introduce: :description', ['description' => $item->description]) }}
                             </p>
                             <a href="{{ route('channel', $channel->id) }}" aria-label="{{ $channel->description }}">
-                                <p class="fw-bolder">
+                                <p class="fw-bolder overflow-hidden"
+                                   style="display: -webkit-box;
+                                          -webkit-box-orient: vertical;
+                                          -webkit-line-clamp: 1;">
                                     {{ $channel->title }}
                                 </p>
                             </a>

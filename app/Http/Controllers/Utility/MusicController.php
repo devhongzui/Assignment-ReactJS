@@ -19,7 +19,7 @@ class MusicController extends Controller
      */
     public function show(Request $request): View
     {
-        $limit = $request->get('limit', 50);
+        $limit = $request->get('limit', 15);
         if ($request->wantsJson()) {
             $offset = $request->get('offset', 0);
 
@@ -50,11 +50,34 @@ class MusicController extends Controller
             $new_releases = Spotify::newReleases()->limit($limit)->get();
 
             return view('music.welcome')->with([
+                'web_title' => '#',
+                'web_description' => '#',
+                'web_image' => '#',
                 'featured_playlists' => $featured_playlists,
                 'new_releases' => $new_releases,
                 'route_name' => 'musics',
                 'music_page' => true,
             ]);
         }
+    }
+
+    /**
+     * @param string $album_id
+     * @param Request $request
+     * @return View
+     * @throws SpotifyApiException
+     */
+    public function album(string $album_id, Request $request): View
+    {
+        $album = Spotify::album($album_id)->get();
+
+        return view('music.album')->with([
+            'web_title' => $album['name'],
+            'web_description' => $album['label'],
+            'web_image' => $album['images'][0]['url'],
+            'album' => $album,
+            'route_name' => 'album',
+            'music_page' => true,
+        ]);
     }
 }

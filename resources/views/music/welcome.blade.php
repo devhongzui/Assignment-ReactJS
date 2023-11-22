@@ -8,7 +8,7 @@
             <div class="swiper-wrapper">
                 @foreach ($featured_playlists['playlists']['items'] as $playlist)
                     <div class="swiper-slide">
-                        <a href="{{ $playlist['external_urls']['spotify'] }}" role="link"
+                        <a href="{{ $playlist['external_urls']['spotify'] }}" target="_blank" role="link"
                            aria-label="{{ $playlist['name'] }}">
                             <img data-src="{{ $playlist['images'][0]['url'] }}" alt="{{ $playlist['name'] }}"
                                  class="w-100 object-fit-contain" style="height: 200px">

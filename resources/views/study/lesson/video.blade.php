@@ -33,8 +33,8 @@
         @endphp
         <a href="{{ route('channel', $channel->id) }}" aria-label="{{ $channel->title }}" role="link"
            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="@lang('Channel')">
-            <img data-src="{{ $src_channel }}" alt="{{ $channel->title }}" class="rounded-5"
-                 style="width: 35px; height: 35px;">
+            <img src="{{ asset('logo.png') }}" data-src="{{ $src_channel }}" alt="{{ $channel->title }}"
+                 class="rounded-5" style="width: 35px; height: 35px;">
             {{ $channel->title }}
         </a>
     </h4>

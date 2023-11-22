@@ -9,7 +9,8 @@
             <x-page.detail link="https://www.youtube.com/{{ $channel->custom_url }}"
                            :image="(object) ['data_src' => $web_image, 'class' => 'object-fit-cover']"
                            :sub-title="$channel->custom_url"
-                           :title="$web_title" :description="$web_description ?: __('N/A')" :pills="[
+                           :title="$web_title"
+                           :description="__('Introduce: :description', ['description' => $web_description])" :pills="[
                     (object) [
                         'class' => 'bg-primary',
                         'description' => __(':number lessons', ['number' => $channel->lessons()->count()]),

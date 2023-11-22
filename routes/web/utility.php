@@ -12,3 +12,9 @@ Route::get('tool/{tool_id}', [ToolController::class, 'detail'])
 
 Route::get('musics', [MusicController::class, 'show'])
     ->name('musics');
+
+Route::get('album/{album_id}', [MusicController::class, 'album'])
+    ->name('album');
+
+Route::get('playlist/{playlist_id}', [MusicController::class, 'playlist'])
+    ->name('playlist');
