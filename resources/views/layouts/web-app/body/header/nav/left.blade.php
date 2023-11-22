@@ -6,7 +6,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Tools')"
+        <a href="{{ route('tools') }}" aria-label="@lang('Tools')"
            class="nav-link text-end @if ($tool_page ?? false) active @endif">
             @lang('Tools')
         </a>

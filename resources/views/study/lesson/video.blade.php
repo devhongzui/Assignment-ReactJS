@@ -8,13 +8,13 @@
     <h2 class="card-header">{{ $lesson->title }}</h2>
     <div class="card-body overflow-auto" style="max-height: 262px;">
         <div class="row mb-2">
-            <STRONG class="col-3 col-xl-2">@lang('Introduce')</STRONG>
+            <strong class="col-3 col-xl-2">@lang('Introduce')</strong>
             <div class="col-9 col-xl-10">
-                <pre class="mb-0 description">{{ $lesson->description }}</pre>
+                <pre class="mb-0">{{ $lesson->description }}</pre>
             </div>
         </div>
         <div class="row mb-2">
-            <STRONG class="col-3 col-xl-2">@lang('Subject')</STRONG>
+            <strong class="col-3 col-xl-2">@lang('Subject')</strong>
             <div class="col-9 col-xl-10">
                 <a href="{{ route('subject', $subject->id) }}" target="_blank" role="link"
                    class="text-decoration-underline" aria-label="{{ $subject->title }}">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-            <STRONG class="col-3 col-xl-2">@lang('Publish at')</STRONG>
+            <strong class="col-3 col-xl-2">@lang('Publish at')</strong>
             <div class="col-9 col-xl-10">{{ $lesson->publish_at }}</div>
         </div>
     </div>

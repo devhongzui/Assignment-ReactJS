@@ -22,7 +22,7 @@ class CourseController extends Controller
 
         return $request->wantsJson()
             ? view('study.courses.lazy')->with([
-                'courses' => $courses,
+                'data' => $courses,
                 'is_lazy' => true,
             ])
             : view('study.courses')->with([
@@ -33,7 +33,8 @@ class CourseController extends Controller
                     __('With courses in Python, Java, JavaScript, and many other languages, you have the opportunity to learn syntax, programming logic, and practice through real-life projects.'),
                     __('Experienced teaching staff ensure your learning brings real value. Explore new opportunities with us today!'),
                 ]),
-                'courses' => $courses,
+                'web_image' => asset('storage/images/undraw/Learning.png'),
+                'data' => $courses,
                 'course_page' => true,
             ]);
     }
