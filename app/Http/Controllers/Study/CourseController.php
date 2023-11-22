@@ -23,6 +23,7 @@ class CourseController extends Controller
         return $request->wantsJson()
             ? view('study.courses.lazy')->with([
                 'data' => $courses,
+                'route' => 'course',
                 'is_lazy' => true,
             ])
             : view('study.courses')->with([

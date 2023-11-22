@@ -22,6 +22,7 @@
         </div>
 
         @foreach ($list as $item)
+            <hr>
             <h3 class="text-center mt-3">{{ $item->title }}</h3>
 
             @include('study.course.lazy', [

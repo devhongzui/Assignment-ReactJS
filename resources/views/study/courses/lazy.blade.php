@@ -1,7 +1,7 @@
 <div class="row">
     @foreach ($data as $item)
         <div class="col-sm-6 col-xl-3 mb-3">
-            <div class="card">
+            <div class="card bg-dark-subtle shadow-lg">
                 @php
                     $href = route($route, $item->id);
                 @endphp

@@ -12,7 +12,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" aria-label="@lang('Musics')"
+        <a href="{{ route('musics') }}" aria-label="@lang('Musics')"
            class="nav-link text-end @if ($music_page ?? false) active @endif">
             @lang('Musics')
         </a>
