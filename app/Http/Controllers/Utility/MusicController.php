@@ -63,11 +63,10 @@ class MusicController extends Controller
 
     /**
      * @param string $album_id
-     * @param Request $request
      * @return View
      * @throws SpotifyApiException
      */
-    public function album(string $album_id, Request $request): View
+    public function album(string $album_id): View
     {
         $album = Spotify::album($album_id)->get();
 
@@ -77,6 +76,25 @@ class MusicController extends Controller
             'web_image' => $album['images'][0]['url'],
             'album' => $album,
             'route_name' => 'album',
+            'music_page' => true,
+        ]);
+    }
+
+    /**
+     * @param string $playlist_id
+     * @return View
+     * @throws SpotifyApiException
+     */
+    public function playlist(string $playlist_id): View
+    {
+        $playlist = Spotify::playlist($playlist_id)->get();
+
+        return view('music.playlist')->with([
+            'web_title' => $playlist['name'],
+            'web_description' => $playlist['description'],
+            'web_image' => $playlist['images'][0]['url'],
+            'playlist' => $playlist,
+            'route_name' => 'playlist',
             'music_page' => true,
         ]);
     }
