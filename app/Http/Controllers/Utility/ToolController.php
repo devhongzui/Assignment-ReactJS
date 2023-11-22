@@ -32,7 +32,24 @@ class ToolController extends Controller
                 ]),
                 'web_image' => asset('storage/images/undraw/Multitasking.png'),
                 'data' => $tools,
+                'route' => 'tool',
                 'tool_page' => true,
             ]);
+    }
+
+    /**
+     * @param int $tool_id
+     * @return View
+     */
+    public function detail(int $tool_id): View
+    {
+        $tool = Tool::find($tool_id);
+
+        return view($tool->view)->with([
+            'web_title' => $tool->title,
+            'web_description' => $tool->description,
+            'web_image' => $tool->image,
+            'tool_page' => true,
+        ]);
     }
 }

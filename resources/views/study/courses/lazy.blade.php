@@ -2,13 +2,15 @@
     @foreach ($data as $item)
         <div class="col-sm-6 col-xl-3 mb-3">
             <div class="card">
-                <a href="{{ route('course', $item->id) }}" aria-label="{{ $item->title }}">
-                    <img data-src="{{ asset($item->image) }}"
-                         class="card-img-top img-fluid bg-light object-fit-contain p-2" alt="{{ $item->title }}"
-                         style="height: 100px">
+                @php
+                    $href = route($route, $item->id);
+                @endphp
+                <a href="{{ $href }}" aria-label="{{ $item->title }}">
+                    <img data-src="{{ asset($item->image) }}" alt="{{ $item->title }}"
+                         class="card-img-top img-fluid bg-light object-fit-contain p-2" style="height: 100px">
                 </a>
                 <div class="card-body">
-                    <a href="{{ route('course', $item->id) }}" aria-label="{{ $item->title }}">
+                    <a href="{{ $href }}" aria-label="{{ $item->title }}">
                         <h5 class="card-title overflow-hidden"
                             style="display: -webkit-box;
                                -webkit-box-orient: vertical;

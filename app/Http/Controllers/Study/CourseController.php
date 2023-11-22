@@ -35,6 +35,7 @@ class CourseController extends Controller
                 ]),
                 'web_image' => asset('storage/images/undraw/Learning.png'),
                 'data' => $courses,
+                'route' => 'course',
                 'course_page' => true,
             ]);
     }
