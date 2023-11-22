@@ -399,5 +399,12 @@
     "Convert all characters to uppercase": "Chuyển toàn bộ về ký tự in hoa",
     "Remove hard-to-see characters": "Loại bỏ ký tự khó nhìn",
     "Document": "Văn bản",
-    "Enter Text": "Nhập Văn bản"
+    "Enter Text": "Nhập Văn bản",
+    "Encode": "Mã hóa",
+    "Decryption": "Giải mã",
+    "Algorithm": "Thuật toán",
+    "Cryptographic Function": "Hàm Mật mã",
+    "Hash Function": "Hàm Băm",
+    "Key": "Khóa",
+    "Enter Key": "Nhập Khóa"
 }
