@@ -26,7 +26,7 @@ class ChannelController extends Controller
             $data = $is_lesson
                 ? Lesson::whereChannelId($channel_id)->paginate($page_size)->appends($query)
                 : Subject::whereChannelId($channel_id)->paginate($page_size)->appends($query);
-            $route = $is_lesson ? 'subject' : 'subject';
+            $route = $is_lesson ? 'lesson' : 'subject';
 
             return view('study.course.lazy')->with([
                 'data' => $data,
@@ -35,6 +35,7 @@ class ChannelController extends Controller
             ]);
         } else {
             $channel = Channel::find($channel_id);
+            $image = $channel->getThumbnail('high')->url ?? asset('logo.png');
             $lessons = $channel
                 ->lessons()
                 ->paginate($page_size)
@@ -43,23 +44,25 @@ class ChannelController extends Controller
                 ->subjects()
                 ->paginate($page_size)
                 ->appends(array_merge($query, ['data' => 'subjects']));
+            $list = (object)[
+                (object)[
+                    'title' => __('Lessons from :name', ['name' => $channel->title]),
+                    'data' => $lessons,
+                    'route' => 'lesson',
+                ],
+                (object)[
+                    'title' => __('Subjects from :name', ['name' => $channel->title]),
+                    'data' => $subjects,
+                    'route' => 'subject',
+                ],
+            ];
 
             return view('study.channel')->with([
                 'web_title' => $channel->title,
                 'web_description' => $channel->description,
+                'web_image' => $image,
                 'channel' => $channel,
-                'list' => (object)[
-                    (object)[
-                        'title' => __('Lessons from :name', ['name' => $channel->title]),
-                        'data' => $lessons,
-                        'route' => 'subject',
-                    ],
-                    (object)[
-                        'title' => __('Subjects from :name', ['name' => $channel->title]),
-                        'data' => $subjects,
-                        'route' => 'subject',
-                    ],
-                ],
+                'list' => $list,
                 'course_page' => true,
             ]);
         }

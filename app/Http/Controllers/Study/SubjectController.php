@@ -28,11 +28,12 @@ class SubjectController extends Controller
 
             return view('study.course.lazy')->with([
                 'data' => $lessons,
-                'route' => 'subject',
+                'route' => 'lesson',
                 'is_lazy' => true,
             ]);
         } else {
             $subject = Subject::find($subject_id);
+            $image = $subject->getThumbnail('high')->url ?? asset('logo.png');
             $lessons = $subject
                 ->lessons()
                 ->paginate($page_size)
@@ -41,9 +42,10 @@ class SubjectController extends Controller
             return view('study.subject')->with([
                 'web_title' => $subject->title,
                 'web_description' => $subject->description,
+                'web_image' => $image,
                 'subject' => $subject,
                 'data' => $lessons,
-                'route' => 'subject',
+                'route' => 'lesson',
                 'course_page' => true,
             ]);
         }

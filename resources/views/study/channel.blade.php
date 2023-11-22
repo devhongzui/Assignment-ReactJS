@@ -5,10 +5,9 @@
         <div class="mb-3">
             @php
                 /** @var \App\Models\Subject $channel */
-                $src_channel = $channel->getThumbnail('high')->url ?? asset('logo.png');
             @endphp
             <x-page.detail link="https://www.youtube.com/{{ $channel->custom_url }}"
-                           :image="(object) ['data_src' => $src_channel, 'class' => 'object-fit-cover']"
+                           :image="(object) ['data_src' => $web_image, 'class' => 'object-fit-cover']"
                            :sub-title="$channel->custom_url"
                            :title="$web_title" :description="$web_description ?: __('N/A')" :pills="[
                     (object) [

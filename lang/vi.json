@@ -11,6 +11,7 @@
     "Thumbnail": "Hình thu nhỏ",
     "Tools": "Công cụ",
     "Musics": "Âm nhạc",
+    "Comment": "Bình luận",
     "Theme": "Giao diện",
     "Language": "Ngôn ngữ",
     "Search": "Tìm kiếm",
@@ -356,5 +357,8 @@
     ":number lessons": ":number bài học",
     ":number subjects": ":number môn học",
     "Summary of :name courses from Youtube": "Tổng hợp khóa học :name từ Youtube",
-    "Publish at :time": "Xuất bản lúc :time"
+    "Publish at :time": "Xuất bản lúc :time",
+    "Publish at": "Xuất bản lúc",
+    "Lessons from :name": "Bài học từ :name",
+    "Subjects from :name": "Môn học từ :name"
 }

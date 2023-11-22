@@ -22,8 +22,7 @@
                     @if ($lang_current === $key)
                         <span class="text-primary dropdown-item">{{ $language['native'] }}</span>
                     @else
-                        <a class="text-decoration-none dropdown-item"
-                           href="{{ LaravelLocalization::getLocalizedURL($key) }}" role="link"
+                        <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($key) }}" role="link"
                            aria-label="{{ $language['native'] }}">
                             {{ $language['native'] }}
                         </a>

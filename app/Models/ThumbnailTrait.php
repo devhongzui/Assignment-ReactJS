@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Exception;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait ThumbnailTrait
@@ -10,7 +9,6 @@ trait ThumbnailTrait
     /**
      * @param string $type
      * @return Thumbnail|null
-     * @throws Exception
      */
     public function getThumbnail(string $type): ?Thumbnail
     {
@@ -21,7 +19,6 @@ trait ThumbnailTrait
 
     /**
      * @return HasMany
-     * @throws Exception
      */
     public function thumbnails(): HasMany
     {
