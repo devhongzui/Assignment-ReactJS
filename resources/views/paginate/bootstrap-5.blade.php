@@ -5,10 +5,10 @@
 @if ($has_pages)
     @php
         $on_first_page = $paginator['offset'] === 0;
-        $previous_page_url = route($route_name, ['type' => $route_id, 'offset' => $paginator['offset'] - 1]);
+        $previous_page_url = route($route_name, [$route_id,'type' => $route_type, 'offset' => $paginator['offset'] - 1]);
 
         $has_more_pages = $paginator['offset'] + 1 < $number_of_page;
-        $next_page_url = route($route_name, ['type' => $route_id, 'offset' => $paginator['offset'] + 1]);
+        $next_page_url = route($route_name, [$route_id,'type' => $route_type, 'offset' => $paginator['offset'] + 1]);
 
         $first_item = $paginator['offset'] * $paginator['limit'] + 1;
         $last_item = $first_item + $paginator['limit'] - 1;
@@ -18,7 +18,7 @@
         $elements = [];
         foreach ($range as $index) {
             $elements[] = [
-                $index => route($route_name, ['type' => $route_id, 'offset' => $index - 1]),
+                $index => route($route_name, [$route_id,'type' => $route_type, 'offset' => $index - 1]),
             ];
         }
 

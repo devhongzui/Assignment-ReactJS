@@ -38,7 +38,7 @@
                                 </a>
                             </div>
                             @foreach ($track['artists'] as $index => $artist)
-                                <a href="#" class="text-decoration-none" role="link"
+                                <a href="{{ route('artist', $artist['id']) }}" class="text-decoration-none" role="link"
                                    aria-labelledby="{{ $artist['name'] }}" style="color: unset">
                                     {{ $artist['name'] }}
                                 </a>

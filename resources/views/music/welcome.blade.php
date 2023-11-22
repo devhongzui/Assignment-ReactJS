@@ -8,7 +8,7 @@
             <div class="swiper-wrapper">
                 @foreach ($featured_playlists['playlists']['items'] as $playlist)
                     <div class="swiper-slide">
-                        <a href="{{ $playlist['external_urls']['spotify'] }}" target="_blank" role="link"
+                        <a href="{{ route('playlist', $playlist['id']) }}" role="link"
                            aria-label="{{ $playlist['name'] }}">
                             <img data-src="{{ $playlist['images'][0]['url'] }}" alt="{{ $playlist['name'] }}"
                                  class="w-100 object-fit-contain" style="height: 200px">
@@ -22,14 +22,14 @@
         <div class="text-center h4 fw-bold">@lang($featured_playlists['message'])</div>
         @include('music.lazy.playlist', [
             'playlists' => $featured_playlists['playlists'],
-            'route_id' => 'playlists',
+            'route_type' => 'playlists',
         ])
 
         <hr>
         <div class="text-center h4 fw-bold">@lang('Albums')</div>
         @include('music.lazy.album', [
             'albums' => $new_releases['albums'],
-            'route_id' => 'albums',
+            'route_type' => 'albums',
         ])
     </div>
 @endsection

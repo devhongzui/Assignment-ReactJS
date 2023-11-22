@@ -18,3 +18,6 @@ Route::get('album/{album_id}', [MusicController::class, 'album'])
 
 Route::get('playlist/{playlist_id}', [MusicController::class, 'playlist'])
     ->name('playlist');
+
+Route::get('artist/{artist_id}', [MusicController::class, 'artist'])
+    ->name('artist');

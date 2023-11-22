@@ -30,7 +30,8 @@ class MusicController extends Controller
                     return view('music.lazy.playlist')->with([
                         'playlists' => $featured_playlists['playlists'],
                         'route_name' => 'musics',
-                        'route_id' => 'playlists',
+                        'route_id' => null,
+                        'route_type' => 'playlists',
                         'is_lazy' => true,
                     ]);
                 case 'albums':
@@ -39,7 +40,8 @@ class MusicController extends Controller
                     return view('music.lazy.album')->with([
                         'albums' => $new_releases['albums'],
                         'route_name' => 'musics',
-                        'route_id' => 'albums',
+                        'route_id' => null,
+                        'route_type' => 'albums',
                         'is_lazy' => true,
                     ]);
                 default:
@@ -56,6 +58,7 @@ class MusicController extends Controller
                 'featured_playlists' => $featured_playlists,
                 'new_releases' => $new_releases,
                 'route_name' => 'musics',
+                'route_id' => null,
                 'music_page' => true,
             ]);
         }
@@ -97,5 +100,46 @@ class MusicController extends Controller
             'route_name' => 'playlist',
             'music_page' => true,
         ]);
+    }
+
+    /**
+     * @param string $artist_id
+     * @param Request $request
+     * @return View
+     * @throws SpotifyApiException
+     * @throws ValidatorException
+     */
+    public function artist(string $artist_id, Request $request): View
+    {
+        $limit = $request->get('limit', 15);
+        if ($request->wantsJson()) {
+            $offset = $request->get('offset', 0);
+            $artist_albums = Spotify::artistAlbums($artist_id)->limit($limit)->offset($offset)->get();
+
+            return view('music.lazy.album')->with([
+                'albums' => $artist_albums,
+                'route_name' => 'artist',
+                'route_id' => $artist_id,
+                'route_type' => null,
+                'is_lazy' => true,
+            ]);
+        } else {
+            $artist = Spotify::artist($artist_id)->get();
+            $artist_albums = Spotify::artistAlbums($artist_id)->limit($limit)->get();
+            $artist_related_artists = Spotify::artistRelatedArtists($artist_id)->get();
+
+            return view('music.artist')->with([
+                'web_title' => $artist['name'],
+                'web_description' => ucwords(implode(', ', $artist['genres'])) ?: __('N/A'),
+                'web_image' => $artist['images'][0]['url'],
+                'artist' => $artist,
+                'albums' => $artist_albums,
+                'artist_related_artists' => $artist_related_artists,
+                'route_name' => 'artist',
+                'route_id' => $artist['id'],
+                'route_type' => null,
+                'music_page' => true,
+            ]);
+        }
     }
 }

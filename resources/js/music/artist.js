@@ -4,7 +4,7 @@ import "swiper/css/bundle";
 new Swiper(".swiper", {
     loop: true,
     autoplay: {
-        delay: 2500,
+        delay: 2000,
     },
     loading: "lazy",
     breakpoints: {

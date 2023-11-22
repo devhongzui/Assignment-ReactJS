@@ -422,5 +422,7 @@
     "Cryptographic Function": "Hàm Mật mã",
     "Hash Function": "Hàm Băm",
     "Key": "Khóa",
-    "Enter Key": "Nhập Khóa"
+    "Enter Key": "Nhập Khóa",
+    "Albums from :name": "Bộ sưu tập từ :name",
+    "Related Artists": "Nghệ sĩ liên quan"
 }
