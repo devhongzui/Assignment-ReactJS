@@ -48,7 +48,7 @@ class ToolController extends Controller
         return view($tool->view)->with([
             'web_title' => $tool->title,
             'web_description' => $tool->description,
-            'web_image' => $tool->image,
+            'web_image' => asset($tool->image),
             'tool_page' => true,
         ]);
     }

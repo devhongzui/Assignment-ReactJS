@@ -71,7 +71,7 @@ class CourseController extends Controller
             return view('study.course')->with([
                 'web_title' => $course->title,
                 'web_description' => $course->description,
-                'web_image' => $course->image,
+                'web_image' => asset($course->image),
                 'course' => $course,
                 'data' => $subjects,
                 'route' => 'subject',
