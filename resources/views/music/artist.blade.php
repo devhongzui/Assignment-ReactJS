@@ -31,8 +31,8 @@
                 @foreach ($artist_related_artists['artists'] as $artist)
                     <div class="swiper-slide">
                         <a href="{{ route('artist', $artist['id']) }}" role="link" aria-label="{{ $artist['name'] }}">
-                            <img data-src="{{ $artist['images'][0]['url'] }}" alt="{{ $artist['name'] }}"
-                                 class="w-100 object-fit-contain" style="height: 200px">
+                            <img data-src="{{ $artist['images'][0]['url'] ?? asset('logo.png') }}"
+                                 alt="{{ $artist['name'] }}" class="w-100 object-fit-contain" style="height: 200px">
                         </a>
                     </div>
                 @endforeach

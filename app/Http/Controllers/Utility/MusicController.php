@@ -52,9 +52,13 @@ class MusicController extends Controller
             $new_releases = Spotify::newReleases()->limit($limit)->get();
 
             return view('music.welcome')->with([
-                'web_title' => '#',
-                'web_description' => '#',
-                'web_image' => '#',
+                'web_title' => __('Surf Spotify music'),
+                'web_description' => implode('. ', [
+                    __('Spotify provides a Music Search feature by diverse genres, from Pop, Rock, Hip-hop, EDM to many other genres'),
+                    __('Users can easily explore playlists and expand their music listening experience'),
+                    __('This feature not only helps users discover new music but also provides a diverse music listening space that suits personal preferences'),
+                ]),
+                'web_image' => asset('storage/images/undraw/Compose_music.png'),
                 'featured_playlists' => $featured_playlists,
                 'new_releases' => $new_releases,
                 'route_name' => 'musics',
@@ -131,7 +135,7 @@ class MusicController extends Controller
             return view('music.artist')->with([
                 'web_title' => $artist['name'],
                 'web_description' => ucwords(implode(', ', $artist['genres'])) ?: __('N/A'),
-                'web_image' => $artist['images'][0]['url'],
+                'web_image' => $artist['images'][0]['url'] ?? asset('logo.png'),
                 'artist' => $artist,
                 'albums' => $artist_albums,
                 'artist_related_artists' => $artist_related_artists,
