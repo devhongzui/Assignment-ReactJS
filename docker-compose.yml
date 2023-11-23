@@ -1,0 +1,36 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: "2.1"
+
+services:
+    mariadb:
+        restart: always
+        image: docker.io/bitnami/mariadb:10.4.31
+        ports:
+            - "3306:3306"
+        environment:
+            - ALLOW_EMPTY_PASSWORD=no
+            - MARIADB_ROOT_PASSWORD=root
+        healthcheck:
+            test: [ "CMD", "/opt/bitnami/scripts/mariadb/healthcheck.sh" ]
+            interval: 15s
+            timeout: 5s
+            retries: 6
+    meilisearch:
+        restart: always
+        image: docker.io/getmeili/meilisearch:v1.5.0
+        ports:
+            - "7700:7700"
+    node:
+        restart: always
+        image: docker.io/bitnami/node:18.18.0
+        tty: true
+        volumes:
+            - ".:/app"
+
+volumes:
+    mariadb_data:
+        driver: local
+    meilisearch_data:
+        driver: local

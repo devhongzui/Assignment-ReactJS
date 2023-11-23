@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Actions\ChangeThemeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::middleware('verified')->group(function () {
 
     Route::get('/security-policy', fn() => view('pages.security-policy'))->name('security-policy');
 
+    Route::get('search/{query}', [SearchController::class, 'show'])->name('search');
 });
 
 Route::post('theme', [ChangeThemeController::class, 'store'])->name('theme');

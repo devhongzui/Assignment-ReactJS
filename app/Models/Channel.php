@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 use Venturecraft\Revisionable\RevisionableTrait;
 
 class Channel extends Model
@@ -12,7 +13,34 @@ class Channel extends Model
     use CrudTrait;
     use RevisionableTrait;
     use ThumbnailTrait;
+    use Searchable;
 
+    /**
+     * @var string[]
+     */
+    static public array $filterableAttributes = [
+        'id',
+        'url',
+        'title',
+        'description',
+        'custom_url',
+        'publish_at',
+        'created_at',
+        'updated_at',
+    ];
+    /**
+     * @var string[]
+     */
+    static public array $sortableAttributes = [
+        'id',
+        'url',
+        'title',
+        'description',
+        'custom_url',
+        'publish_at',
+        'created_at',
+        'updated_at',
+    ];
     /**
      * @var string[]
      */
@@ -23,7 +51,6 @@ class Channel extends Model
         'custom_url',
         'publish_at',
     ];
-
     /**
      * @var string[]
      */

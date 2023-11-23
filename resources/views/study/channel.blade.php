@@ -7,7 +7,7 @@
                 /** @var \App\Models\Subject $channel */
             @endphp
             <x-page.detail link="https://www.youtube.com/{{ $channel->custom_url }}"
-                           :image="(object) ['data_src' => $web_image, 'class' => 'object-fit-cover']"
+                           :image="(object) ['data_src' => $web_image, 'class' => 'object-fit-contain']"
                            :sub-title="$channel->custom_url"
                            :title="$web_title"
                            :description="__('Introduce: :description', ['description' => $web_description])" :pills="[

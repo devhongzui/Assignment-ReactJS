@@ -7,7 +7,7 @@
                 /** @var \App\Models\Course $course */
             @endphp
             <x-page.detail :link="route('course', $course->id)"
-                           :image="(object) ['data_src' => asset($course->image), 'class' => 'object-fit-contain p-2']"
+                           :image="(object) ['data_src' => asset($course->image), 'class' => 'object-fit-contain bg-light p-2']"
                            :sub-title="__('Course')" :title="$web_title"
                            :description="__('Introduce: :description', ['description' => $web_description])"
                            :pills="[

@@ -3,7 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300;1,500&family=Quicksand:wght@600&display=swap");
 
 html {
-    scroll-padding-top: 50px;
+    scroll-padding-top: 74px;
 }
 
 body {
@@ -22,15 +22,15 @@ a {
 }
 
 main {
-    padding-top: 50px;
+    padding-top: 74px;
 }
 
 @include media-breakpoint-up(xl) {
     html {
-        scroll-padding-top: 74px;
+        scroll-padding-top: 80px;
     }
 
     main {
-        padding-top: 74px;
+        padding-top: 80px;
     }
 }

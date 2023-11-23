@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 use Venturecraft\Revisionable\RevisionableTrait;
 
 class Subject extends Model
@@ -13,7 +14,36 @@ class Subject extends Model
     use CrudTrait;
     use RevisionableTrait;
     use ThumbnailTrait;
+    use Searchable;
 
+    /**
+     * @var string[]
+     */
+    static public array $filterableAttributes = [
+        'id',
+        'course_id',
+        'channel_id',
+        'url',
+        'title',
+        'description',
+        'publish_at',
+        'created_at',
+        'updated_at',
+    ];
+    /**
+     * @var string[]
+     */
+    static public array $sortableAttributes = [
+        'id',
+        'course_id',
+        'channel_id',
+        'url',
+        'title',
+        'description',
+        'publish_at',
+        'created_at',
+        'updated_at',
+    ];
     /**
      * @var string[]
      */
@@ -25,7 +55,6 @@ class Subject extends Model
         'description',
         'publish_at',
     ];
-
     /**
      * @var string[]
      */

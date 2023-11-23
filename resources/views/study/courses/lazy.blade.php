@@ -13,13 +13,13 @@
                     <a href="{{ $href }}" aria-label="{{ $item->title }}">
                         <h5 class="card-title overflow-hidden"
                             style="display: -webkit-box;
-                               -webkit-box-orient: vertical;
-                               -webkit-line-clamp: 1;">
+                                   -webkit-box-orient: vertical;
+                                   -webkit-line-clamp: 1;">
                             {{ $item->title }}
                         </h5>
                     </a>
                     <p class="card-text overflow-hidden" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                       data-bs-title="{{ $item->description }}"
+                       data-bs-title="{{ __('Introduce: :description', ['description' => $item->description]) }}"
                        style="min-height: 70px;
                               display: -webkit-box;
                               -webkit-box-orient: vertical;

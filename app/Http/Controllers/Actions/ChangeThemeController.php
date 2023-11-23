@@ -16,9 +16,7 @@ class ChangeThemeController extends Controller
     {
         $data_bs_theme = $request->session()->get('data-bs-theme', 'dark') === 'dark' ? 'light' : 'dark';
 
-        $request->session()->put([
-            'data-bs-theme' => $data_bs_theme
-        ]);
+        $request->session()->put('data-bs-theme', $data_bs_theme);
 
         return response()->json([
             'message' => __('Changed theme successfully!')
