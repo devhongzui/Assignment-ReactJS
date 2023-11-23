@@ -48,13 +48,12 @@ class CourseController extends Controller
      */
     public function subjects(int $course_id, Request $request): View
     {
-        $page_size = $request->get('s', 8);
         $query = $request->query();
 
         if ($request->wantsJson()) {
             $subjects = Subject
                 ::whereCourseId($course_id)
-                ->paginate($page_size)
+                ->paginate(8)
                 ->appends($query);
 
             return view('study.course.lazy')->with([
@@ -66,7 +65,7 @@ class CourseController extends Controller
             $course = Course::find($course_id);
             $subjects = $course
                 ->subjects()
-                ->paginate($page_size)
+                ->paginate(8)
                 ->appends($query);
 
             return view('study.course')->with([

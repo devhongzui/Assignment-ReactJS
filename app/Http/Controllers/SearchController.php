@@ -19,51 +19,41 @@ class SearchController extends Controller
      */
     public function show(string $query, Request $request): View
     {
-        $page_size = $request->get('s', 8);
-
         if ($request->wantsJson()) {
-            $type = $request->get('type');
-
-            switch ($type) {
-                case 'channel':
-                    $view = 'study.courses.lazy';
-                    $item = Channel::search($query)->paginate($page_size);
+            $data = $request->get('data');
+            switch ($data) {
+                case 'channels':
+                    $items = Channel::search($query)->paginate(4)->appends('data', $data);
                     break;
-                case 'course':
-                    $view = 'study.courses.lazy';
-                    $item = Course::search($query)->paginate($page_size);
+                case 'courses':
+                    $items = Course::search($query)->paginate(4)->appends('data', $data);
                     break;
-                case 'lesson':
-                    $view = 'study.course.lazy';
-                    $item = Lesson::search($query)->paginate($page_size);
+                case 'lessons':
+                    $items = Lesson::search($query)->paginate(4)->appends('data', $data);
                     break;
-                case 'subject':
-                    $view = 'study.course.lazy';
-                    $item = Subject::search($query)->paginate($page_size);
+                case 'subjects':
+                    $items = Subject::search($query)->paginate(4)->appends('data', $data);
                     break;
-                case 'tool':
-                    $view = 'study.courses.lazy';
-                    $item = Tool::search($query)->paginate($page_size);
+                case 'tools':
+                    $items = Tool::search($query)->paginate(4)->appends('data', $data);
                     break;
                 default:
                     abort(404);
             }
 
-            return view($view)->with(
-                array_merge([
-                    'data' => $item,
-                    'route' => $type,
-                    'is_ajax' => true,
-                ])
-            );
+            return view("pages.search.$data")->with([
+                $data => $items,
+                'is_lazy' => true,
+            ]);
         } else {
-            $channels = Channel::search($query)->paginate($page_size);
-            $courses = Course::search($query)->paginate($page_size);
-            $lessons = Lesson::search($query)->paginate($page_size);
-            $subjects = Subject::search($query)->paginate($page_size);
-            $tools = Tool::search($query)->paginate($page_size);
+            $channels = Channel::search($query)->paginate(4)->appends('data', 'channels');
+            $courses = Course::search($query)->paginate(4)->appends('data', 'courses');
+            $lessons = Lesson::search($query)->paginate(4)->appends('data', 'lessons');
+            $subjects = Subject::search($query)->paginate(4)->appends('data', 'subjects');
+            $tools = Tool::search($query)->paginate(4)->appends('data', 'tools');
 
             return view('pages.search', [
+                'web_title' => __('Results for :query', ['query' => $query]),
                 'channels' => $channels,
                 'courses' => $courses,
                 'lessons' => $lessons,
@@ -72,19 +62,4 @@ class SearchController extends Controller
             ]);
         }
     }
-
-//    /**
-//     * @param SearchRequest $request
-//     * @return JsonResponse
-//     */
-//    public function search(SearchRequest $request): JsonResponse
-//    {
-//        $validated = $request->validated();
-//
-//        return response()->json([
-//            'redirect' => route('search.show', [
-//                'query' => $validated['query']
-//            ])
-//        ]);
-//    }
 }

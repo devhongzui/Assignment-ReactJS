@@ -26,6 +26,9 @@
 
         <hr>
         <div class="text-center h4 fw-bold">@lang('Related Artists')</div>
-        @include('music.lazy.slider', ['items' => $artists])
+        @include('music.lazy.slider', [
+            'items' => $artists,
+            'route' => 'artist',
+        ])
     </div>
 @endsection

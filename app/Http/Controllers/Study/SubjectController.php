@@ -17,13 +17,12 @@ class SubjectController extends Controller
      */
     public function lessons(int $subject_id, Request $request): View
     {
-        $page_size = $request->get('s', 8);
         $query = $request->query();
 
         if ($request->wantsJson()) {
             $lessons = Lesson
                 ::whereSubjectId($subject_id)
-                ->paginate($page_size)
+                ->paginate(8)
                 ->appends($query);
 
             return view('study.course.lazy')->with([
@@ -36,7 +35,7 @@ class SubjectController extends Controller
             $image = $subject->getThumbnail('high')->url ?? asset('logo.png');
             $lessons = $subject
                 ->lessons()
-                ->paginate($page_size)
+                ->paginate(8)
                 ->appends($query);
 
             return view('study.subject')->with([

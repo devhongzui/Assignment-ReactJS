@@ -1,14 +1,15 @@
 <div class="row">
     @foreach ($data as $item)
-        <div class="col-sm-6 col-xl-3 mb-3">
-            <div class="card mt-3 mb-5 border-0 bg-dark-subtle">
+        <div class="col-sm-6 col-xl-3 mt-2 mb-4">
+            <div class="card border-0 bg-dark-subtle">
                 @php
                     $src_subject = $item->getThumbnail('high')->url ?? asset('logo.png');
                 @endphp
                 <a href="{{ route($route, $item->id) }}" aria-label="{{ $item->title }}">
                     <img data-src="{{ $src_subject }}"
-                         class="card-img-top img-fluid bg-light object-fit-cover rounded-2"
-                         alt="{{ $item->title }}" style="height: 100px">
+                         class="card-img-top img-fluid bg-light object-fit-contain p-2 rounded-2"
+                         alt="{{ $item->title }}"
+                         style="height: 100px">
                 </a>
                 <div class="card-body">
                     <a href="{{ route($route, $item->id) }}" aria-label="{{ $item->title }}">

@@ -1,5 +1,5 @@
 <div class="col-xl-4">
-    <div class="card mt-3 mb-5 border-0 bg-dark-subtle shadow-lg">
+    <div class="card mt-2 mb-4 border-0 bg-dark-subtle shadow-lg">
         <div class="row">
             <div class="col-4">
                 <a href="{{ $link }}" role="link" aria-label="{{ $title }}">

@@ -18,17 +18,14 @@ class ChannelController extends Controller
      */
     public function detail(int $channel_id, Request $request): View
     {
-        $page_size = $request->get('s', 8);
-        $query = $request->query();
-
         if ($request->wantsJson()) {
             switch ($request->get('data')) {
                 case 'lessons':
-                    $data = Lesson::whereChannelId($channel_id)->paginate($page_size)->appends($query);
+                    $data = Lesson::whereChannelId($channel_id)->paginate(8);
                     $route = 'lesson';
                     break;
                 case 'subjects':
-                    $data = Subject::whereChannelId($channel_id)->paginate($page_size)->appends($query);
+                    $data = Subject::whereChannelId($channel_id)->paginate(8);
                     $route = 'subject';
                     break;
                 default:
@@ -45,12 +42,12 @@ class ChannelController extends Controller
             $image = $channel->getThumbnail('high')->url ?? asset('logo.png');
             $lessons = $channel
                 ->lessons()
-                ->paginate($page_size)
-                ->appends(array_merge($query, ['data' => 'lessons']));
+                ->paginate(8)
+                ->appends('data', 'lessons');
             $subjects = $channel
                 ->subjects()
-                ->paginate($page_size)
-                ->appends(array_merge($query, ['data' => 'subjects']));
+                ->paginate(8)
+                ->appends('data', 'subjects');
 
             return view('study.channel')->with([
                 'web_title' => $channel->title,
