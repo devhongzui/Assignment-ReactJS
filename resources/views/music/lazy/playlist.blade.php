@@ -1,5 +1,5 @@
 <div class="row mb-3 mx-0">
-    @foreach ($playlists['items'] as $playlist)
+    @foreach ($playlists as $playlist)
         @include('music.lazy.item', [
             'link' => route('playlist', $playlist['id']),
             'image' => $playlist['images'][0]['url'],
@@ -8,8 +8,4 @@
             'small_text' => $playlist['owner']['display_name'],
         ])
     @endforeach
-
-    @include('music.lazy.paginate', [
-        'paginator' => $playlists,
-    ])
 </div>

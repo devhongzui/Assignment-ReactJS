@@ -1,5 +1,5 @@
 <div class="row mb-3 mx-0">
-    @foreach ($albums['items'] as $album)
+    @foreach ($albums as $album)
         @include('music.lazy.item', [
             'link' => route('album', $album['id']),
             'image' => $album['images'][0]['url'],
@@ -8,8 +8,4 @@
             'small_text' => $album['release_date'],
         ])
     @endforeach
-
-    @include('music.lazy.paginate', [
-        'paginator' => $albums,
-    ])
 </div>

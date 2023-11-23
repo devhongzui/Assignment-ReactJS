@@ -26,17 +26,6 @@
 
         <hr>
         <div class="text-center h4 fw-bold">@lang('Related Artists')</div>
-        <div class="swiper mb-3">
-            <div class="swiper-wrapper">
-                @foreach ($artist_related_artists['artists'] as $artist)
-                    <div class="swiper-slide">
-                        <a href="{{ route('artist', $artist['id']) }}" role="link" aria-label="{{ $artist['name'] }}">
-                            <img data-src="{{ $artist['images'][0]['url'] ?? asset('logo.png') }}"
-                                 alt="{{ $artist['name'] }}" class="w-100 object-fit-contain" style="height: 200px">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+        @include('music.lazy.slider', ['items' => $artists])
     </div>
 @endsection

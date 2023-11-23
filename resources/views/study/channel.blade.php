@@ -22,14 +22,18 @@
                 ]" />
         </div>
 
-        @foreach ($list as $item)
-            <hr>
-            <h3 class="text-center mt-3">{{ $item->title }}</h3>
+        <hr>
+        <h3 class="text-center mt-3">{{ __('Lessons from :name', ['name' => $channel->title]) }}</h3>
+        @include('study.course.lazy', [
+            'data' => $lessons,
+            'route' => 'lesson',
+        ])
 
-            @include('study.course.lazy', [
-                'data' => $item->data,
-                'route' => $item->route,
-            ])
-        @endforeach
+        <hr>
+        <h3 class="text-center mt-3">{{ __('Subjects from :name', ['name' => $channel->title]) }}</h3>
+        @include('study.course.lazy', [
+            'data' => $subjects,
+            'route' => 'subject',
+        ])
     </div>
 @endsection

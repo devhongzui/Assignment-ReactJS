@@ -4,32 +4,14 @@
     @vite('resources/js/music/welcome.js')
 
     <div class="container">
-        <div class="swiper rounded-2 mb-4">
-            <div class="swiper-wrapper">
-                @foreach ($featured_playlists['playlists']['items'] as $playlist)
-                    <div class="swiper-slide">
-                        <a href="{{ route('playlist', $playlist['id']) }}" role="link"
-                           aria-label="{{ $playlist['name'] }}">
-                            <img data-src="{{ $playlist['images'][0]['url'] }}" alt="{{ $playlist['name'] }}"
-                                 class="w-100 object-fit-contain" style="height: 200px">
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+        @include('music.lazy.slider', ['items' => $playlists])
 
         <hr>
-        <div class="text-center h4 fw-bold">@lang($featured_playlists['message'])</div>
-        @include('music.lazy.playlist', [
-            'playlists' => $featured_playlists['playlists'],
-            'route_type' => 'playlists',
-        ])
+        <div class="text-center h4 fw-bold">@lang($playlist_name)</div>
+        @include('music.lazy.playlist')
 
         <hr>
         <div class="text-center h4 fw-bold">@lang('Albums')</div>
-        @include('music.lazy.album', [
-            'albums' => $new_releases['albums'],
-            'route_type' => 'albums',
-        ])
+        @include('music.lazy.album')
     </div>
 @endsection
