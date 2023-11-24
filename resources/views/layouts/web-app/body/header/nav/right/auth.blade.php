@@ -12,7 +12,7 @@
         @if (request()->user()->hasVerifiedEmail())
             <li>
                 <a class="dropdown-item @if ($dashboard_page ?? false) active @endif" role="link"
-                   href="{{ '' }}" aria-label="@lang('Dashboard')">
+                   href="{{ route('dashboard') }}" aria-label="@lang('Dashboard')">
                     @lang('Dashboard')
                 </a>
             </li>
