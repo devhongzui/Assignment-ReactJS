@@ -15,9 +15,9 @@ class ToolController extends Controller
      */
     public function show(Request $request): View
     {
-        $tools = Tool
-            ::paginate($request->get('s', 8))
-            ->appends($request->query());
+        $tools = Tool::inRandomOrder('id')
+            ->paginate(8)
+            ->onEachSide(1);
 
         return $request->wantsJson()
             ? view('study.courses.lazy')->with([

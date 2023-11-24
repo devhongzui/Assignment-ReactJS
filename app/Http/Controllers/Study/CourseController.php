@@ -16,9 +16,9 @@ class CourseController extends Controller
      */
     public function show(Request $request): View
     {
-        $courses = Course
-            ::paginate($request->get('s', 8))
-            ->appends($request->query());
+        $courses = Course::inRandomOrder('id')
+            ->paginate(8)
+            ->onEachSide(1);
 
         return $request->wantsJson()
             ? view('study.courses.lazy')->with([
@@ -65,7 +65,9 @@ class CourseController extends Controller
             $course = Course::find($course_id);
             $subjects = $course
                 ->subjects()
+                ->inRandomOrder('id')
                 ->paginate(8)
+                ->onEachSide(1)
                 ->appends($query);
 
             return view('study.course')->with([

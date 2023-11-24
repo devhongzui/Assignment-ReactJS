@@ -10,14 +10,13 @@ use Illuminate\View\View;
 class LessonController extends Controller
 {
     /**
-     * @param Request $request
      * @return View
      */
-    public function show(Request $request): View
+    public function show(): View
     {
-        $lessons = Lesson
-            ::paginate($request->get('s', 8))
-            ->appends($request->query());
+        $lessons = Lesson::inRandomOrder('id')
+            ->paginate(8)
+            ->onEachSide(1);
 
         return view('study.course.lazy')->with([
             'data' => $lessons,

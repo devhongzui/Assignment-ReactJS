@@ -11,14 +11,13 @@ use Illuminate\View\View;
 class SubjectController extends Controller
 {
     /**
-     * @param Request $request
      * @return View
      */
-    public function show(Request $request): View
+    public function show(): View
     {
-        $subjects = Subject
-            ::paginate($request->get('s', 8))
-            ->appends($request->query());
+        $subjects = Subject::inRandomOrder('id')
+            ->paginate(8)
+            ->onEachSide(1);
 
         return view('study.course.lazy')->with([
             'data' => $subjects,
