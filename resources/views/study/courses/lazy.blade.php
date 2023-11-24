@@ -1,5 +1,5 @@
 <div class="row">
-    @foreach ($data as $item)
+    @forelse ($data as $item)
         <div class="col-sm-6 col-xl-3 mt-2 mb-4">
             <div class="card border-0 bg-dark-subtle shadow-lg">
                 @php
@@ -19,7 +19,7 @@
                         </h5>
                     </a>
                     <p class="card-text overflow-hidden" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                       data-bs-title="{{ __('Introduce: :description', ['description' => $item->description]) }}"
+                       data-bs-title="@lang('Introduce: :description', ['description' => $item->description])"
                        style="min-height: 70px;
                               display: -webkit-box;
                               -webkit-box-orient: vertical;
@@ -29,7 +29,9 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @empty
+        <x-empty />
+    @endforelse
 
     <div class="d-flex justify-content-center d-md-block mt-2">
         {{ $data->links('pagination::bootstrap-5') }}

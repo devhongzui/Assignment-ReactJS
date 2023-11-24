@@ -23,14 +23,14 @@
         </div>
 
         <hr>
-        <h3 class="text-center mt-3">{{ __('Lessons from :name', ['name' => $channel->title]) }}</h3>
+        <h3 class="text-center mt-3">@lang('Lessons from :name', ['name' => $channel->title])</h3>
         @include('study.course.lazy', [
             'data' => $lessons,
             'route' => 'lesson',
         ])
 
         <hr>
-        <h3 class="text-center mt-3">{{ __('Subjects from :name', ['name' => $channel->title]) }}</h3>
+        <h3 class="text-center mt-3">@lang('Subjects from :name', ['name' => $channel->title])</h3>
         @include('study.course.lazy', [
             'data' => $subjects,
             'route' => 'subject',
