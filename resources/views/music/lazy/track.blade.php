@@ -8,9 +8,9 @@
         <strong class="col-md-1 d-none d-md-grid"><i class="fa-regular fa-clock"></i></strong>
     </div>
     <hr>
-    @foreach ($items as $index => $item)
+    @foreach ($tracks as $index => $item)
         @php
-            $track = $playlist_page ?? false ? $item['track'] : $item;
+            $track = $item['track'] ?? $item;
 
             $link = $track['external_urls']['spotify'];
             $image = $playlist_page ?? false ? $track['album']['images'][2]['url'] : null;
@@ -39,7 +39,7 @@
                             </div>
                             @foreach ($track['artists'] as $index => $artist)
                                 <a href="{{ route('artist', $artist['id']) }}" class="text-decoration-none" role="link"
-                                   aria-labelledby="{{ $artist['name'] }}" style="color: unset">
+                                   aria-labelledby="{{ $artist['name'] }}">
                                     {{ $artist['name'] }}
                                 </a>
                                 @if (count($track['artists']) > 1 && $index + 1 < count($track['artists']))

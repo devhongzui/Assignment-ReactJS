@@ -19,7 +19,7 @@
             ]" />
 
         @include('music.lazy.track', [
-            'items' => $playlist['tracks']['items'],
+            'tracks' => $playlist['tracks']['items'],
             'playlist_page' => true,
         ])
     </div>

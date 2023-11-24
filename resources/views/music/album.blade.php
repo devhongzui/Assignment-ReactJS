@@ -17,7 +17,7 @@
             ]" />
 
         @include('music.lazy.track', [
-            'items' => $album['tracks']['items'],
+            'tracks' => $album['tracks']['items'],
         ])
     </div>
 @endsection
