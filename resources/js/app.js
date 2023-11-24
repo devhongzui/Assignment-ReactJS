@@ -1,5 +1,6 @@
 import "./bootstrap.js";
 import request from "./ajax.js";
+import fixLazy from "./fix-lazy-image.js";
 
 $("main").css(
     "min-height",
@@ -17,9 +18,11 @@ $("modal-lazy").each((_, element) => {
 
     modal.html($("#loader").clone());
 
-    axios
-        .get(modal.attr("data-src"))
-        .then((success) => $(element).replaceWith(success.data));
+    axios.get(modal.attr("data-src")).then((success) => {
+        $(element).replaceWith(success.data);
+
+        fixLazy();
+    });
 });
 
 $("#change-theme-form")

@@ -11,6 +11,23 @@ use Illuminate\View\View;
 class SubjectController extends Controller
 {
     /**
+     * @param Request $request
+     * @return View
+     */
+    public function show(Request $request): View
+    {
+        $subjects = Subject
+            ::paginate($request->get('s', 8))
+            ->appends($request->query());
+
+        return view('study.course.lazy')->with([
+            'data' => $subjects,
+            'route' => 'subject',
+            'is_lazy' => true,
+        ]);
+    }
+
+    /**
      * @param int $subject_id
      * @param Request $request
      * @return View

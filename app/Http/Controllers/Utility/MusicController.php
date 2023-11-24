@@ -31,6 +31,7 @@ class MusicController extends Controller
             'playlist_name' => $playlists['message'],
             'playlists' => $playlists['playlists']['items'],
             'albums' => $albums['albums']['items'],
+            'music_page' => true,
         ]);
     }
 

@@ -12,6 +12,23 @@ use Illuminate\View\View;
 class ChannelController extends Controller
 {
     /**
+     * @param Request $request
+     * @return View
+     */
+    public function show(Request $request): View
+    {
+        $channels = Channel
+            ::paginate($request->get('s', 8))
+            ->appends($request->query());
+
+        return view('study.channel.lazy')->with([
+            'data' => $channels,
+            'route' => 'channel',
+            'is_lazy' => true,
+        ]);
+    }
+
+    /**
      * @param int $channel_id
      * @param Request $request
      * @return View

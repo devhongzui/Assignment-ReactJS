@@ -4,10 +4,28 @@ namespace App\Http\Controllers\Study;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lesson;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class LessonController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return View
+     */
+    public function show(Request $request): View
+    {
+        $lessons = Lesson
+            ::paginate($request->get('s', 8))
+            ->appends($request->query());
+
+        return view('study.course.lazy')->with([
+            'data' => $lessons,
+            'route' => 'lesson',
+            'is_lazy' => true,
+        ]);
+    }
+
     /**
      * @param int $lesson_id
      * @return View
