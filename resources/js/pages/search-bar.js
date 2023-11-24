@@ -1,20 +1,13 @@
-let form = $("#search-form");
-
-let submitBtn = form.find("[type=submit]");
-
 let searchResult = $("#search-result");
+let searchQuery = $("#search-query");
+let dataAction = searchQuery.attr("data-action");
 
-submitBtn.on("click", (event) => {
-    event.preventDefault();
-});
-
-$("#search-query").on("change paste keyup", (event) => {
-    let query = $(event.currentTarget).val();
-
-    submitBtn.attr("disabled", !query);
+searchQuery.on("change paste keyup", (event) => {
+    let currentTarget = $(event.currentTarget);
+    let query = currentTarget.val();
 
     if (query) {
-        axios.get(form.attr("action") + "/" + query).then((success) => {
+        axios.get(dataAction + "/" + query).then((success) => {
             searchResult.html(success.data);
 
             $("img[data-src]").each((_, element) => {
