@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-pdo": "*",
         "ext-zip": "*",
         "aerni/laravel-spotify": "^2.1",
@@ -33,6 +33,7 @@
         "laravolt/avatar": "^5.0",
         "mcamara/laravel-localization": "^1.8",
         "meilisearch/meilisearch-php": "^1.5",
+        "mongodb/laravel-mongodb": "4.0.0",
         "socialiteproviders/disqus": "^4.1",
         "socialiteproviders/spotify": "^4.1",
         "socialiteproviders/yahoo": "^4.1",

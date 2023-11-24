@@ -37,11 +37,9 @@
                 <div class="form-floating mb-3">
                     @php
                         echo html()
-                            ->select('country_code')
+                            ->select('country_code', $countries, $user->country_code)
                             ->id('country_code-edit-profile-form')
-                            ->class('form-select')
-                            ->attribute('data-selected', $user->country_code)
-                            ->attribute('data-api', config('app.api_url'));
+                            ->class('form-select');
                     @endphp
                     <label for="country_code-edit-profile-form">@lang('Country')</label>
                 </div>
@@ -50,11 +48,9 @@
                 <div class="form-floating mb-3">
                     @php
                         echo html()
-                            ->select('province_code')
+                            ->select('province_code', $provinces, $user->province_code)
                             ->id('province_code-edit-profile-form')
-                            ->class('form-select')
-                            ->attribute('data-selected', $user->province_code)
-                            ->attribute('data-api', config('app.api_url'));
+                            ->class('form-select');
                     @endphp
                     <label for="province_code-edit-profile-form">@lang('Province')</label>
                     <strong id="province_code-edit-profile-form-error" class="invalid-feedback" role="alert"></strong>
@@ -66,11 +62,9 @@
                 <div class="form-floating mb-3">
                     @php
                         echo html()
-                            ->select('district_code')
+                            ->select('district_code', $districts, $user->district_code)
                             ->id('district_code-edit-profile-form')
-                            ->class('form-select')
-                            ->attribute('data-selected', $user->district_code)
-                            ->attribute('data-api', config('app.api_url'));
+                            ->class('form-select');
                     @endphp
                     <label for="district_code-edit-profile-form">@lang('District')</label>
                     <strong id="district_code-edit-profile-form-error" class="invalid-feedback" role="alert"></strong>
@@ -80,11 +74,9 @@
                 <div class="form-floating mb-3">
                     @php
                         echo html()
-                            ->select('sub_district_code')
+                            ->select('sub_district_code', $sub_districts, $user->sub_district_code)
                             ->id('sub_district_code-edit-profile-form')
-                            ->class('form-select')
-                            ->attribute('data-selected', $user->sub_district_code)
-                            ->attribute('data-api', config('app.api_url'));
+                            ->class('form-select');
                     @endphp
                     <label for="sub_district_code-edit-profile-form">@lang('Sub district')</label>
                     <strong id="sub_district_code-edit-profile-form-error" class="invalid-feedback"
