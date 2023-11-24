@@ -19,47 +19,45 @@ class SearchController extends Controller
      */
     public function show(string $query, Request $request): View
     {
-        if ($request->wantsJson()) {
-            $data = $request->get('data');
-            switch ($data) {
-                case 'channels':
-                    $items = Channel::search($query)->paginate(4)->appends('data', $data);
-                    break;
-                case 'courses':
-                    $items = Course::search($query)->paginate(4)->appends('data', $data);
-                    break;
-                case 'lessons':
-                    $items = Lesson::search($query)->paginate(4)->appends('data', $data);
-                    break;
-                case 'subjects':
-                    $items = Subject::search($query)->paginate(4)->appends('data', $data);
-                    break;
-                case 'tools':
-                    $items = Tool::search($query)->paginate(4)->appends('data', $data);
-                    break;
-                default:
-                    abort(404);
-            }
+        $data = $request->get('data');
 
-            return view("pages.search.$data")->with([
-                $data => $items,
-                'is_lazy' => true,
-            ]);
-        } else {
-            $channels = Channel::search($query)->paginate(4)->appends('data', 'channels');
-            $courses = Course::search($query)->paginate(4)->appends('data', 'courses');
-            $lessons = Lesson::search($query)->paginate(4)->appends('data', 'lessons');
-            $subjects = Subject::search($query)->paginate(4)->appends('data', 'subjects');
-            $tools = Tool::search($query)->paginate(4)->appends('data', 'tools');
+        switch ($data) {
+            case 'channels':
+                $items = Channel::search($query)->paginate(4)->appends('data', $data);
+                break;
+            case 'courses':
+                $items = Course::search($query)->paginate(4)->appends('data', $data);
+                break;
+            case 'lessons':
+                $items = Lesson::search($query)->paginate(4)->appends('data', $data);
+                break;
+            case 'subjects':
+                $items = Subject::search($query)->paginate(4)->appends('data', $data);
+                break;
+            case 'tools':
+                $items = Tool::search($query)->paginate(4)->appends('data', $data);
+                break;
+            default:
+                $channels = Channel::search($query)->paginate(4)->appends('data', 'channels');
+                $courses = Course::search($query)->paginate(4)->appends('data', 'courses');
+                $lessons = Lesson::search($query)->paginate(4)->appends('data', 'lessons');
+                $subjects = Subject::search($query)->paginate(4)->appends('data', 'subjects');
+                $tools = Tool::search($query)->paginate(4)->appends('data', 'tools');
 
-            return view('pages.search', [
-                'web_title' => __('Results for :query', ['query' => $query]),
-                'channels' => $channels,
-                'courses' => $courses,
-                'lessons' => $lessons,
-                'subjects' => $subjects,
-                'tools' => $tools,
-            ]);
+                return view('pages.search-result', [
+                    'web_title' => __('Results for :query', ['query' => $query]),
+                    'channels' => $channels,
+                    'courses' => $courses,
+                    'lessons' => $lessons,
+                    'subjects' => $subjects,
+                    'tools' => $tools,
+                    'is_lazy' => true,
+                ]);
         }
+
+        return view("pages.search.$data")->with([
+            $data => $items,
+            'is_lazy' => true,
+        ]);
     }
 }

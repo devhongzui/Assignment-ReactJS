@@ -18,16 +18,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('verified')->group(function () {
     Route::get('/', fn() => view('pages.home'))->name('home');
 
-    Route::get('/contact', fn() => view('pages.contact'))->name('contact');
+    Route::get('contact', fn() => view('pages.contact'))->name('contact');
 
-    Route::get('/about-me', fn() => view('pages.about-me'))->name('about-me');
+    Route::get('about-me', fn() => view('pages.about-me'))->name('about-me');
 
-    Route::get('/privacy-policy', fn() => view('pages.privacy-policy'))->name('privacy-policy');
+    Route::get('privacy-policy', fn() => view('pages.privacy-policy'))->name('privacy-policy');
 
-    Route::get('/security-policy', fn() => view('pages.security-policy'))->name('security-policy');
-
-    Route::get('search/{query}', [SearchController::class, 'show'])->name('search.show');
+    Route::get('security-policy', fn() => view('pages.security-policy'))->name('security-policy');
 });
+
+Route::get('search', fn() => view('pages.search-bar'))->name('search');
+
+Route::get('search/{query}', [SearchController::class, 'show'])->name('search.show');
 
 Route::post('theme', [ChangeThemeController::class, 'store'])->name('theme');
 

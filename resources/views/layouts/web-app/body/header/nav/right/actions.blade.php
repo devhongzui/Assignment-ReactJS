@@ -31,7 +31,8 @@
             @endforeach
         </ul>
     </div>
-    <button type="button" role="button" class="btn me-xl-2 mb-2" aria-label="@lang('Search')">
+    <button type="button" role="button" class="btn me-xl-2 mb-2" aria-label="@lang('Search')" data-bs-toggle="modal"
+            data-bs-target="#search-modal">
         <i data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="@lang('Search')"
            class="fa-solid fa-magnifying-glass"></i>
     </button>

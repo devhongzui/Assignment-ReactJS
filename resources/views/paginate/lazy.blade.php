@@ -15,17 +15,16 @@
 
                 spinner.show();
                 axios.get(currentTarget.attr("href")).then((success) => {
-                    setTimeout(() => {
-                        spinner.hide();
-                        currentTarget.parents(".row").replaceWith(success.data);
+                    currentTarget.parents(".row").replaceWith(success.data);
 
-                        $("img[data-src]").each((_, element) => {
-                            let imgLazy = $(element);
+                    $("img[data-src]").each((_, element) => {
+                        let imgLazy = $(element);
 
-                            let imgUrl = imgLazy.attr("data-src");
-                            imgLazy.removeAttr("data-src").attr("src", imgUrl);
-                        });
-                    }, 1000);
+                        let imgUrl = imgLazy.attr("data-src");
+                        imgLazy.removeAttr("data-src").attr("src", imgUrl);
+                    });
+
+                    setTimeout(() => spinner.hide(), 1000);
                 });
             });
     }

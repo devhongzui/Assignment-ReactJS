@@ -5,4 +5,6 @@
     @if (!($register_page ?? false))
         <x-page.modal id="register-modal" :title="__('Register')" :link="route('register')" />
     @endif
+
+    <x-page.modal id="search-modal" :title="__('Search')" :link="route('search')" />
 @endguest
