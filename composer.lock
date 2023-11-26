@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "139a8d510b7a553e3d6533cb25deb6e4",
+    "content-hash": "5b3a011c56eb4a1a73b15aba98a6b525",
     "packages": [
         {
             "name": "aerni/laravel-spotify",
@@ -12038,10 +12038,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-pdo": "*",
-        "ext-zip": "*",
-        "ext-mongodb": "*"
+        "ext-zip": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
