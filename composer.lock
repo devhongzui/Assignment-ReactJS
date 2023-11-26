@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b3a011c56eb4a1a73b15aba98a6b525",
+    "content-hash": "6000b18fef9c3b86bb77f1f508cc8e9b",
     "packages": [
         {
             "name": "aerni/laravel-spotify",
@@ -6034,47 +6034,6 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
-        },
-        {
-            "name": "socialiteproviders/disqus",
-            "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Disqus.git",
-                "reference": "901c7b2092a54c4ca6af91f9cfc4078291356dd6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Disqus/zipball/901c7b2092a54c4ca6af91f9cfc4078291356dd6",
-                "reference": "901c7b2092a54c4ca6af91f9cfc4078291356dd6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Disqus\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Disqus OAuth2 Provider for Laravel Socialite",
-            "support": {
-                "source": "https://github.com/SocialiteProviders/Disqus/tree/4.1.0"
-            },
-            "time": "2020-12-01T23:10:59+00:00"
         },
         {
             "name": "socialiteproviders/manager",

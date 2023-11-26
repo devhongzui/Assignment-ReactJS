@@ -138,10 +138,6 @@
                     @case('zalo')
                         <span class="fs-5 me-2"><i class="fa-solid fa-z"></i></span>
                         @break
-
-                    @case('zalo')
-                        <span class="fs-5 me-2"><i class="fa-solid fa-d"></i></span>
-                        @break
                 @endswitch
             @endforeach
         </div>

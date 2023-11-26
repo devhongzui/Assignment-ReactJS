@@ -34,7 +34,6 @@
         "mcamara/laravel-localization": "^1.8",
         "meilisearch/meilisearch-php": "^1.5",
         "mongodb/laravel-mongodb": "4.0.0",
-        "socialiteproviders/disqus": "^4.1",
         "socialiteproviders/spotify": "^4.1",
         "socialiteproviders/yahoo": "^4.1",
         "socialiteproviders/zalo": "^5.0",

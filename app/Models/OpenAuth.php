@@ -47,7 +47,6 @@ class OpenAuth extends Model
             'yahoo',
             'twitter-oauth-2',
             'zalo',
-            'disqus',
         ];
     }
 

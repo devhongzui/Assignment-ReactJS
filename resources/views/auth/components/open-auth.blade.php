@@ -48,11 +48,6 @@
                 <i class="fa-solid fa-z"></i>
                 <strong>Zalo</strong>
             </a>
-            <a href="{{ route('oauth.redirect', 'disqus') }}" class="w-100 mb-2 me-2 btn btn-primary" role="link"
-               aria-label="Disqus">
-                <i class="fa-solid fa-d"></i>
-                <strong>Disqus</strong>
-            </a>
         </div>
     </div>
 </div>

@@ -73,10 +73,4 @@ return [
         'redirect' => '/auth/callback/zalo',
     ],
 
-    'disqus' => [
-        'client_id' => env('DISQUS_CLIENT_ID'),
-        'client_secret' => env('DISQUS_CLIENT_SECRET'),
-        'redirect' => '/auth/callback/disqus',
-    ],
-
 ];
