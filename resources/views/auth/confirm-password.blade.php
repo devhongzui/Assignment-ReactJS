@@ -7,11 +7,13 @@
 
 @section('right-content')
     @vite('resources/js/auth/confirm-password.js')
+    @php
+        session(['previous_url_confirm_password' => url()->previous()]);
+    @endphp
 
     <form action="{{ route('password.confirm') }}" method="post" id="confirm-password-form">
         @csrf
-        <input type="hidden" name="redirect" value="{{ back()->getTargetUrl() }}">
-        <div class="row">
+        <fieldset class="row">
             <div class="col-md-6">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email-confirm-password-form" name="email"
@@ -28,10 +30,12 @@
                     <strong id="password-confirm-password-form-error" class="invalid-feedback" role="alert"></strong>
                 </div>
             </div>
-        </div>
+        </fieldset>
         <button class="btn btn-primary me-2 mb-2" type="submit" role="button" aria-label="@lang('Submit') }}">
             @lang('Submit')
         </button>
         @include('auth.components.forgot-password-button')
     </form>
+
+    @include('auth.components.open-auth')
 @endsection

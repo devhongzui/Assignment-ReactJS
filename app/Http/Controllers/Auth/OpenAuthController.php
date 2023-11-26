@@ -17,16 +17,17 @@ use Laravel\Socialite\Facades\Socialite;
 class OpenAuthController extends Controller
 {
     /**
+     * @var string
+     */
+    protected string $provider_email;
+
+    /**
      * @param string $provider
      * @param Request $request
      * @return RedirectResponse
      */
     public function redirect(string $provider, Request $request): RedirectResponse
     {
-        $request->session()->put(
-            ['previous_url_before_oauth' => url()->previous()]
-        );
-
         return Socialite::driver($provider)->redirect();
     }
 
@@ -39,35 +40,35 @@ class OpenAuthController extends Controller
     {
         $provider_code = OpenAuth::getServiceCode($provider);
         $provider_user = Socialite::driver($provider)->user();
+        $this->provider_email = $provider_user->getEmail() ?: "{$provider_user->getId()}_$provider@open.auth";
 
-        if (auth()->check()) {
-            $this->handleAuth($provider_user, auth()->user());
-        } else {
-            $system_user = SystemUser::getUserByOpenAuth($provider_code, $provider_user);
+        $system_user = SystemUser::getUserByOpenAuth(
+            $provider_code,
+            $this->provider_email,
+            $provider_user->getId()
+        );
 
+        if (auth()->check() && $system_user)
+            $this->handleAuth(auth()->user(), $system_user);
+        else
             empty($system_user)
                 ? $this->register($provider_code, $provider_user)
                 : $this->login($provider_code, $provider_user, $system_user);
-        }
 
         return redirect(
-            $request->session()->get('previous_url_before_oauth', RouteServiceProvider::HOME)
+            $request->session()->get('previous_url_confirm_password', RouteServiceProvider::HOME)
         );
     }
 
     /**
-     * @param ProviderUser $provider_user
      * @param SystemUser $system_user
+     * @param SystemUser $check_user
      * @return void
      */
-    protected function handleAuth(ProviderUser $provider_user, SystemUser $system_user): void
+    protected function handleAuth(SystemUser $system_user, SystemUser $check_user): void
     {
-        if (auth()->user()->email === $provider_user->getEmail()) {
+        if ($system_user->id === $check_user->id)
             session()->put('auth.password_confirmed_at', time());
-
-            if (!$system_user->hasVerifiedEmail())
-                $system_user->markEmailAsVerified();
-        }
     }
 
     /**
@@ -77,7 +78,7 @@ class OpenAuthController extends Controller
     protected function register(int $provider_code, ProviderUser $provider_user): void
     {
         $user = SystemUser::create([
-            'email' => $provider_user->getEmail(),
+            'email' => $this->provider_email,
             'email_verified_at' => Carbon::now(),
             'password' => bcrypt(Str::password()),
             'name' => $provider_user->getName(),
@@ -119,7 +120,7 @@ class OpenAuthController extends Controller
         ]);
 
         if (
-            $system_user->email === $provider_user->getEmail() &&
+            $system_user->email === $this->provider_email &&
             !$system_user->hasVerifiedEmail()
         )
             $system_user->markEmailAsVerified();
