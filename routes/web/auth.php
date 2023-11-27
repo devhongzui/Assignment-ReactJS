@@ -31,6 +31,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('change-password', fn() => view('auth.change-password'))
+        ->middleware('password.confirm')
         ->name('user-password.request');
 });
 

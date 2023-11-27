@@ -19,13 +19,17 @@ class RequirePassword extends \Illuminate\Auth\Middleware\RequirePassword
     public function handle($request, Closure $next, $redirectToRoute = null, $passwordTimeoutSeconds = null): mixed
     {
         if ($this->shouldConfirmPassword($request, $passwordTimeoutSeconds))
-            return response()->json(
-                [
-                    'redirect' => route('password.confirm'),
-                    'message' => __('Password confirmation required.'),
-                ],
-                423
-            );
+            return $request->expectsJson()
+                ? response()->json(
+                    [
+                        'redirect' => route('password.confirm'),
+                        'message' => __('Password confirmation required.'),
+                    ],
+                    423
+                )
+                : redirect(status: 423)->route('password.confirm', [
+                    'next' => url()->current()
+                ]);
 
         return $next($request);
     }

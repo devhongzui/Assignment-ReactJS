@@ -204,7 +204,6 @@ return [
         'name' => 'họ & tên',
         'password' => 'mật khẩu',
         'password_confirmation' => 'xác nhận mật khẩu',
-        'password_current' => 'mật khẩu cũ',
         'phone' => 'số điện thoại',
         'phone_number' => 'số điện thoại',
         'second' => 'giây',

@@ -18,7 +18,6 @@ class UpdateUserPassword implements UpdatesUserPasswords
     public function update(User $user, array $input): void
     {
         $validated = Validator::validate($input, [
-            'password_current' => $this->passwordCurrent(),
             'password' => $this->passwordRegister(),
         ]);
 
