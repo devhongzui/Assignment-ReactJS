@@ -151,9 +151,10 @@
            href="{{ route('user-password.request') }}">
             @lang('Change password')
         </a>
-        <form action="{{ route('user-profile-information.destroy') }}" method="delete" id="destroy-profile-form"
+        <form action="{{ route('user-profile-information.destroy') }}" method="post" id="destroy-profile-form"
               class="me-2 mb-2">
             @csrf
+            @method('DELETE')
             <button type="submit" role="button" class="btn btn-danger w-100" aria-label="@lang('Profile destroy')">
                 @lang('Profile destroy')
             </button>

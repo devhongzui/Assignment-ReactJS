@@ -21,8 +21,9 @@
                             aria-label="@lang('Enabled')">
                         @lang('Enabled')
                     </button>
-                    <form id="two-factor-disable-form" action="{{ route('two-factor.disable') }}" method="delete">
+                    <form action="{{ route('two-factor.disable') }}" method="post" id="two-factor-disable-form">
                         @csrf
+                        @method('DELETE')
                         <button class="btn btn-danger mb-2 me-2" type="submit" role="button"
                                 aria-label="@lang('Disable') }}">
                             @lang('Disable')
@@ -33,7 +34,7 @@
                             aria-label="@lang('Disabled') }}">
                         @lang('Disabled')
                     </button>
-                    <form id="two-factor-enable-form" action="{{ route('two-factor.enable') }}" method="post">
+                    <form action="{{ route('two-factor.enable') }}" method="post" id="two-factor-enable-form">
                         @csrf
                         <button class="btn btn-primary mb-2 me-2" type="submit" role="button"
                                 aria-label="@lang('Enable')">

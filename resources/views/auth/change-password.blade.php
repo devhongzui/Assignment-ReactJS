@@ -8,8 +8,9 @@
 @section('right-content')
     @vite('resources/js/auth/change-password.js')
 
-    <form action="{{ route('user-password.update') }}" method="put" id="change-password-form">
+    <form action="{{ route('user-password.update') }}" method="post" id="change-password-form">
         @csrf
+        @method('PUT')
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="email-change-password-form" name="email"
                 value="{{ request()->user()->email }}" disabled autocomplete="email">

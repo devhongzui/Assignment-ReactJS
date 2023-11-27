@@ -12,8 +12,9 @@
         $user = request()->user();
     @endphp
 
-    <form action="{{ route('user-profile-information.update') }}" method="put" id="edit-profile-form">
+    <form action="{{ route('user-profile-information.update') }}" method="post" id="edit-profile-form">
         @csrf
+        @method('PUT')
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="name-edit-profile-form" name="name" value="{{ $user->name }}"
                    autofocus autocomplete="name">
