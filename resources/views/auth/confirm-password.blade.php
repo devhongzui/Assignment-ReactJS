@@ -7,9 +7,6 @@
 
 @section('right-content')
     @vite('resources/js/auth/confirm-password.js')
-    @php
-        session(['previous_url_confirm_password' => request()->get('next', url()->previous())]);
-    @endphp
 
     <form action="{{ route('password.confirm') }}" method="post" id="confirm-password-form">
         @csrf
