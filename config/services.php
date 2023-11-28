@@ -73,4 +73,8 @@ return [
         'redirect' => '/auth/callback/zalo',
     ],
 
+    'google_tag' => [
+        'id' => env('GOOGLE_TAG')
+    ],
+
 ];

@@ -20,6 +20,7 @@ class SearchController extends Controller
      * @param Request $request
      * @return View
      * @throws SpotifyApiException
+     * @throws ValidatorException
      */
     public function show(string $query, Request $request): View
     {
@@ -37,17 +38,34 @@ class SearchController extends Controller
      */
     protected function getOthersPage(string $data_query, string $query): View
     {
-        match ($data_query) {
-            'channels' => $items = Channel::search($query),
-            'courses' => $items = Course::search($query),
-            'lessons' => $items = Lesson::search($query),
-            'subjects' => $items = Subject::search($query),
-            'tools' => $items = Tool::search($query),
-            default => abort(404),
-        };
+        switch ($data_query) {
+            case 'channel':
+                $items = Channel::search($query);
+                $view = 'study.channel.lazy';
+                break;
+            case 'course':
+                $items = Course::search($query);
+                $view = 'study.courses.lazy';
+                break;
+            case 'lesson':
+                $items = Lesson::search($query);
+                $view = 'study.course.lazy';
+                break;
+            case 'subject':
+                $items = Subject::search($query);
+                $view = 'study.course.lazy';
+                break;
+            case 'tool':
+                $items = Tool::search($query);
+                $view = 'study.courses.lazy';
+                break;
+            default:
+                abort(404);
+        }
 
-        return view("pages.search.$data_query")->with([
-            $data_query => $items->paginate(4)->appends('data', $data_query),
+        return view($view)->with([
+            'data' => $items->paginate(4)->appends('data', $data_query),
+            'route' => $data_query,
             'is_lazy' => true,
         ]);
     }
@@ -63,10 +81,10 @@ class SearchController extends Controller
     {
         switch ($type_query) {
             case 'study':
-                $channels = Channel::search($query)->paginate(4)->appends('data', 'channels');
-                $courses = Course::search($query)->paginate(4)->appends('data', 'courses');
-                $lessons = Lesson::search($query)->paginate(4)->appends('data', 'lessons');
-                $subjects = Subject::search($query)->paginate(4)->appends('data', 'subjects');
+                $channels = Channel::search($query)->paginate(4)->appends('data', 'channel');
+                $courses = Course::search($query)->paginate(4)->appends('data', 'course');
+                $lessons = Lesson::search($query)->paginate(4)->appends('data', 'lesson');
+                $subjects = Subject::search($query)->paginate(4)->appends('data', 'subject');
 
                 $items = [
                     'channels' => $channels,

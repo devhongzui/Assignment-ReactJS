@@ -25,25 +25,23 @@ $("modal-lazy").each((_, element) => {
     });
 });
 
-$("#change-theme-form")
-    .find("[type=submit]")
-    .on("click", (event) => {
-        let currentTarget = $(event.currentTarget);
+$("#change-theme-form").on("submit", (event) => {
+    let currentTarget = $(event.currentTarget);
 
-        let themeIcon = currentTarget.find(".fa-solid");
+    let themeIcon = currentTarget.find(".fa-solid");
 
-        $("body").attr(
-            "data-bs-theme",
-            themeIcon.hasClass("fa-sun") ? "dark" : "light",
-        );
+    $("body").attr(
+        "data-bs-theme",
+        themeIcon.hasClass("fa-sun") ? "dark" : "light",
+    );
 
-        $("header").toggleClass("bg-dark bg-light");
+    $("header").toggleClass("bg-dark bg-light");
 
-        $("footer").toggleClass("bg-dark bg-light");
+    $("footer").toggleClass("bg-dark bg-light");
 
-        $("#notification").toggleClass("bg-dark bg-light");
+    $("#notification").toggleClass("bg-dark bg-light");
 
-        themeIcon.toggleClass("fa-sun fa-moon");
-    });
+    themeIcon.toggleClass("fa-sun fa-moon");
+});
 
 request("change-theme-form");

@@ -21,5 +21,8 @@
 
     @vite(['resources/js/app.js', 'resources/scss/app.scss'])
 
-    @production @endproduction
+    @production
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_tag.id') }}"></script>
+        @vite('resources/js/gtag.js')
+    @endproduction
 </head>

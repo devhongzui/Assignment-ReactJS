@@ -1,7 +1,7 @@
 export default (form_id, successCallback) => {
     let form = $("#" + form_id);
 
-    form.find("[type=submit]").on("click", (event) => {
+    form.on("submit", (event) => {
         event.preventDefault();
 
         form.find("[name]").removeClass("is-invalid");

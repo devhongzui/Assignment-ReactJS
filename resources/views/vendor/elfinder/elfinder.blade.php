@@ -7,22 +7,22 @@
 
     <!-- elFinder initialization (REQUIRED) -->
     <script type="text/javascript" charset="utf-8">
-        // Documentation for client options:
-        // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
-        $(document).ready(function() {
-            $("#elfinder").elfinder({
-                // set your elFinder options here
-                @if($locale)
-                lang: '{{ $locale }}', // locale
-                @endif
-                customData: {
-                    _token: '{{ csrf_token() }}'
-                },
-                url: '{{ route("elfinder.connector") }}',  // connector URL
-                soundPath: '{{ Basset::getUrl(base_path("vendor/studio-42/elfinder/sounds")) }}',
-                cssAutoLoad: false
-            });
+      // Documentation for client options:
+      // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+      $(document).ready(function() {
+        $("#elfinder").elfinder({
+          // set your elFinder options here
+            @if($locale)
+            lang: '{{ $locale }}', // locale
+            @endif
+            customData: {
+              _token: '{{ csrf_token() }}'
+            },
+          url: '{{ route("elfinder.connector") }}',  // connector URL
+          soundPath: '{{ Basset::getUrl(base_path("vendor/studio-42/elfinder/sounds")) }}',
+          cssAutoLoad: false
         });
+      });
     </script>
 @endsection
 
