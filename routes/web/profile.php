@@ -11,7 +11,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('profile-detail', fn() => view('profile.detail'))
         ->name('user-profile-information.request');
 
-    Route::get('profile-edit', [ProfileController::class, 'edit'])
+    Route::get('profile-edit', fn() => view('profile.edit'))
         ->name('user-profile-information.edit');
 
     Route::delete('profile-destroy', [ProfileController::class, 'destroy'])

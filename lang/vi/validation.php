@@ -216,7 +216,6 @@ return [
         'year' => 'năm',
         'birthdate' => 'ngày sinh',
         'terms' => 'điều khoản',
-        'country_code' => 'mã quốc gia',
         'province_code' => 'mã tỉnh/thành phố',
         'district_code' => 'mã quận/huyện/thị xã',
         'sub_district_code' => 'mã xã/phường/thị trấn',

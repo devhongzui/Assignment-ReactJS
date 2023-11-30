@@ -23,7 +23,6 @@ return new class extends Migration {
             $table->date('birthdate')->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->string('address_detail', 100)->nullable();
-            $table->smallInteger('country_code')->nullable();
             $table->bigInteger('province_code')->nullable();
             $table->bigInteger('district_code')->nullable();
             $table->bigInteger('sub_district_code')->nullable();
