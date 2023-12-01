@@ -18,7 +18,7 @@
                         'number' => number_format($artist['followers']['total']),
                     ]),
                 ],
-            ]" />
+            ]"/>
 
         <hr>
         <div class="text-center h4 fw-bold">@lang('Albums from :name', ['name' => $web_title])</div>

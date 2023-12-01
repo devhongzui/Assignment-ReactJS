@@ -1,10 +1,10 @@
 @guest
     @if (!($login_page ?? false))
-        <x-page.modal id="login-modal" :title="__('Login')" :link="route('login')" />
+        <x-page.modal id="login-modal" :title="__('Login')" :link="route('login')"/>
     @endif
     @if (!($register_page ?? false))
-        <x-page.modal id="register-modal" :title="__('Register')" :link="route('register')" />
+        <x-page.modal id="register-modal" :title="__('Register')" :link="route('register')"/>
     @endif
 @endguest
 
-<x-page.modal id="search-modal" :title="__('Search')" :link="route('search')" />
+<x-page.modal id="search-modal" :title="__('Search')" :link="route('search')"/>

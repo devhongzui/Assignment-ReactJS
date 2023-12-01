@@ -16,7 +16,7 @@
                         'number' => number_format($playlist['followers']['total']),
                     ]),
                 ],
-            ]" />
+            ]"/>
 
         @include('music.lazy.track', [
             'tracks' => $playlist['tracks']['items'],

@@ -18,7 +18,7 @@
                         'class' => 'bg-secondary',
                         'description' => __('Publish at :time', ['time' => $subject->publish_at]),
                     ],
-                ]" />
+                ]"/>
         </div>
 
         @include('study.course.lazy')

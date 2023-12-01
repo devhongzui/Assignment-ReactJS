@@ -51,7 +51,7 @@
             </div>
         </div>
     @empty
-        <x-empty />
+        <x-empty/>
     @endforelse
 
     <div class="d-flex justify-content-center d-md-block mt-2">

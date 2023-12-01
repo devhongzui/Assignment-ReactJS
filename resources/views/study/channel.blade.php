@@ -19,7 +19,7 @@
                         'class' => 'bg-secondary',
                         'description' => __(':number subjects', ['number' => $channel->subjects()->count()]),
                     ],
-                ]" />
+                ]"/>
         </div>
 
         <hr>

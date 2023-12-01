@@ -1,7 +1,7 @@
 <header class="navbar navbar-expand-xl position-fixed bg-{{ $web->theme }} w-100 z-3">
     <div class="container">
         <div class="col-6 col-xl-auto">
-            <x-page.logo :web-site-name="$web->site_name" :web-site-name-html="$web->site_name_html" />
+            <x-page.logo :web-site-name="$web->site_name" :web-site-name-html="$web->site_name_html"/>
         </div>
         <button class="navbar-toggler" type="button" role="button" aria-label="@lang('Extend')"
                 data-bs-toggle="collapse"

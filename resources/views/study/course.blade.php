@@ -19,7 +19,7 @@
                         'class' => 'bg-secondary',
                         'description' => __('Updated at :time', ['time' => $course->updated_at]),
                     ],
-                ]" />
+                ]"/>
         </div>
 
         @include('study.course.lazy')

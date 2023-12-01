@@ -3,7 +3,7 @@
         <h3 class="text-center text-md-start mt-2 ms-md-2">@lang('Comment')</h3>
     </div>
     <div class="card-body p-0">
-        <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />
+        <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}"/>
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" nonce="U2fDtyU0"
                 src="{{ sprintf(

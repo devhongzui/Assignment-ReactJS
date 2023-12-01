@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="@lang('Close')"></button>
             </div>
             <div class="modal-body">
-                <modal-lazy data-src="{{ $link }}" />
+                <modal-lazy data-src="{{ $link }}"/>
             </div>
         </div>
     </div>

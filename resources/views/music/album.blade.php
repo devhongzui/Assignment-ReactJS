@@ -14,7 +14,7 @@
                     'class' => 'bg-secondary',
                     'description' => __('Publish at :time', ['time' => $album['release_date']]),
                 ],
-            ]" />
+            ]"/>
 
         @include('music.lazy.track', [
             'tracks' => $album['tracks']['items'],
