@@ -1,5 +1,11 @@
 <?php
 
+use App\Models\Channel;
+use App\Models\Course;
+use App\Models\Lesson;
+use App\Models\Subject;
+use App\Models\Tool;
+
 return [
 
     /*
@@ -133,25 +139,25 @@ return [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
-            \App\Models\Channel::class => [
-                'filterableAttributes' => \App\Models\Channel::$filterableAttributes,
-                'sortableAttributes' => \App\Models\Channel::$sortableAttributes,
+            Channel::class => [
+                'filterableAttributes' => Channel::$filterableAttributes,
+                'sortableAttributes' => Channel::$sortableAttributes,
             ],
-            \App\Models\Course::class => [
-                'filterableAttributes' => \App\Models\Course::$filterableAttributes,
-                'sortableAttributes' => \App\Models\Course::$sortableAttributes,
+            Course::class => [
+                'filterableAttributes' => Course::$filterableAttributes,
+                'sortableAttributes' => Course::$sortableAttributes,
             ],
-            \App\Models\Lesson::class => [
-                'filterableAttributes' => \App\Models\Lesson::$filterableAttributes,
-                'sortableAttributes' => \App\Models\Lesson::$sortableAttributes,
+            Lesson::class => [
+                'filterableAttributes' => Lesson::$filterableAttributes,
+                'sortableAttributes' => Lesson::$sortableAttributes,
             ],
-            \App\Models\Subject::class => [
-                'filterableAttributes' => \App\Models\Subject::$filterableAttributes,
-                'sortableAttributes' => \App\Models\Subject::$sortableAttributes,
+            Subject::class => [
+                'filterableAttributes' => Subject::$filterableAttributes,
+                'sortableAttributes' => Subject::$sortableAttributes,
             ],
-            \App\Models\Tool::class => [
-                'filterableAttributes' => \App\Models\Tool::$filterableAttributes,
-                'sortableAttributes' => \App\Models\Tool::$sortableAttributes,
+            Tool::class => [
+                'filterableAttributes' => Tool::$filterableAttributes,
+                'sortableAttributes' => Tool::$sortableAttributes,
             ],
         ],
     ],

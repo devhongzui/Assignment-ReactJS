@@ -1,1 +1,0 @@
-import "./bootstrap-admin.js";

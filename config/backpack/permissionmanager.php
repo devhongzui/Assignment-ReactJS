@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -12,7 +14,7 @@ return [
     */
 
     'models' => [
-        'user' => config('backpack.base.user_model_fqn', \App\Models\User::class),
+        'user' => config('backpack.base.user_model_fqn', User::class),
         'permission' => Backpack\PermissionManager\app\Models\Permission::class,
         'role' => Backpack\PermissionManager\app\Models\Role::class,
     ],

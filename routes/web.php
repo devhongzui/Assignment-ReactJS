@@ -16,14 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('verified')->group(function () {
-    Route::get('/', fn() => view('pages.home'))
-        ->name('home');
+    Route::name('home')
+        ->get('/', fn() => view('layouts.app')->with([
+            'web_title' => __('Welcome'),
+            'web_image' => asset('storage/images/undraw/Welcome.png'),
+        ]));
 
-    Route::get('contact', fn() => view('pages.contact'))
-        ->name('contact');
+    Route::name('contact')
+        ->get('contact', fn() => view('layouts.app')->with([
+            'web_title' => __('Contact'),
+            'web_image' => asset('storage/images/undraw/Contact_us.png'),
+        ]));
 
-    Route::get('about-me', fn() => view('pages.about-me'))
-        ->name('about-me');
+    Route::name('about-me')
+        ->get('about-me', fn() => view('layouts.app')->with([
+            'web_title' => __('About me'),
+            'web_image' => asset('storage/images/freepik/7055190.jpg'),
+        ]));
 
     Route::get('privacy-policy', fn() => view('pages.privacy-policy'))
         ->name('privacy-policy');

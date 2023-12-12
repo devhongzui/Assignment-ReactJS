@@ -1,5 +1,8 @@
 <?php
 
+use Backpack\CRUD\app\Http\Middleware\AuthenticateSession;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+
 return [
 
     /*
@@ -112,8 +115,8 @@ return [
     // Can be a single class or an array of classes
     'middleware_class' => [
         App\Http\Middleware\CheckIfAdmin::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Backpack\CRUD\app\Http\Middleware\AuthenticateSession::class,
+        ConvertEmptyStringsToNull::class,
+        AuthenticateSession::class,
         // \Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
     ],
 
