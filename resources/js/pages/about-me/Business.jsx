@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { A11y, Autoplay, Scrollbar } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/autoplay";
 
 const ImageStyle = styled.img`
     height: 60px;
@@ -42,9 +47,12 @@ export default function Business() {
 
         return (
             <Swiper
-                loop={true}
+                modules={[Scrollbar, A11y, Autoplay]}
+                spaceBetween={50}
+                slidesPerView={3}
+                scrollbar={{ draggable: true }}
+                loop
                 autoplay={{ delay: 1000 }}
-                loading="lazy"
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -59,6 +67,7 @@ export default function Business() {
                         spaceBetween: 50,
                     },
                 }}
+                className="p-2"
             >
                 {elements}
             </Swiper>
