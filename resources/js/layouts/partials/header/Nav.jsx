@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
     const { t } = useTranslation();
@@ -6,34 +7,34 @@ export default function Nav() {
     return (
         <ul className="navbar-nav">
             <li className="nav-item">
-                <a
-                    href="#"
+                <Link
+                    to="#"
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Courses")}
                 >
                     {t("Courses")}
-                </a>
+                </Link>
             </li>
             <li className="nav-item">
-                <a
-                    href="#"
+                <Link
+                    to="#"
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Tools")}
                 >
                     {t("Tools")}
-                </a>
+                </Link>
             </li>
             <li className="nav-item">
-                <a
-                    href="#"
+                <Link
+                    to="#"
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Musics")}
                 >
                     {t("Musics")}
-                </a>
+                </Link>
             </li>
         </ul>
     );

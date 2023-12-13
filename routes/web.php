@@ -34,8 +34,11 @@ Route::middleware('verified')->group(function () {
             'web_image' => asset('storage/images/freepik/7055190.jpg'),
         ]));
 
-    Route::get('privacy-policy', fn() => view('pages.privacy-policy'))
-        ->name('privacy-policy');
+    Route::name('privacy-policy')
+        ->get('privacy-policy', fn() => view('layouts.app')->with([
+            'web_title' => __('Privacy Policy'),
+            'web_image' => asset('storage/images/undraw/Data_processing.png'),
+        ]));
 
     Route::get('security-policy', fn() => view('pages.security-policy'))
         ->name('security-policy');

@@ -18,7 +18,7 @@ export default function Nav() {
                 },
                 {
                     title: t("Privacy policy"),
-                    link: "#",
+                    link: "privacy-policy",
                 },
                 {
                     title: t("Security policy"),
