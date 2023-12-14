@@ -9,6 +9,7 @@ import Partner from "./Partner.jsx";
 import Cookie from "./Cookie.jsx";
 import Security from "./Security.jsx";
 import Permission from "./Permission.jsx";
+import { initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;
@@ -16,6 +17,13 @@ const ImageStyle = styled.img`
 
 export default function SecurityPolicy() {
     const { t } = useTranslation();
+
+    const web = {
+        title: t("Security policy"),
+        image: "storage/images/undraw/Security_on.png",
+    };
+
+    initSite(web);
 
     const list = [
         {
@@ -52,12 +60,12 @@ export default function SecurityPolicy() {
         <main>
             <ImageStyle
                 src="/storage/images/undraw/Security_on.png"
-                alt={t("Security policy")}
+                alt={web.title}
                 className="w-100 object-fit-cover object-fit-md-contain bg-white"
             />
 
             <div className="container">
-                <h2 className="my-4 text-center">{t("Security policy")}</h2>
+                <h2 className="my-4 text-center">{web.title}</h2>
                 <TableOfContents list={list} />
                 <Introduce />
                 <CollectInformation tag={list[0].tag} title={list[0].title} />

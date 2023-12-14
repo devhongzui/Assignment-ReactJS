@@ -10,6 +10,7 @@ import Permission from "./Permission.jsx";
 import Cookie from "./Cookie.jsx";
 import DataSecurity from "./DataSecurity.jsx";
 import OptionsCenter from "./OptionsCenter.jsx";
+import { initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;
@@ -17,6 +18,13 @@ const ImageStyle = styled.img`
 
 export default function PrivacyPolicy() {
     const { t } = useTranslation();
+
+    const web = {
+        title: t("Privacy policy"),
+        description: "storage/images/undraw/Data_processing.png",
+    };
+
+    initSite(web);
 
     const list = [
         {
@@ -57,12 +65,12 @@ export default function PrivacyPolicy() {
         <main>
             <ImageStyle
                 src="/storage/images/undraw/Data_processing.png"
-                alt={t("Privacy policy")}
+                alt={web.title}
                 className="w-100 object-fit-cover object-fit-md-contain bg-white"
             />
 
             <div className="container">
-                <h2 className="my-4 text-center">{t("Privacy policy")}</h2>
+                <h2 className="my-4 text-center">{web.title}</h2>
                 <TableOfContents list={list} />
                 <Introduce />
                 <GeneralPersonalData tag={list[0].tag} title={list[0].title} />

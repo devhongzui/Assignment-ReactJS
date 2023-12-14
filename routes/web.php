@@ -17,34 +17,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('verified')->group(function () {
     Route::name('home')
-        ->get('/', fn() => view('layouts.app')->with([
-            'web_title' => __('Welcome'),
-            'web_image' => asset('storage/images/undraw/Welcome.png'),
-        ]));
+        ->get('/', fn() => view('layouts.app'));
 
     Route::name('contact')
-        ->get('contact', fn() => view('layouts.app')->with([
-            'web_title' => __('Contact'),
-            'web_image' => asset('storage/images/undraw/Contact_us.png'),
-        ]));
+        ->get('contact', fn() => view('layouts.app'));
 
     Route::name('about-me')
-        ->get('about-me', fn() => view('layouts.app')->with([
-            'web_title' => __('About me'),
-            'web_image' => asset('storage/images/freepik/7055190.jpg'),
-        ]));
+        ->get('about-me', fn() => view('layouts.app'));
 
     Route::name('privacy-policy')
-        ->get('privacy-policy', fn() => view('layouts.app')->with([
-            'web_title' => __('Privacy policy'),
-            'web_image' => asset('storage/images/undraw/Data_processing.png'),
-        ]));
+        ->get('privacy-policy', fn() => view('layouts.app'));
 
     Route::name('security-policy')
-        ->get('security-policy', fn() => view('layouts.app')->with([
-            'web_title' => __('Security policy'),
-            'web_image' => asset('storage/images/undraw/Security_on.png'),
-        ]));
+        ->get('security-policy', fn() => view('layouts.app'));
 });
 
 Route::get('search', fn() => view('pages.search-bar'))

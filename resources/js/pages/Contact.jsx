@@ -1,7 +1,15 @@
 import { useTranslation } from "react-i18next";
+import { initSite } from "../helper.js";
 
 export default function Contact() {
     const { t } = useTranslation();
+
+    const web = {
+        title: t("Contact"),
+        image: "storage/images/undraw/Contact_us.png",
+    };
+
+    initSite(web);
 
     const information = [
         {
@@ -26,14 +34,11 @@ export default function Contact() {
 
     return (
         <main className="container">
-            <h2 className="my-4 text-center">{t("Contact")}</h2>
+            <h2 className="my-4 text-center">{web.title}</h2>
 
             {information.map((value, index) => (
-                <div className="row mb-3">
-                    <div
-                        key={index}
-                        className="offset-xl-1 col-xl-3 text-primary fw-bold"
-                    >
+                <div key={index} className="row mb-3">
+                    <div className="offset-xl-1 col-xl-3 text-primary fw-bold">
                         {value.title}
                     </div>
                     <div className="col-xl-7">{value.description}</div>
