@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import axios from "axios";
+import Email from "./Email.jsx";
+import Password from "./Password.jsx";
+import RememberMe from "./RememberMe.jsx";
+import Submit from "./Submit.jsx";
 
 export default function Login() {
     const { t } = useTranslation();
@@ -42,72 +46,14 @@ export default function Login() {
             <form onSubmit={callApi}>
                 <div className="row">
                     <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="email"
-                                className={
-                                    validate?.email
-                                        ? "form-control is-invalid"
-                                        : "form-control"
-                                }
-                                name="email"
-                                autoFocus
-                                autoComplete="email"
-                            />
-                            <label>{t("Email")}</label>
-                            {validate?.email && (
-                                <strong
-                                    className="invalid-feedback"
-                                    role="alert"
-                                >
-                                    {validate.email[0]}
-                                </strong>
-                            )}
-                        </div>
+                        <Email validate={validate} />
                     </div>
                     <div className="col-md-6">
-                        <div className="form-floating mb-3">
-                            <input
-                                type="password"
-                                className={
-                                    validate?.password
-                                        ? "form-control is-invalid"
-                                        : "form-control"
-                                }
-                                name="password"
-                            />
-                            <label>{t("Password")}</label>
-                            {validate?.password && (
-                                <strong
-                                    className="invalid-feedback"
-                                    role="alert"
-                                >
-                                    {validate.password[0]}
-                                </strong>
-                            )}
-                        </div>
+                        <Password validate={validate} />
                     </div>
                 </div>
-                <div className="form-check mb-3">
-                    <input
-                        type="checkbox"
-                        className="form-check-input"
-                        name="remember_me"
-                        defaultChecked
-                    />
-
-                    <label className="form-check-label">
-                        {t("Remember me")}
-                    </label>
-                </div>
-                <button
-                    className="btn btn-primary me-2 mb-2"
-                    type="submit"
-                    role="button"
-                    aria-label={t("Login")}
-                >
-                    {t("Login")}
-                </button>
+                <RememberMe />
+                <Submit label={t("Login")} />
                 {/*@include('auth.components.forgot-password-button')*/}
             </form>
         </Form>
