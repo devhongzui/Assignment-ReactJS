@@ -10,12 +10,8 @@ export default function Subscribe() {
                 <p>{t("Monthly digest of what's new and exciting from us.")}</p>
                 <div className="row">
                     <fieldset className="col-md-7">
-                        <label
-                            htmlFor="newsletter"
-                            className="visually-hidden"
-                        ></label>
+                        <label className="visually-hidden"></label>
                         <input
-                            id="newsletter"
                             type="text"
                             className="form-control"
                             placeholder={t("Email address")}

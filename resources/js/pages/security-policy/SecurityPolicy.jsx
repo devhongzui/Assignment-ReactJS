@@ -20,7 +20,7 @@ export default function SecurityPolicy() {
 
     const web = {
         title: t("Security policy"),
-        image: "storage/images/undraw/Security_on.png",
+        image: "/storage/images/undraw/Security_on.png",
     };
 
     initSite(web);

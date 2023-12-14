@@ -134,9 +134,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::viewPrefix('auth.');
 
         Fortify::loginView(
-            fn(Request $request): View => $request->ajax()
-                ? view('auth.lazy.login')
-                : view('auth.login')->with('login_page', true)
+            fn(Request $request): View => view('layouts.app')
         );
 
         Fortify::registerView(

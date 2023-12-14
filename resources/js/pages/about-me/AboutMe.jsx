@@ -12,7 +12,7 @@ export default function AboutMe() {
 
     const web = {
         title: t("About me"),
-        image: "storage/images/freepik/7055190.jpg",
+        image: "/storage/images/freepik/7055190.jpg",
     };
 
     initSite(web);

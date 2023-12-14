@@ -6,7 +6,7 @@ export default function Contact() {
 
     const web = {
         title: t("Contact"),
-        image: "storage/images/undraw/Contact_us.png",
+        image: "/storage/images/undraw/Contact_us.png",
     };
 
     initSite(web);

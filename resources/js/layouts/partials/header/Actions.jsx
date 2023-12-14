@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Actions() {
     const { t } = useTranslation();
@@ -27,14 +28,14 @@ export default function Actions() {
             </div>
             <div className="col-md-6 col-xl-auto mb-2 mb-xl-0 ms-xl-2">
                 <div className="d-flex justify-content-end">
-                    <button
-                        type="button"
+                    <Link
+                        to="login"
                         role="button"
                         className="btn btn-outline-primary me-2"
                         aria-label={t("Login")}
                     >
                         {t("Login")}
-                    </button>
+                    </Link>
                     <button
                         type="button"
                         role="button"

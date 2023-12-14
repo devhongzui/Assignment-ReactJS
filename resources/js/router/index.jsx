@@ -5,6 +5,7 @@ import AboutMe from "../pages/about-me/AboutMe.jsx";
 import Contact from "../pages/Contact.jsx";
 import PrivacyPolicy from "../pages/privacy-policy/PrivacyPolicy.jsx";
 import SecurityPolicy from "../pages/security-policy/SecurityPolicy.jsx";
+import Login from "../pages/auth/login/Login.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: "security-policy",
                 element: <SecurityPolicy />,
+            },
+            {
+                path: "login",
+                element: <Login />,
             },
         ],
     },
