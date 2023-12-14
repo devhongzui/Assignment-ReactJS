@@ -36,12 +36,15 @@ Route::middleware('verified')->group(function () {
 
     Route::name('privacy-policy')
         ->get('privacy-policy', fn() => view('layouts.app')->with([
-            'web_title' => __('Privacy Policy'),
+            'web_title' => __('Privacy policy'),
             'web_image' => asset('storage/images/undraw/Data_processing.png'),
         ]));
 
-    Route::get('security-policy', fn() => view('pages.security-policy'))
-        ->name('security-policy');
+    Route::name('security-policy')
+        ->get('security-policy', fn() => view('layouts.app')->with([
+            'web_title' => __('Security policy'),
+            'web_image' => asset('storage/images/undraw/Security_on.png'),
+        ]));
 });
 
 Route::get('search', fn() => view('pages.search-bar'))

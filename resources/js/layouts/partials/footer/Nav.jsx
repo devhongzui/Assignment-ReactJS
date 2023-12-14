@@ -22,7 +22,7 @@ export default function Nav() {
                 },
                 {
                     title: t("Security policy"),
-                    link: "#",
+                    link: "security-policy",
                 },
             ],
         },
