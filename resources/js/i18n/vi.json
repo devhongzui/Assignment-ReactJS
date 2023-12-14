@@ -9,7 +9,7 @@
     "Theme": "Giao diện",
     "Language": "Ngôn ngữ",
     "Login": "Đăng nhập",
-    "Signup": "Đăng ký",
+    "Register": "Đăng ký",
     "See more": "Xem thêm",
     "Contact": "Liên hệ",
     "About me": "Giới thiệu",
@@ -272,5 +272,14 @@
     "You have the right to request access to your personal data, and the right to request us to correct errors in your data without charge": "Quý khách có quyền yêu cầu truy cập vào dữ liệu cá nhân của mình, có quyền yêu cầu chúng tôi sửa lại những sai sót trong dữ liệu của bạn mà không mất phí",
     "You have the right at any time to ask us to stop using your personal data for marketing purposes.": "Bất cứ lúc nào bạn cũng có quyền yêu cầu chúng tôi ngưng sử dụng dữ liệu cá nhân của bạn cho mục đích tiếp thị.",
     "Password": "Mật khẩu",
-    "Remember me": "Ghi nhớ tôi"
+    "Remember me": "Ghi nhớ tôi",
+    "Password confirm": "Mật khẩu xác nhận",
+    "Birthdate": "Ngày sinh",
+    "Gender": "Giới tính",
+    "Agree with": "Đồng ý với",
+    "and": "và",
+    "Choose": "Lựa chọn",
+    "Male": "Nam",
+    "Female": "Nữ",
+    "N/A": "Không xác định"
 }

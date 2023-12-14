@@ -6,13 +6,19 @@ export default function RememberMe() {
     return (
         <div className="form-check mb-3">
             <input
+                id="remember_me-login-form"
                 type="checkbox"
                 className="form-check-input"
                 name="remember_me"
                 defaultChecked
             />
 
-            <label className="form-check-label">{t("Remember me")}</label>
+            <label
+                htmlFor="remember_me-login-form"
+                className="form-check-label"
+            >
+                {t("Remember me")}
+            </label>
         </div>
     );
 }

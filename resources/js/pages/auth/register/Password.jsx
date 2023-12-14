@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import ValidateMessage from "./ValidateMessage.jsx";
+import ValidateMessage from "../login/ValidateMessage.jsx";
 
 export default function Password({ validate }) {
     const { t } = useTranslation();

@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Contracts\PasswordResetResponse;
 use Laravel\Fortify\Contracts\SuccessfulPasswordResetLinkRequestResponse;
@@ -133,15 +132,9 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::viewPrefix('auth.');
 
-        Fortify::loginView(
-            fn(Request $request): View => view('layouts.app')
-        );
+        Fortify::loginView('layouts.app');
 
-        Fortify::registerView(
-            fn(Request $request): View => $request->ajax()
-                ? view('auth.lazy.register')
-                : view('auth.register')->with('register_page', true)
-        );
+        Fortify::registerView('layouts.app');
 
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);

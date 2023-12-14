@@ -30,31 +30,30 @@ export default function Login() {
             .post(`/${i18n.language}/login`, {
                 email: email.value,
                 password: password.value,
-                remember_me: remember_me.value,
+                remember_me: remember_me.checked,
             })
             .then()
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-
-                console.log(error);
             });
     }
 
     return (
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
-                <div className="row">
-                    <div className="col-md-6">
-                        <Email validate={validate} />
+                <fieldset>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Email validate={validate} />
+                        </div>
+                        <div className="col-md-6">
+                            <Password validate={validate} />
+                        </div>
                     </div>
-                    <div className="col-md-6">
-                        <Password validate={validate} />
-                    </div>
-                </div>
-                <RememberMe />
+                    <RememberMe />
+                </fieldset>
                 <Submit label={t("Login")} />
-                {/*@include('auth.components.forgot-password-button')*/}
             </form>
         </Form>
     );

@@ -36,14 +36,14 @@ export default function Actions() {
                     >
                         {t("Login")}
                     </Link>
-                    <button
-                        type="button"
+                    <Link
+                        to="register"
                         role="button"
                         className="btn btn-primary"
-                        aria-label={t("Signup")}
+                        aria-label={t("Register")}
                     >
-                        {t("Signup")}
-                    </button>
+                        {t("Register")}
+                    </Link>
                 </div>
             </div>
         </div>

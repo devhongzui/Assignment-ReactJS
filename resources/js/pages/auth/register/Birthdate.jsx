@@ -1,22 +1,22 @@
 import { useTranslation } from "react-i18next";
-import ValidateMessage from "./ValidateMessage.jsx";
+import ValidateMessage from "../login/ValidateMessage.jsx";
 
-export default function Password({ validate }) {
+export default function Birthdate({ validate }) {
     const { t } = useTranslation();
 
     return (
         <div className="form-floating mb-3">
             <input
-                type="password"
+                type="date"
                 className={
-                    validate?.password
+                    validate?.birthdate
                         ? "form-control is-invalid"
                         : "form-control"
                 }
-                name="password"
+                name="birthdate"
             />
-            <label>{t("Password")}</label>
-            <ValidateMessage field={validate?.password} />
+            <label>{t("Birthdate")}</label>
+            <ValidateMessage field={validate?.birthdate} />
         </div>
     );
 }
