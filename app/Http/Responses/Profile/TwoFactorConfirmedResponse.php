@@ -17,7 +17,6 @@ class TwoFactorConfirmedResponse implements TwoFactorLoginResponse
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'reload' => true,
             'message' => __('Enabled two-step verification successfully!'),
         ]);
     }

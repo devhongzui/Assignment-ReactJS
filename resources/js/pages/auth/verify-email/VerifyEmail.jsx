@@ -8,7 +8,7 @@ import { userData } from "../../../reduxers/user.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 
 export default function VerifyEmail() {
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const { t } = useTranslation();
 
@@ -27,11 +27,13 @@ export default function VerifyEmail() {
             .then((success) => {
                 dispatch(setToast(success.data));
 
-                if (success.data.redirect)
-                    setTimeout(
-                        () => (location.href = success.data.redirect),
-                        5000,
-                    );
+                setTimeout(
+                    () =>
+                        success.data.redirect
+                            ? (location.href = success.data.redirect)
+                            : location.reload(),
+                    5000,
+                );
             })
             .catch((error) => {
                 dispatch(setToast(error.response.data.message));

@@ -55,9 +55,7 @@ class OpenAuthController extends Controller
                 ? $this->register($provider_code, $provider_user)
                 : $this->login($provider_code, $provider_user, $system_user);
 
-        return redirect(
-            $request->session()->get('previous_url_confirm_password', RouteServiceProvider::HOME)
-        );
+        return redirect(RouteServiceProvider::HOME);
     }
 
     /**

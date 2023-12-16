@@ -17,7 +17,6 @@ class TwoFactorDisabledResponse implements TwoFactorLoginResponse
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'reload' => true,
             'message' => __('Turn off two-step verification successfully!'),
         ]);
     }

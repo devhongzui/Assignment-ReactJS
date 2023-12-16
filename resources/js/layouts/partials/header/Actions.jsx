@@ -13,7 +13,7 @@ const ImageStyle = styled.img`
 `;
 
 export default function Actions() {
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const { t } = useTranslation();
 
@@ -88,7 +88,7 @@ export default function Actions() {
                         </li>
                         <li>
                             <Link
-                                to="#"
+                                to={`/${i18n.language}/user/change-password`}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Change password")}

@@ -16,7 +16,6 @@ class PasswordConfirmedResponse extends \Laravel\Fortify\Http\Responses\Password
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'redirect' => $request->session()->get('previous_url_confirm_password'),
             'message' => __('Password confirmation successful!'),
         ]);
     }

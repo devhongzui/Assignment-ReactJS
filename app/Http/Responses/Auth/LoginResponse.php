@@ -16,7 +16,6 @@ class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'redirect' => route('home'),
             'message' => __('Logged in successfully!'),
         ]);
     }

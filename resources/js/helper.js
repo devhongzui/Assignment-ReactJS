@@ -1,3 +1,6 @@
+import axios from "axios";
+import i18n from "i18next";
+
 export const initSite = ({ title, description, image }) => {
     if (title) document.title = title;
 
@@ -15,4 +18,13 @@ export const initSite = ({ title, description, image }) => {
             (value) =>
                 document.querySelector(value).setAttribute("content", image),
         );
+};
+
+export const checkPasswordConfirm = () => {
+    axios
+        .get(`/${i18n.language}/user/confirmed-password-status`)
+        .then((success) => {
+            if (!success.data["confirmed"])
+                location.href = `/${i18n.language}/user/confirm-password`;
+        });
 };

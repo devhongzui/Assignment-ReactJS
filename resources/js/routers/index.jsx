@@ -8,6 +8,8 @@ import SecurityPolicy from "../pages/security-policy/SecurityPolicy.jsx";
 import Login from "../pages/auth/login/Login.jsx";
 import Register from "../pages/auth/register/Register.jsx";
 import VerifyEmail from "../pages/auth/verify-email/VerifyEmail.jsx";
+import ConfirmPassword from "../pages/auth/confirm-password/ConfirmPassword.jsx";
+import ChangePassword from "../pages/auth/change-password/ChangePassword.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -46,6 +48,14 @@ export default function () {
                 {
                     path: "email/verify",
                     element: <VerifyEmail />,
+                },
+                {
+                    path: "user/confirm-password",
+                    element: <ConfirmPassword />,
+                },
+                {
+                    path: "user/change-password",
+                    element: <ChangePassword />,
                 },
             ],
         },

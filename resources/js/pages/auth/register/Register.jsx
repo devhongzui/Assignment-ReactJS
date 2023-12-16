@@ -16,7 +16,7 @@ import { setToast } from "../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
 
 export default function Register() {
-    let dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const { t } = useTranslation();
 
@@ -55,7 +55,7 @@ export default function Register() {
             .then((success) => {
                 dispatch(setToast(success.data));
 
-                setTimeout(() => (location.href = success.data.redirect), 5000);
+                setTimeout(() => location.reload(), 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

@@ -16,20 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('verified')->group(function () {
-    Route::name('home')
-        ->get('/', fn() => view('layouts.app'));
+    Route::get('/', fn() => view('layouts.app'))
+        ->name('home');
 
-    Route::name('contact')
-        ->get('contact', fn() => view('layouts.app'));
+    Route::get('contact', fn() => view('layouts.app'))
+        ->name('contact');
 
-    Route::name('about-me')
-        ->get('about-me', fn() => view('layouts.app'));
+    Route::get('about-me', fn() => view('layouts.app'))
+        ->name('about-me');
 
-    Route::name('privacy-policy')
-        ->get('privacy-policy', fn() => view('layouts.app'));
+    Route::get('privacy-policy', fn() => view('layouts.app'))
+        ->name('privacy-policy');
 
-    Route::name('security-policy')
-        ->get('security-policy', fn() => view('layouts.app'));
+    Route::get('security-policy', fn() => view('layouts.app'))
+        ->name('security-policy');
 });
 
 Route::get('search', fn() => view('pages.search-bar'))

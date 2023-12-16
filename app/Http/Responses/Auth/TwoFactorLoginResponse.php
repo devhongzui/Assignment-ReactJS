@@ -16,7 +16,6 @@ class TwoFactorLoginResponse extends \Laravel\Fortify\Http\Responses\TwoFactorLo
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'reload' => true,
             'message' => __('Complete two-step verification!'),
         ]);
     }
