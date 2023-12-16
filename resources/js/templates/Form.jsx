@@ -1,6 +1,6 @@
 export default function Form({ title, image, children }) {
     return (
-        <main className="container">
+        <div className="container">
             <div className="row my-3">
                 <div className="col-xl-4 d-none d-xl-flex align-items-center">
                     <img
@@ -15,6 +15,6 @@ export default function Form({ title, image, children }) {
                     {children}
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

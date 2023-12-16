@@ -18,7 +18,7 @@ export default function AboutMe() {
     initSite(web);
 
     return (
-        <main className="container">
+        <div className="container">
             <h2 className="my-4 text-center">{web.title}</h2>
             <General />
             <Information />
@@ -26,6 +26,6 @@ export default function AboutMe() {
             <Business />
             <Technology />
             <Skill />
-        </main>
+        </div>
     );
 }

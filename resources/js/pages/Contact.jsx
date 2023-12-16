@@ -33,7 +33,7 @@ export default function Contact() {
     ];
 
     return (
-        <main className="container">
+        <div className="container">
             <h2 className="my-4 text-center">{web.title}</h2>
 
             {information.map((value, index) => (
@@ -57,6 +57,6 @@ export default function Contact() {
                     ></iframe>
                 </div>
             </div>
-        </main>
+        </div>
     );
 }

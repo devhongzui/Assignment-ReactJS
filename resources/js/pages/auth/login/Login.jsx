@@ -32,7 +32,9 @@ export default function Login() {
                 password: password.value,
                 remember_me: remember_me.checked,
             })
-            .then()
+            .then((success) => {
+                location.href = success.data.redirect;
+            })
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);

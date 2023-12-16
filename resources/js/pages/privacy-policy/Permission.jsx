@@ -77,7 +77,7 @@ export default function Permission({ tag, title }) {
             </p>
             <ul>
                 {list.map((value, index) => (
-                    <li>
+                    <li key={index}>
                         {value.title && <strong>{value.title} </strong>}
                         <span>{value.description}</span>
                     </li>

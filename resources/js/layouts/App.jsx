@@ -1,8 +1,10 @@
 import Header from "./partials/header/Header.jsx";
 import Footer from "./partials/footer/Footer.jsx";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
+import Toast from "./partials/main/Toast.jsx";
 import { Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 export default function App() {
     const { i18n } = useTranslation();
@@ -19,11 +21,16 @@ export default function App() {
                   });
     }, [lang]);
 
+    const user = useSelector((state) => state.user.value);
+
     return (
         <Suspense fallback={<div>...loading</div>}>
             <Header />
-            <Outlet />
-            <Footer />
+            <main>
+                <Toast />
+                <Outlet />
+            </main>
+            {user && !user["email_verified_at"] ? null : <Footer />}
         </Suspense>
     );
 }

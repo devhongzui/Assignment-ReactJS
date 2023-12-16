@@ -48,7 +48,9 @@ export default function Register() {
                 gender: gender.value,
                 terms: terms.checked,
             })
-            .then()
+            .then((success) => {
+                location.href = success.data.redirect;
+            })
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);

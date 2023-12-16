@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
     ];
 
     return (
-        <main>
+        <>
             <ImageStyle
                 src="/storage/images/undraw/Data_processing.png"
                 alt={web.title}
@@ -85,6 +85,6 @@ export default function PrivacyPolicy() {
                 <DataSecurity tag={list[6].tag} title={list[6].title} />
                 <OptionsCenter tag={list[7].tag} title={list[7].title} />
             </div>
-        </main>
+        </>
     );
 }

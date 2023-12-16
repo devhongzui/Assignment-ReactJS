@@ -57,7 +57,7 @@ export default function SecurityPolicy() {
     ];
 
     return (
-        <main>
+        <>
             <ImageStyle
                 src="/storage/images/undraw/Security_on.png"
                 alt={web.title}
@@ -76,6 +76,6 @@ export default function SecurityPolicy() {
                 <Security tag={list[5].tag} title={list[5].title} />
                 <Permission tag={list[6].tag} title={list[6].title} />
             </div>
-        </main>
+        </>
     );
 }

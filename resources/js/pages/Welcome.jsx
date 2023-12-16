@@ -11,5 +11,5 @@ export default function Welcome() {
 
     initSite(web);
 
-    return <main></main>;
+    return <></>;
 }

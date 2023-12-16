@@ -44,7 +44,7 @@
 </head>
 
 <body>
-<div id="root" data-is_login="@guest false @else true @endguest"></div>
+<div id="root"></div>
 </body>
 
 </html>
