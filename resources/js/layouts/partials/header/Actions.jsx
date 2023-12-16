@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { userData } from "../../../reduxers/user.jsx";
 
 const ImageStyle = styled.img`
     width: 25px;
@@ -11,7 +12,7 @@ const ImageStyle = styled.img`
 export default function Actions() {
     const { t } = useTranslation();
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     const logoutBtn = (
         <li>

@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { userData } from "../../../reduxers/user.jsx";
 
 export default function Nav() {
     const { t } = useTranslation();
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     return user && !user["email_verified_at"] ? null : (
         <ul className="navbar-nav">

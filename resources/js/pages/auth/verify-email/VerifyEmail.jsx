@@ -3,9 +3,13 @@ import Form from "../../../templates/Form.jsx";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import i18n from "i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../../reduxers/user.jsx";
+import { setToast } from "../../../reduxers/toast.jsx";
 
 export default function VerifyEmail() {
+    let dispatch = useDispatch();
+
     const { t } = useTranslation();
 
     const web = {
@@ -20,11 +24,20 @@ export default function VerifyEmail() {
 
         axios
             .post(`/${i18n.language}/email/verification-notification`)
-            .then()
-            .catch();
+            .then((success) => {
+                dispatch(setToast(success.data));
+
+                if (success.data.redirect)
+                    setTimeout(() => {
+                        location.href = success.data.redirect;
+                    }, 5000);
+            })
+            .catch((error) => {
+                dispatch(setToast(error.response.data.message));
+            });
     }
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     return (
         <Form title={web.title} image={web.image}>

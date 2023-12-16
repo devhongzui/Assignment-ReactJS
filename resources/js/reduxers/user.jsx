@@ -12,14 +12,9 @@ async function getUser() {
 
 export const userSlice = createSlice({
     name: "user",
-    initialState: {
-        value: await getUser(),
-    },
-    reducers: {
-        refreshProfile: async (state) => (state.value = await getUser()),
-    },
+    initialState: { value: await getUser() },
 });
 
-export const { refreshProfile } = userSlice.actions;
+export const userData = (state) => state.user.value;
 
 export default userSlice.reducer;

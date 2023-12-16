@@ -8,8 +8,12 @@ import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import RememberMe from "./RememberMe.jsx";
 import Submit from "./Submit.jsx";
+import { useDispatch } from "react-redux";
+import { setToast } from "../../../reduxers/toast.jsx";
 
 export default function Login() {
+    let dispatch = useDispatch();
+
     const { t } = useTranslation();
 
     const web = {
@@ -33,11 +37,16 @@ export default function Login() {
                 remember_me: remember_me.checked,
             })
             .then((success) => {
-                location.href = success.data.redirect;
+                dispatch(setToast(success.data));
+
+                setTimeout(() => {
+                    location.href = success.data.redirect;
+                }, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
+                else dispatch(setToast(error.response.data.message));
             });
     }
 

@@ -12,8 +12,12 @@ import PasswordConfirmation from "./PasswordConfirmation.jsx";
 import Birthdate from "./Birthdate.jsx";
 import Gender from "./Gender.jsx";
 import Terms from "./Terms.jsx";
+import { setToast } from "../../../reduxers/toast.jsx";
+import { useDispatch } from "react-redux";
 
 export default function Register() {
+    let dispatch = useDispatch();
+
     const { t } = useTranslation();
 
     const web = {
@@ -49,11 +53,16 @@ export default function Register() {
                 terms: terms.checked,
             })
             .then((success) => {
-                location.href = success.data.redirect;
+                dispatch(setToast(success.data));
+
+                setTimeout(() => {
+                    location.href = success.data.redirect;
+                }, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
+                else dispatch(setToast(error.response.data.message));
             });
     }
 

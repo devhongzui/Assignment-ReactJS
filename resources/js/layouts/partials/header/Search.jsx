@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { userData } from "../../../reduxers/user.jsx";
 
 export default function Search() {
     const { t } = useTranslation();
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     return (
         <form

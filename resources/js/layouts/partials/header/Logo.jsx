@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { userData } from "../../../reduxers/user.jsx";
 
 const ImageStyle = styled.img`
     width: 45px;
@@ -11,7 +12,7 @@ const ImageStyle = styled.img`
 export default function Logo() {
     const { t, i18n } = useTranslation();
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     const image = (
         <ImageStyle src="/logo.png" className="ms-auto me-2" alt={t("Logo")} />

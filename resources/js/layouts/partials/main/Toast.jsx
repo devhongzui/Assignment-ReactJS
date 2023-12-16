@@ -6,13 +6,6 @@ export default function Toast() {
 
     const toast = useSelector((state) => state.toast.value);
 
-    // const toast = {
-    //     message: "test",
-    //     background: "text-bg-primary",
-    //     background: "text-bg-danger",
-    //     background: "text-bg-success",
-    // };
-
     return (
         toast && (
             <div className="toast-container p-3 bottom-0 end-0">

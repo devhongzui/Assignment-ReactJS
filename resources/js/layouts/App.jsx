@@ -5,6 +5,7 @@ import Toast from "./partials/main/Toast.jsx";
 import { Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { userData } from "../reduxers/user.jsx";
 
 export default function App() {
     const { i18n } = useTranslation();
@@ -21,7 +22,7 @@ export default function App() {
                   });
     }, [lang]);
 
-    const user = useSelector((state) => state.user.value);
+    const user = useSelector(userData);
 
     return (
         <Suspense fallback={<div>...loading</div>}>
