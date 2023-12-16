@@ -39,9 +39,7 @@ export default function Login() {
             .then((success) => {
                 dispatch(setToast(success.data));
 
-                setTimeout(() => {
-                    location.href = success.data.redirect;
-                }, 5000);
+                setTimeout(() => (location.href = success.data.redirect), 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

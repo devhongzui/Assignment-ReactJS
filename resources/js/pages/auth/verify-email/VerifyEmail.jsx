@@ -28,9 +28,10 @@ export default function VerifyEmail() {
                 dispatch(setToast(success.data));
 
                 if (success.data.redirect)
-                    setTimeout(() => {
-                        location.href = success.data.redirect;
-                    }, 5000);
+                    setTimeout(
+                        () => (location.href = success.data.redirect),
+                        5000,
+                    );
             })
             .catch((error) => {
                 dispatch(setToast(error.response.data.message));

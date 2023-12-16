@@ -1,8 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { userData } from "../../../reduxers/user.jsx";
+import axios from "axios";
+import i18n from "i18next";
+import { setToast } from "../../../reduxers/toast.jsx";
 
 const ImageStyle = styled.img`
     width: 25px;
@@ -10,9 +13,24 @@ const ImageStyle = styled.img`
 `;
 
 export default function Actions() {
+    let dispatch = useDispatch();
+
     const { t } = useTranslation();
 
     const user = useSelector(userData);
+
+    function callApi() {
+        axios
+            .post(`/${i18n.language}/logout`)
+            .then((success) => {
+                dispatch(setToast(success.data));
+
+                setTimeout(() => location.reload(), 5000);
+            })
+            .catch((error) => {
+                dispatch(setToast(error.response.data.message));
+            });
+    }
 
     const logoutBtn = (
         <li>
@@ -21,6 +39,7 @@ export default function Actions() {
                 type="button"
                 role="button"
                 aria-label={t("Logout")}
+                onClick={callApi}
             >
                 {t("Logout")}
             </button>

@@ -1,5 +1,5 @@
 {{-- jQuery (REQUIRED) --}}
-@if (!isset ($jquery) || (isset($jquery) && $jquery == true))
+@if (!isset($jquery) || (isset($jquery) && $jquery == true))
     @basset('https://unpkg.com/jquery@3.6.4/dist/jquery.min.js')
 @endif
 
@@ -13,8 +13,8 @@
 @basset('elfinder-2.1.61/elFinder-2.1.61/js/elfinder.min.js')
 
 {{-- elFinder translation (OPTIONAL) --}}
-@if($locale)
-    @basset('https://cdnjs.cloudflare.com/ajax/libs/elfinder/2.1.61/js/i18n/elfinder.'.$locale.'.min.js')
+@if ($locale)
+    @basset('https://cdnjs.cloudflare.com/ajax/libs/elfinder/2.1.61/js/i18n/elfinder.' . $locale . '.min.js')
 @endif
 
 {{-- elFinder sounds --}}
