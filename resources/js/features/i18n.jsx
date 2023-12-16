@@ -10,7 +10,7 @@ export default function ({ children }) {
                     translation: vi,
                 },
             },
-            lng: "vi",
+            lng: document.querySelector("html").getAttribute("lang"),
             fallbackLng: "en",
             interpolation: {
                 escapeValue: false,
