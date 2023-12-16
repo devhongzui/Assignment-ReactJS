@@ -1,7 +1,7 @@
 import Logo from "./Logo.jsx";
 import Nav from "./Nav.jsx";
 import Search from "./Search.jsx";
-import Actions from "./Actions.jsx";
+import Actions from "./actions/Actions.jsx";
 import { useTranslation } from "react-i18next";
 
 export default function Header() {
