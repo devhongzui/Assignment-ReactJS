@@ -9,6 +9,7 @@ import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useNavigate } from "react-router-dom";
+import OAuth from "../login/OAuth.jsx";
 
 export default function ConfirmPassword() {
     const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export default function ConfirmPassword() {
                     </div>
                 </fieldset>
                 <Submit label={t("Submit")} />
+                <OAuth />
             </form>
         </Form>
     );

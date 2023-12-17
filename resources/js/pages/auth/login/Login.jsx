@@ -9,6 +9,7 @@ import RememberMe from "./RememberMe.jsx";
 import Submit from "./Submit.jsx";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../../reduxers/toast.jsx";
+import OAuth from "./OAuth.jsx";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -62,6 +63,7 @@ export default function Login() {
                     <RememberMe />
                 </fieldset>
                 <Submit label={t("Login")} />
+                <OAuth />
             </form>
         </Form>
     );

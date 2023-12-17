@@ -13,6 +13,7 @@ import Gender from "./Gender.jsx";
 import Terms from "./Terms.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
+import OAuth from "../login/OAuth.jsx";
 
 export default function Register() {
     const dispatch = useDispatch();
@@ -88,6 +89,7 @@ export default function Register() {
                     <Terms validate={validate} />
                 </fieldset>
                 <Submit label={t("Register")} />
+                <OAuth />
             </form>
         </Form>
     );
