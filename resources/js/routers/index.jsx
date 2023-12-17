@@ -11,6 +11,7 @@ import VerifyEmail from "../pages/auth/verify-email/VerifyEmail.jsx";
 import ConfirmPassword from "../pages/auth/confirm-password/ConfirmPassword.jsx";
 import ChangePassword from "../pages/auth/change-password/ChangePassword.jsx";
 import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword.jsx";
+import ResetPassword from "../pages/auth/reset-password/ResetPassword.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export default function () {
                 {
                     path: "forgot-password",
                     element: <ForgotPassword />,
+                },
+                {
+                    path: "reset-password/:token",
+                    element: <ResetPassword />,
                 },
                 {
                     path: "email/verify",
