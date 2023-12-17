@@ -5,23 +5,17 @@ import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import Email from "./Email.jsx";
-import Password from "./Password.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
-import { useNavigate } from "react-router-dom";
-import OAuth from "../login/OAuth.jsx";
-import ForgotPassword from "../login/ForgotPassword.jsx";
+import Email from "./Email.jsx";
 
-export default function ConfirmPassword() {
+export default function ForgotPassword() {
     const dispatch = useDispatch();
-
-    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
     const web = {
-        title: t("Confirm password"),
-        image: "storage/images/undraw/Authentication.png",
+        title: t("Forgot password"),
+        image: "storage/images/undraw/Forgot_password.png",
     };
 
     initSite(web);
@@ -31,17 +25,12 @@ export default function ConfirmPassword() {
     function callApi(event) {
         event.preventDefault();
 
-        const { email, password } = event.target.elements;
+        const { email } = event.target.elements;
 
         axios
-            .post(urlHelper("user/confirm-password"), {
-                email: email.value,
-                password: password.value,
-            })
+            .post(urlHelper("forgot-password"), { email: email.value })
             .then((success) => {
                 dispatch(setToast(success.data));
-
-                setTimeout(() => navigate(-1), 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
@@ -53,17 +42,10 @@ export default function ConfirmPassword() {
     return (
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
-                <fieldset className="row">
-                    <div className="col-md-6">
-                        <Email validate={validate} />
-                    </div>
-                    <div className="col-md-6">
-                        <Password validate={validate} />
-                    </div>
+                <fieldset>
+                    <Email validate={validate} />
                 </fieldset>
                 <Submit label={t("Submit")} />
-                <ForgotPassword />
-                <OAuth />
             </form>
         </Form>
     );

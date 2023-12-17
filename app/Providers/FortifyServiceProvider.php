@@ -132,6 +132,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::loginView('layouts.app');
         Fortify::registerView('layouts.app');
+        Fortify::requestPasswordResetLinkView('layouts.app');
         Fortify::verifyEmailView('layouts.app');
         Fortify::confirmPasswordView('layouts.app');
 

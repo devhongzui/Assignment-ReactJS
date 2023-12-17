@@ -10,6 +10,7 @@ import Register from "../pages/auth/register/Register.jsx";
 import VerifyEmail from "../pages/auth/verify-email/VerifyEmail.jsx";
 import ConfirmPassword from "../pages/auth/confirm-password/ConfirmPassword.jsx";
 import ChangePassword from "../pages/auth/change-password/ChangePassword.jsx";
+import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export default function () {
                 {
                     path: "register",
                     element: <Register />,
+                },
+                {
+                    path: "forgot-password",
+                    element: <ForgotPassword />,
                 },
                 {
                     path: "email/verify",
