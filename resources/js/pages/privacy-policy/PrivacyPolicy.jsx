@@ -10,7 +10,7 @@ import Permission from "./Permission.jsx";
 import Cookie from "./Cookie.jsx";
 import DataSecurity from "./DataSecurity.jsx";
 import OptionsCenter from "./OptionsCenter.jsx";
-import { initSite } from "../../helper.js";
+import { assetHelper, initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
     return (
         <>
             <ImageStyle
-                src="/storage/images/undraw/Data_processing.png"
+                src={assetHelper("storage/images/undraw/Data_processing.png")}
                 alt={web.title}
                 className="w-100 object-fit-cover object-fit-md-contain bg-white"
             />

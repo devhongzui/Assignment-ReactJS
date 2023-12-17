@@ -1,8 +1,7 @@
-import { initSite } from "../../../helper.js";
+import { initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
 import axios from "axios";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -18,7 +17,7 @@ export default function Login() {
 
     const web = {
         title: t("Login"),
-        image: "/storage/images/undraw/Login.png",
+        image: "storage/images/undraw/Login.png",
     };
 
     initSite(web);
@@ -31,7 +30,7 @@ export default function Login() {
         const { email, password, remember_me } = event.target.elements;
 
         axios
-            .post(`/${i18n.language}/login`, {
+            .post(urlHelper("login"), {
                 email: email.value,
                 password: password.value,
                 remember_me: remember_me.checked,

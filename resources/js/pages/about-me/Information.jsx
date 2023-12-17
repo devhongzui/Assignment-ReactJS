@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { assetHelper } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 500px;
@@ -28,22 +29,22 @@ export default function Information() {
     const links = [
         {
             title: "Facebook",
-            icon: "/storage/images/flaticon/facebook.png",
+            icon: "storage/images/flaticon/facebook.png",
             link: "https://www.facebook.com/devhongzui",
         },
         {
             title: "Twitter",
-            icon: "/storage/images/flaticon/twitter.png",
+            icon: "storage/images/flaticon/twitter.png",
             link: "https://www.twitter.com/devhongzui",
         },
         {
             title: "Github",
-            icon: "/storage/images/flaticon/github.png",
+            icon: "storage/images/flaticon/github.png",
             link: "https://www.github.com/devhongzui",
         },
         {
             title: "Linkedin",
-            icon: "/storage/images/flaticon/linkedin.png",
+            icon: "storage/images/flaticon/linkedin.png",
             link: "https://www.linkedin.com/in/devhongzui",
         },
     ];
@@ -71,6 +72,7 @@ export default function Information() {
                                 {t("Email")}
                             </strong>
                             <a
+                                // External links
                                 href="mailto:trind@devhongzui.com"
                                 aria-label={t("Email")}
                                 className="col-12 col-xxl-8"
@@ -93,6 +95,7 @@ export default function Information() {
                                 {t("Phone number")}
                             </strong>
                             <a
+                                // External links
                                 href="tel:0982213854"
                                 aria-label={t("Phone number")}
                                 className="col-12 col-xxl-7"
@@ -113,13 +116,14 @@ export default function Information() {
                                 {links.map((value, index) => (
                                     <div key={index} className="mb-2 me-2">
                                         <a
+                                            // External links
                                             href={value.link}
                                             target="_blank"
                                             role="link"
                                             aria-label={value.title}
                                         >
                                             <LogoStyle
-                                                src={value.icon}
+                                                src={assetHelper(value.icon)}
                                                 alt={value.title}
                                             />
                                         </a>
@@ -133,7 +137,7 @@ export default function Information() {
 
             <div className="col-xl-6 d-flex justify-content-center">
                 <ImageStyle
-                    src="/storage/images/freepik/7036172.jpg"
+                    src={assetHelper("storage/images/freepik/7036172.jpg")}
                     alt={t("Personal information")}
                     className="rounded-2 object-fit-cover img-fluid"
                 />

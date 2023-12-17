@@ -1,8 +1,7 @@
-import { initSite } from "../../../helper.js";
+import { initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import i18n from "i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { userData } from "../../../reduxers/user.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
@@ -14,7 +13,7 @@ export default function VerifyEmail() {
 
     const web = {
         title: t("Verify email"),
-        image: "/storage/images/undraw/Verified.png",
+        image: "storage/images/undraw/Verified.png",
     };
 
     initSite(web);
@@ -23,7 +22,7 @@ export default function VerifyEmail() {
         event.preventDefault();
 
         axios
-            .post(`/${i18n.language}/email/verification-notification`)
+            .post(urlHelper("email/verification-notification"))
             .then((success) => {
                 dispatch(setToast(success.data));
 
@@ -51,8 +50,8 @@ export default function VerifyEmail() {
             <div>
                 {t("Please check your Inbox or")}{" "}
                 <a
+                    href={urlHelper("email/verification-notification")}
                     className="text-decoration-underline link-underline-primary"
-                    href="#"
                     role="link"
                     aria-label={t("click here to try again")}
                     onClick={callApi}

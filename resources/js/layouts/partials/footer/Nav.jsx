@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { urlHelper } from "../../../helper.js";
 
 export default function Nav() {
     const { t } = useTranslation();
@@ -48,7 +49,7 @@ export default function Nav() {
                 {value.items.map((value, index) => (
                     <li className="nav-item mb-2" key={index}>
                         <Link
-                            to={value.link}
+                            to={urlHelper(value.link)}
                             className="nav-link p-0 text-body-secondary"
                             aria-label={value.title}
                         >

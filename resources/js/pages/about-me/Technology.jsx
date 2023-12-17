@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { assetHelper } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 500px;
@@ -21,19 +22,19 @@ export default function Technology() {
 
     const framework = [
         {
-            image: "/storage/images/iconscout/magento.png",
+            image: "storage/images/iconscout/magento.png",
             title: "Magento 2",
             description: t("Powerful, flexible e-commerce platform"),
             progress: 75,
         },
         {
-            image: "/storage/images/iconscout/laravel.png",
+            image: "storage/images/iconscout/laravel.png",
             title: "Laravel",
             description: t("Powerful web application development framework"),
             progress: 60,
         },
         {
-            image: "/storage/images/iconscout/react.png",
+            image: "storage/images/iconscout/react.png",
             title: "React Js",
             description: t(
                 "A JavaScript library used to build flexible and efficient user interfaces.",
@@ -41,7 +42,7 @@ export default function Technology() {
             progress: 40,
         },
         {
-            image: "/storage/images/iconscout/bootstrap.png",
+            image: "storage/images/iconscout/bootstrap.png",
             title: "Bootstrap",
             description: t("Reliable and flexible web development framework"),
             progress: 75,
@@ -50,13 +51,13 @@ export default function Technology() {
 
     const library = [
         {
-            image: "/storage/images/iconscout/jquery.png",
+            image: "storage/images/iconscout/jquery.png",
             title: "JQuery",
             description: t("JavaScript library that optimizes DOM processing"),
             progress: 85,
         },
         {
-            image: "/storage/images/iconscout/nodejs.png",
+            image: "storage/images/iconscout/nodejs.png",
             title: "NodeJs",
             description: t(
                 "High-performance server-side JavaScript code execution environment",
@@ -67,13 +68,13 @@ export default function Technology() {
 
     const database = [
         {
-            image: "/storage/images/iconscout/mysql.png",
+            image: "storage/images/iconscout/mysql.png",
             title: "MySQL",
             description: t("Popular, open source database management system"),
             progress: 80,
         },
         {
-            image: "/storage/images/iconscout/mongodb.png",
+            image: "storage/images/iconscout/mongodb.png",
             title: "MongoDB",
             description: t(
                 "NoSQL database management system, flexible JSON storage",
@@ -84,7 +85,7 @@ export default function Technology() {
 
     const others = [
         {
-            image: "/storage/images/iconscout/graphql.png",
+            image: "storage/images/iconscout/graphql.png",
             title: "GraphQL",
             description: t("Flexible and efficient data query language"),
             progress: 75,
@@ -97,7 +98,7 @@ export default function Technology() {
                 <div className="row">
                     <div className="col-xxl-3">
                         <LogoStyle
-                            src={value.image}
+                            src={assetHelper(value.image)}
                             alt={value.title}
                             className="bg-light rounded-2 mb-2"
                         />
@@ -139,7 +140,7 @@ export default function Technology() {
 
             <div className="col-xl-6 d-flex align-items-center order-xl-0">
                 <ImageStyle
-                    src="/storage/images/freepik/7055173.jpg"
+                    src={assetHelper("storage/images/freepik/7055173.jpg")}
                     alt={t("Technology")}
                     className="rounded-2 w-100 object-fit-cover"
                 />

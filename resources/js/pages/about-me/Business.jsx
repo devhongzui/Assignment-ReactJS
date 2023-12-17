@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import { assetHelper } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 60px;
@@ -18,15 +19,15 @@ export default function Business() {
     const sliders = [
         {
             alt: "Ecommage",
-            src: "/storage/images/others/vtcacademy.png",
+            src: "storage/images/others/vtcacademy.png",
         },
         {
             alt: "VTC Academy",
-            src: "/storage/images/others/ecommage.png",
+            src: "storage/images/others/ecommage.png",
         },
         {
             alt: "CLEAR Go",
-            src: "/storage/images/others/cleargo.png",
+            src: "storage/images/others/cleargo.png",
         },
     ];
 
@@ -36,7 +37,7 @@ export default function Business() {
         const rendered = sliders.map((value, index) => (
             <SwiperSlide key={index}>
                 <ImageStyle
-                    src={value.src}
+                    src={assetHelper(value.src)}
                     alt={value.alt}
                     className="d-block w-100 object-fit-contain"
                 />

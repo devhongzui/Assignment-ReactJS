@@ -9,7 +9,7 @@ import Partner from "./Partner.jsx";
 import Cookie from "./Cookie.jsx";
 import Security from "./Security.jsx";
 import Permission from "./Permission.jsx";
-import { initSite } from "../../helper.js";
+import { assetHelper, initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;
@@ -20,7 +20,7 @@ export default function SecurityPolicy() {
 
     const web = {
         title: t("Security policy"),
-        image: "/storage/images/undraw/Security_on.png",
+        image: "storage/images/undraw/Security_on.png",
     };
 
     initSite(web);
@@ -59,7 +59,7 @@ export default function SecurityPolicy() {
     return (
         <>
             <ImageStyle
-                src="/storage/images/undraw/Security_on.png"
+                src={assetHelper("storage/images/undraw/Security_on.png")}
                 alt={web.title}
                 className="w-100 object-fit-cover object-fit-md-contain bg-white"
             />

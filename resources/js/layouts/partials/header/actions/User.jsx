@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import i18n from "i18next";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { setToast } from "../../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
+import { urlHelper } from "../../../../helper.js";
 
 const ImageStyle = styled.img`
     width: 25px;
@@ -18,7 +18,7 @@ export default function User({ user }) {
 
     function callApi() {
         axios
-            .post(`/${i18n.language}/logout`)
+            .post(urlHelper("logout"))
             .then((success) => {
                 dispatch(setToast(success.data));
 
@@ -65,7 +65,7 @@ export default function User({ user }) {
                     <>
                         <li>
                             <Link
-                                to="#"
+                                to={urlHelper("#")}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Dashboard")}
@@ -75,7 +75,7 @@ export default function User({ user }) {
                         </li>
                         <li>
                             <Link
-                                to="#"
+                                to={urlHelper("#")}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Profile")}
@@ -85,7 +85,7 @@ export default function User({ user }) {
                         </li>
                         <li>
                             <Link
-                                to={`/${i18n.language}/user/change-password`}
+                                to={urlHelper("user/change-password")}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Change password")}

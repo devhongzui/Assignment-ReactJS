@@ -1,9 +1,8 @@
-import { initSite } from "../../../helper.js";
+import { initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import i18n from "i18next";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Email from "./Email.jsx";
@@ -20,7 +19,7 @@ export default function ConfirmPassword() {
 
     const web = {
         title: t("Confirm password"),
-        image: "/storage/images/undraw/Authentication.png",
+        image: "storage/images/undraw/Authentication.png",
     };
 
     initSite(web);
@@ -33,7 +32,7 @@ export default function ConfirmPassword() {
         const { email, password } = event.target.elements;
 
         axios
-            .post(`/${i18n.language}/user/confirm-password`, {
+            .post(urlHelper("user/confirm-password"), {
                 email: email.value,
                 password: password.value,
             })

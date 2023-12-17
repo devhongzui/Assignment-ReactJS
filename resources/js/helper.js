@@ -1,5 +1,10 @@
+import i18next from "i18next";
 import axios from "axios";
-import i18n from "i18next";
+
+export const urlHelper = (path) =>
+    [location.origin, i18next.language, path].join("/");
+
+export const assetHelper = (path) => [location.origin, path].join("/");
 
 export const initSite = ({ title, description, image }) => {
     if (title) document.title = title;
@@ -16,15 +21,15 @@ export const initSite = ({ title, description, image }) => {
     if (image)
         ["meta[property='og:image']", "meta[property='twitter:image']"].forEach(
             (value) =>
-                document.querySelector(value).setAttribute("content", image),
+                document
+                    .querySelector(value)
+                    .setAttribute("content", assetHelper(image)),
         );
 };
 
 export const checkPasswordConfirm = () => {
-    axios
-        .get(`/${i18n.language}/user/confirmed-password-status`)
-        .then((success) => {
-            if (!success.data["confirmed"])
-                location.href = `/${i18n.language}/user/confirm-password`;
-        });
+    axios.get(urlHelper("user/confirmed-password-status")).then((success) => {
+        if (!success.data["confirmed"])
+            location.href = urlHelper("user/confirm-password");
+    });
 };

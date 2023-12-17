@@ -1,9 +1,8 @@
-import { checkPasswordConfirm, initSite } from "../../../helper.js";
+import { checkPasswordConfirm, initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import i18n from "i18next";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Email from "./Email.jsx";
@@ -18,12 +17,12 @@ export default function ChangePassword() {
 
     const web = {
         title: t("Change password"),
-        image: "/storage/images/undraw/Secure_login.png",
+        image: "storage/images/undraw/Secure_login.png",
     };
 
     initSite(web);
 
-    useEffect(() => checkPasswordConfirm, []);
+    checkPasswordConfirm();
 
     const [validate, setValidate] = useState({});
 
@@ -34,7 +33,7 @@ export default function ChangePassword() {
             event.target.elements;
 
         axios
-            .put(`/${i18n.language}/user/password`, {
+            .put(urlHelper("user/password"), {
                 email: email.value,
                 password: password.value,
                 password_confirmation: password_confirmation.value,

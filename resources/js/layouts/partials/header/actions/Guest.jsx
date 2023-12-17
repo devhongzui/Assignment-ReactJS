@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { urlHelper } from "../../../../helper.js";
 
 export default function Guest() {
     const { t } = useTranslation();
@@ -7,7 +8,7 @@ export default function Guest() {
     return (
         <>
             <Link
-                to="login"
+                to={urlHelper("login")}
                 role="button"
                 className="btn btn-outline-primary me-2"
                 aria-label={t("Login")}
@@ -15,7 +16,7 @@ export default function Guest() {
                 {t("Login")}
             </Link>
             <Link
-                to="register"
+                to={urlHelper("register")}
                 role="button"
                 className="btn btn-primary"
                 aria-label={t("Register")}

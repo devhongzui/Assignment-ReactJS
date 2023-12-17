@@ -1,10 +1,12 @@
+import { assetHelper } from "../helper.js";
+
 export default function Form({ title, image, children }) {
     return (
         <div className="container">
             <div className="row my-3">
                 <div className="col-xl-4 d-none d-xl-flex align-items-center">
                     <img
-                        src={image}
+                        src={assetHelper(image)}
                         alt={title}
                         className="rounded-3 img-fluid object-fit-contain"
                     />

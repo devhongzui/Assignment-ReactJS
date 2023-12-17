@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userData } from "../../../reduxers/user.jsx";
+import { urlHelper } from "../../../helper.js";
 
 export default function Nav() {
     const { t } = useTranslation();
@@ -12,7 +13,7 @@ export default function Nav() {
         <ul className="navbar-nav">
             <li className="nav-item">
                 <Link
-                    to="#"
+                    to={urlHelper("#")}
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Courses")}
@@ -22,7 +23,7 @@ export default function Nav() {
             </li>
             <li className="nav-item">
                 <Link
-                    to="#"
+                    to={urlHelper("#")}
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Tools")}
@@ -32,7 +33,7 @@ export default function Nav() {
             </li>
             <li className="nav-item">
                 <Link
-                    to="#"
+                    to={urlHelper("#")}
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Musics")}

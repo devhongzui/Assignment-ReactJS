@@ -6,7 +6,7 @@ export default function Welcome() {
 
     const web = {
         title: t("Welcome"),
-        image: "/storage/images/undraw/Welcome.png",
+        image: "storage/images/undraw/Welcome.png",
     };
 
     initSite(web);

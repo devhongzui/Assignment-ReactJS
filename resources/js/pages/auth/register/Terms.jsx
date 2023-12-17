@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import ValidateMessage from "../login/ValidateMessage.jsx";
 import { Link } from "react-router-dom";
-import i18n from "i18next";
+import { urlHelper } from "../../../helper.js";
 
 export default function Terms({ validate }) {
     const { t } = useTranslation();
@@ -22,7 +22,7 @@ export default function Terms({ validate }) {
             <label htmlFor="terms-register-form" className="form-check-label">
                 <span>{t("Agree with")} </span>
                 <Link
-                    to={`/${i18n.language}/privacy-policy`}
+                    to={urlHelper("privacy-policy")}
                     className="link fw-bolder"
                     role="link"
                     aria-label={t("Privacy policy")}
@@ -31,7 +31,7 @@ export default function Terms({ validate }) {
                 </Link>
                 <span> {t("and")} </span>
                 <Link
-                    to={`/${i18n.language}/security-policy`}
+                    to={urlHelper("security-policy")}
                     className="link fw-bolder"
                     role="link"
                     aria-label={t("Security policy")}

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { assetHelper, urlHelper } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;
@@ -24,7 +25,7 @@ export default function Project() {
                 "Genki Sushi Hong Kong bestsellers comprise sushi, sashimi, light foods, hot dishes, desserts and kids",
             ),
             image: {
-                src: "/storage/images/others/genki.png",
+                src: "storage/images/others/genki.png",
                 class: "object-fit-cover",
             },
             url: "https://order.genkisushi.com.hk/en",
@@ -37,7 +38,7 @@ export default function Project() {
                 "Galle Genuine Watch System is gradually increasing its position as the number 1 watch distributor in Vietnam",
             ),
             image: {
-                src: "/storage/images/others/gallewatch.png",
+                src: "storage/images/others/gallewatch.png",
                 class: "object-fit-cover",
             },
             url: "https://galle.vn",
@@ -50,7 +51,7 @@ export default function Project() {
                 "Shop thousands products (beauty, clothing, lifestyle) and order takeaway foods from Lee Gardens",
             ),
             image: {
-                src: "/storage/images/others/hy.jpg",
+                src: "storage/images/others/hy.jpg",
                 class: "object-fit-cover",
             },
             url: "https://hyleegardens.com.hk/en",
@@ -63,7 +64,7 @@ export default function Project() {
                 "ROUTINE is a famous, high-end fashion clothing brand in Vietnam, specializing in genuine everyday wear",
             ),
             image: {
-                src: "/storage/images/others/routine.jpg",
+                src: "storage/images/others/routine.jpg",
                 class: "object-fit-cover",
             },
             url: "https://routine.vn",
@@ -76,10 +77,10 @@ export default function Project() {
                 "Practice CRUD, Authentication, OAuth operations on Laravel with MySQL Database",
             ),
             image: {
-                src: "/storage/images/pngwing/laravel.png",
+                src: "storage/images/pngwing/laravel.png",
                 class: "object-fit-contain bg-light p-2",
             },
-            url: "/",
+            url: urlHelper(""),
         },
         {
             project_name: "devhongzui API",
@@ -89,10 +90,10 @@ export default function Project() {
                 "Get familiar with Back-end development using NodeJs, MongoDB, GraphQL. Deploy the project on the Product environment (Ubuntu)",
             ),
             image: {
-                src: "/storage/images/brandfetch/nodejs.png",
+                src: "storage/images/brandfetch/nodejs.png",
                 class: "object-fit-contain bg-light p-2",
             },
-            url: "/",
+            url: urlHelper(""),
         },
     ];
 
@@ -104,13 +105,14 @@ export default function Project() {
                     <div key={index} className="col-xl-4 mt-3 mb-5">
                         <div className="card mx-auto">
                             <a
+                                // External links
                                 href={value.url}
                                 target="_blank"
                                 role="link"
                                 aria-label={value.project_name}
                             >
                                 <ImageStyle
-                                    src={value.image.src}
+                                    src={assetHelper(value.image.src)}
                                     className={
                                         "card-img-top " + value.image.class
                                     }
@@ -134,6 +136,7 @@ export default function Project() {
                                     </DescriptionStyle>
                                 </div>
                                 <a
+                                    // External links
                                     href={value.url}
                                     target="_blank"
                                     role="link"

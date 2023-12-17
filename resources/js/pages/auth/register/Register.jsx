@@ -1,9 +1,8 @@
-import { initSite } from "../../../helper.js";
+import { initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import i18n from "i18next";
 import axios from "axios";
 import Name from "./Name.jsx";
 import Email from "./Email.jsx";
@@ -22,7 +21,7 @@ export default function Register() {
 
     const web = {
         title: t("Register"),
-        image: "/storage/images/undraw/Sign_up.png",
+        image: "storage/images/undraw/Sign_up.png",
     };
 
     initSite(web);
@@ -43,7 +42,7 @@ export default function Register() {
         } = event.target.elements;
 
         axios
-            .post(`/${i18n.language}/register`, {
+            .post(urlHelper("register"), {
                 name: name.value,
                 email: email.value,
                 password: password.value,

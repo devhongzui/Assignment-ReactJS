@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { assetHelper } from "../../helper.js";
 
 const DescriptionStyle = styled.p`
     min-height: 50px;
@@ -13,14 +14,14 @@ export default function Skill() {
 
     const skills = [
         {
-            image: "/storage/images/freepik/7054831.jpg",
+            image: "storage/images/freepik/7054831.jpg",
             title: t("Web Development"),
             description: t(
                 "Use experience handling Framework, Library Back-End and Front-End in designing, deploying and maintaining Website and Webapp",
             ),
         },
         {
-            image: "/storage/images/freepik/7054834.jpg",
+            image: "storage/images/freepik/7054834.jpg",
             title: t("Database Optimization"),
             description: [
                 t(
@@ -32,7 +33,7 @@ export default function Skill() {
             ].join(". "),
         },
         {
-            image: "/storage/images/freepik/7055152.jpg",
+            image: "storage/images/freepik/7055152.jpg",
             title: t("Server Deployment"),
             description: t(
                 "Create, maintain, upgrade Cloud VPS servers and support Hosting solutions for small and medium businesses.",
@@ -49,7 +50,7 @@ export default function Skill() {
                     <div key={index} className="col-xl-4 mt-3 mb-5">
                         <div className="card mx-auto">
                             <img
-                                src={value.image}
+                                src={assetHelper(value.image)}
                                 className="card-img-top"
                                 alt={value.title}
                             />
