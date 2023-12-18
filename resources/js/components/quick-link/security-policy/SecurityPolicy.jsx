@@ -9,7 +9,7 @@ import Partner from "./Partner.jsx";
 import Cookie from "./Cookie.jsx";
 import Security from "./Security.jsx";
 import Permission from "./Permission.jsx";
-import { assetHelper, initSite } from "../../helper.js";
+import { assetHelper, initSite } from "../../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;

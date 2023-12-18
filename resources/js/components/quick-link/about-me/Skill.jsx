@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { assetHelper } from "../../helper.js";
+import { assetHelper } from "../../../helper.js";
 
 const DescriptionStyle = styled.p`
     min-height: 50px;

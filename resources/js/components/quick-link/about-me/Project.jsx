@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { assetHelper, urlHelper } from "../../helper.js";
+import { assetHelper, urlHelper } from "../../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;

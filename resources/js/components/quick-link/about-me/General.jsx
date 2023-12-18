@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Typewriter from "typewriter-effect";
-import { assetHelper } from "../../helper.js";
+import { assetHelper } from "../../../helper.js";
 
 const ImageStyle = styled.img`
     height: 500px;

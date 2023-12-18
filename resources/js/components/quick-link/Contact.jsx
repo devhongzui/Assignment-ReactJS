@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { initSite } from "../helper.js";
+import { initSite } from "../../helper.js";
 
 export default function Contact() {
     const { t } = useTranslation();

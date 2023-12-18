@@ -5,7 +5,7 @@ import Project from "./Project.jsx";
 import Business from "./Business.jsx";
 import Technology from "./Technology.jsx";
 import Skill from "./Skill.jsx";
-import { initSite } from "../../helper.js";
+import { initSite } from "../../../helper.js";
 
 export default function AboutMe() {
     const { t } = useTranslation();

@@ -1,18 +1,18 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../layouts/App.jsx";
-import Welcome from "../pages/Welcome.jsx";
-import AboutMe from "../pages/about-me/AboutMe.jsx";
-import Contact from "../pages/Contact.jsx";
-import PrivacyPolicy from "../pages/privacy-policy/PrivacyPolicy.jsx";
-import SecurityPolicy from "../pages/security-policy/SecurityPolicy.jsx";
-import Login from "../pages/auth/login/Login.jsx";
-import Register from "../pages/auth/register/Register.jsx";
-import VerifyEmail from "../pages/auth/verify-email/VerifyEmail.jsx";
-import ConfirmPassword from "../pages/auth/confirm-password/ConfirmPassword.jsx";
-import ChangePassword from "../pages/auth/change-password/ChangePassword.jsx";
-import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword.jsx";
-import ResetPassword from "../pages/auth/reset-password/ResetPassword.jsx";
-import Detail from "../pages/profile/detail/Detail.jsx";
+import Login from "../components/auth/login/Login.jsx";
+import Register from "../components/auth/register/Register.jsx";
+import VerifyEmail from "../components/auth/verify-email/VerifyEmail.jsx";
+import ConfirmPassword from "../components/auth/confirm-password/ConfirmPassword.jsx";
+import ChangePassword from "../components/auth/change-password/ChangePassword.jsx";
+import ForgotPassword from "../components/auth/forgot-password/ForgotPassword.jsx";
+import ResetPassword from "../components/auth/reset-password/ResetPassword.jsx";
+import Detail from "../components/profile/detail/Detail.jsx";
+import Welcome from "../components/quick-link/Welcome.jsx";
+import AboutMe from "../components/quick-link/about-me/AboutMe.jsx";
+import Contact from "../components/quick-link/Contact.jsx";
+import PrivacyPolicy from "../components/quick-link/privacy-policy/PrivacyPolicy.jsx";
+import SecurityPolicy from "../components/quick-link/security-policy/SecurityPolicy.jsx";
 
 export default function () {
     const router = createBrowserRouter([

@@ -10,7 +10,7 @@ import Permission from "./Permission.jsx";
 import Cookie from "./Cookie.jsx";
 import DataSecurity from "./DataSecurity.jsx";
 import OptionsCenter from "./OptionsCenter.jsx";
-import { assetHelper, initSite } from "../../helper.js";
+import { assetHelper, initSite } from "../../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;

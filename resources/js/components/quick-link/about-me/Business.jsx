@@ -3,11 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, Scrollbar } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import { assetHelper } from "../../helper.js";
+import { assetHelper } from "../../../helper.js";
 
 const ImageStyle = styled.img`
     height: 60px;

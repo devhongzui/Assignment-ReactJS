@@ -1,6 +1,6 @@
-import { urlHelper } from "../../../helper.js";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { urlHelper } from "../../../helper.js";
 
 export default function ForgotPassword() {
     const { t } = useTranslation();
