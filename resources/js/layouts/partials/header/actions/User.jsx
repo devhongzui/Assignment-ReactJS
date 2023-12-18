@@ -75,7 +75,7 @@ export default function User({ user }) {
                         </li>
                         <li>
                             <Link
-                                to={urlHelper("#")}
+                                to={urlHelper("user/detail")}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Profile")}

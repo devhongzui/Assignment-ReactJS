@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth:sanctum'])->get('user', fn(Request $request) => $request->user());
+Route::middleware(['auth:sanctum'])
+    ->prefix('user')
+    ->group(function () {
+        Route::get('/', fn(Request $request) => $request->user());
+        Route::get('social', fn(Request $request) => $request->user()->socials);
+    });
 
 require __DIR__ . '/api/address.php';

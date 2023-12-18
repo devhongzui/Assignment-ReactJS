@@ -29,14 +29,14 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
     }
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('user/change-password', fn() => view('layouts.app'))
-        ->middleware('password.confirm')
-        ->name('user-password.request');
+Route::get('user/change-password', fn() => view('layouts.app'))
+    ->middleware(['auth', 'verified', 'password.confirm'])
+    ->name('user-password.request');
+
+Route::prefix('auth')->group(function () {
+    Route::get('redirect/{provider}', [OAuthController::class, 'redirect'])
+        ->name('oauth.redirect');
+
+    Route::get('callback/{provider}', [OAuthController::class, 'callback'])
+        ->name('oauth.callback');
 });
-
-Route::get('auth/redirect/{provider}', [OpenAuthController::class, 'redirect'])
-    ->name('oauth.redirect');
-
-Route::get('auth/callback/{provider}', [OpenAuthController::class, 'callback'])
-    ->name('oauth.callback');

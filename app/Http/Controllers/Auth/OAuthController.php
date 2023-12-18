@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\OpenAuth;
+use App\Models\OAuth;
 use App\Models\User as SystemUser;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 use Laravel\Socialite\Facades\Socialite;
 
-class OpenAuthController extends Controller
+class OAuthController extends Controller
 {
     /**
      * @var string
@@ -38,7 +38,7 @@ class OpenAuthController extends Controller
      */
     public function callback(string $provider, Request $request): RedirectResponse
     {
-        $provider_code = OpenAuth::getServiceCode($provider);
+        $provider_code = OAuth::getServiceCode($provider);
         $provider_user = Socialite::driver($provider)->user();
         $this->provider_email = $provider_user->getEmail() ?: "{$provider_user->getId()}_$provider@open.auth";
 
@@ -85,7 +85,7 @@ class OpenAuthController extends Controller
 
         event(new Registered($user));
 
-        OpenAuth::create([
+        OAuth::create([
             'user_id' => $user->id,
             "provider_code" => $provider_code,
             "provider_id" => $provider_user->getId(),
@@ -108,7 +108,7 @@ class OpenAuthController extends Controller
 
         $system_user->update(['avatar' => $provider_user->getAvatar()]);
 
-        OpenAuth::updateOrCreate([
+        OAuth::updateOrCreate([
             "provider_id" => $provider_user->getId(),
         ], [
             'user_id' => $system_user->id,

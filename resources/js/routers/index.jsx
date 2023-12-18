@@ -12,6 +12,7 @@ import ConfirmPassword from "../pages/auth/confirm-password/ConfirmPassword.jsx"
 import ChangePassword from "../pages/auth/change-password/ChangePassword.jsx";
 import ForgotPassword from "../pages/auth/forgot-password/ForgotPassword.jsx";
 import ResetPassword from "../pages/auth/reset-password/ResetPassword.jsx";
+import Detail from "../pages/profile/detail/Detail.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -66,6 +67,10 @@ export default function () {
                 {
                     path: "user/change-password",
                     element: <ChangePassword />,
+                },
+                {
+                    path: "user/detail",
+                    element: <Detail />,
                 },
             ],
         },

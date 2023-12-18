@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OpenAuth extends Model
+class OAuth extends Model
 {
     /**
      * @var string[]
@@ -48,13 +48,5 @@ class OpenAuth extends Model
             'twitter-oauth-2',
             'zalo',
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function getServiceName(): string
-    {
-        return static::getServicesOption()[$this->provider_code];
     }
 }

@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
     Route::get('dashboard', fn() => redirect()->route('home'))
         ->name('dashboard');
 
-    Route::get('profile-detail', fn() => view('profile.detail'))
+    Route::get('detail', fn() => view('layouts.app'))
         ->name('user-profile-information.request');
 
-    Route::get('profile-edit', fn() => view('profile.edit'))
+    Route::get('edit', fn() => view('layouts.app'))
         ->name('user-profile-information.edit');
 
-    Route::delete('profile-destroy', [ProfileController::class, 'destroy'])
+    Route::delete('destroy', [ProfileController::class, 'destroy'])
         ->middleware('password.confirm')
         ->name('user-profile-information.destroy');
 
-    Route::get('profile-two-step-authentication', fn() => view('profile.two-step-authentication'))
+    Route::get('two-step-authentication', fn() => view('layouts.app'))
         ->name('user-profile-information.two-step-authentication');
 });

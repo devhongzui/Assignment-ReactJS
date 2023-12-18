@@ -32,7 +32,7 @@ Route::middleware('verified')->group(function () {
         ->name('security-policy');
 });
 
-Route::get('search', fn() => view('pages.search-bar'))
+Route::get('search', fn() => view('layouts.app'))
     ->name('search');
 
 Route::get('search/{query}', [SearchController::class, 'show'])

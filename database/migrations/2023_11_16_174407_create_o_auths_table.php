@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('open_auths', function (Blueprint $table) {
+        Schema::create('o_auths', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->tinyInteger('provider_code')->unsigned();
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('open_auths');
+        Schema::dropIfExists('o_auths');
     }
 };

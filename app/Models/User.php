@@ -51,6 +51,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes'
     ];
 
     /**
@@ -72,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public static function getUserByOpenAuth(int $provider_code, string $provider_email, string $provider_id): ?User
     {
-        $open_auth = app(OpenAuth::class)->getTable();
+        $open_auth = app(OAuth::class)->getTable();
 
         return static::whereEmail($provider_email)
             ->orWhere(fn(Builder $query) => $query
@@ -85,33 +87,10 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return ?string
-     */
-    public function getGender(): ?string
-    {
-        return is_int($this->gender)
-            ? static::getGendersOption()[$this->gender]
-            : null;
-    }
-
-    /**
-     * @return array
-     */
-    public static function getGendersOption(): array
-    {
-        return [
-            null => __('Choose'),
-            0 => __('Male'),
-            __('Female'),
-            __('N/A')
-        ];
-    }
-
-    /**
      * @return HasMany
      */
     public function socials(): HasMany
     {
-        return $this->hasMany(OpenAuth::class);
+        return $this->hasMany(OAuth::class);
     }
 }
