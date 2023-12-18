@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function Socials() {
     const { t } = useTranslation();
 
-    const [socials, setSocials] = useState(null);
+    const [socials, setSocials] = useState([]);
 
     useEffect(() => {
         axios

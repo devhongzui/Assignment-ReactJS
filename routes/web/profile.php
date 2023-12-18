@@ -8,10 +8,10 @@ Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
     Route::get('dashboard', fn() => redirect()->route('home'))
         ->name('dashboard');
 
-    Route::get('detail', fn() => view('layouts.app'))
+    Route::get('profile-information', fn() => view('layouts.app'))
         ->name('user-profile-information.request');
 
-    Route::get('edit', fn() => view('layouts.app'))
+    Route::get('profile-edit', fn() => view('layouts.app'))
         ->name('user-profile-information.edit');
 
     Route::delete('destroy', [ProfileController::class, 'destroy'])

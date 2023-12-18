@@ -13,6 +13,7 @@ import AboutMe from "../components/quick-link/about-me/AboutMe.jsx";
 import Contact from "../components/quick-link/Contact.jsx";
 import PrivacyPolicy from "../components/quick-link/privacy-policy/PrivacyPolicy.jsx";
 import SecurityPolicy from "../components/quick-link/security-policy/SecurityPolicy.jsx";
+import Edit from "../components/profile/edit/Edit.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -69,8 +70,12 @@ export default function () {
                     element: <ChangePassword />,
                 },
                 {
-                    path: "user/detail",
+                    path: "user/profile-information",
                     element: <Detail />,
+                },
+                {
+                    path: "user/profile-edit",
+                    element: <Edit />,
                 },
             ],
         },

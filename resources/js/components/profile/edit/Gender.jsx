@@ -1,16 +1,19 @@
+import ValidateMessage from "../../auth/login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
-import ValidateMessage from "../login/ValidateMessage.jsx";
 
-export default function Gender({ validate }) {
+export default function Gender({ validate, user }) {
     const { t } = useTranslation();
 
     return (
         <div className="form-floating mb-3">
             <select
                 className={
-                    validate?.gender ? "form-select is-invalid" : "form-select"
+                    validate["gender"]
+                        ? "form-control is-invalid"
+                        : "form-control"
                 }
                 name="gender"
+                defaultValue={user.gender}
             >
                 <option disabled>{t("Choose")}</option>
                 <option value="0">{t("Male")}</option>
@@ -18,7 +21,7 @@ export default function Gender({ validate }) {
                 <option value="2">{t("N/A")}</option>
             </select>
             <label>{t("Gender")}</label>
-            <ValidateMessage field={validate?.gender} />
+            <ValidateMessage field={validate["gender"]} />
         </div>
     );
 }

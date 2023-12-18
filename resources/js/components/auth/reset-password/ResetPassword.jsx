@@ -51,7 +51,10 @@ export default function ResetPassword() {
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-                else dispatch(setToast(error.response.data.message));
+                else
+                    dispatch(
+                        setToast({ message: error.response.data.message }),
+                    );
             });
     }
 

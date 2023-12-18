@@ -25,7 +25,7 @@ export default function User({ user }) {
                 setTimeout(() => location.reload(), 5000);
             })
             .catch((error) => {
-                dispatch(setToast(error.response.data.message));
+                dispatch(setToast({ message: error.response.data.message }));
             });
     }
 
@@ -75,7 +75,7 @@ export default function User({ user }) {
                         </li>
                         <li>
                             <Link
-                                to={urlHelper("user/detail")}
+                                to={urlHelper("user/profile-information")}
                                 className="dropdown-item"
                                 role="link"
                                 aria-label={t("Profile")}

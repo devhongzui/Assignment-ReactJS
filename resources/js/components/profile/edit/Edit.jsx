@@ -1,28 +1,27 @@
-import { initSite, urlHelper } from "../../../helper.js";
-import Form from "../../../templates/Form.jsx";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Submit from "../login/Submit.jsx";
+import { initSite, urlHelper } from "../../../helper.js";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../../reduxers/user.jsx";
+import Form from "../../../templates/Form.jsx";
+import Submit from "../../auth/login/Submit.jsx";
 import axios from "axios";
+import { setToast } from "../../../reduxers/toast.jsx";
+import { useState } from "react";
 import Name from "./Name.jsx";
 import Email from "./Email.jsx";
-import Password from "./Password.jsx";
-import PasswordConfirmation from "./PasswordConfirmation.jsx";
+import PhoneNumber from "./PhoneNumber.jsx";
+import Address from "./Address.jsx";
 import Birthdate from "./Birthdate.jsx";
 import Gender from "./Gender.jsx";
-import Terms from "./Terms.jsx";
-import { setToast } from "../../../reduxers/toast.jsx";
-import { useDispatch } from "react-redux";
-import OAuth from "../login/OAuth.jsx";
 
-export default function Register() {
+export default function Edit() {
     const dispatch = useDispatch();
 
     const { t } = useTranslation();
 
     const web = {
-        title: t("Register"),
-        image: "storage/images/undraw/Sign_up.png",
+        title: t("Profile edit"),
+        image: "storage/images/undraw/Profile_details.png",
     };
 
     initSite(web);
@@ -35,27 +34,31 @@ export default function Register() {
         const {
             name,
             email,
-            password,
-            password_confirmation,
+            phone_number,
+            province_code,
+            district_code,
+            sub_district_code,
+            address_detail,
             birthdate,
             gender,
-            terms,
         } = event.target.elements;
 
         axios
-            .post(urlHelper("register"), {
+            .put(urlHelper("user/profile-information"), {
                 name: name.value,
                 email: email.value,
-                password: password.value,
-                password_confirmation: password_confirmation.value,
+                phone_number: phone_number.value,
+                province_code: province_code.value,
+                district_code: district_code.value,
+                sub_district_code: sub_district_code.value,
+                address_detail: address_detail.value,
                 birthdate: birthdate.value,
                 gender: gender.value,
-                terms: terms.checked,
             })
             .then((success) => {
                 dispatch(setToast(success.data));
 
-                setTimeout(() => location.reload(), 5000);
+                setTimeout(() => (location.href = success.data.redirect), 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
@@ -67,32 +70,27 @@ export default function Register() {
             });
     }
 
+    const user = useSelector(userData);
+
     return (
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
                 <fieldset>
-                    <Name validate={validate} />
-                    <Email validate={validate} />
+                    <Name validate={validate} user={user} />
+                    <Email validate={validate} user={user} />
+                    <PhoneNumber validate={validate} user={user} />
+                    <Address validate={validate} user={user} />
+
                     <div className="row">
                         <div className="col-md-6">
-                            <Password validate={validate} />
+                            <Birthdate validate={validate} user={user} />
                         </div>
                         <div className="col-md-6">
-                            <PasswordConfirmation validate={validate} />
+                            <Gender validate={validate} user={user} />
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <Birthdate validate={validate} />
-                        </div>
-                        <div className="col-md-6">
-                            <Gender validate={validate} />
-                        </div>
-                    </div>
-                    <Terms validate={validate} />
                 </fieldset>
-                <Submit label={t("Register")} />
-                <OAuth />
+                <Submit label={t("Submit")} />
             </form>
         </Form>
     );

@@ -35,7 +35,7 @@ export default function VerifyEmail() {
                 );
             })
             .catch((error) => {
-                dispatch(setToast(error.response.data.message));
+                dispatch(setToast({ message: error.response.data.message }));
             });
     }
 

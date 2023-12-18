@@ -1,5 +1,5 @@
 import axios from "axios";
-import { assetHelper } from "../../../../helper.js";
+import { assetHelper } from "../../../helper.js";
 import { useEffect, useState } from "react";
 
 export default function State({ label, state, stateCode }) {
