@@ -6,9 +6,10 @@ export default function State({ label, state, stateCode }) {
     const [stateName, setStateName] = useState(null);
 
     useEffect(() => {
-        axios
-            .get(assetHelper(`api/address/${state}/${stateCode}`))
-            .then((success) => setStateName(success.data.name));
+        if (stateCode)
+            axios
+                .get(assetHelper(`api/address/${state}/${stateCode}`))
+                .then((success) => setStateName(success.data.name));
     }, []);
 
     return (
