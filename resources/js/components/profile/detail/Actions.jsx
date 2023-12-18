@@ -1,9 +1,31 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { urlHelper } from "../../../helper.js";
+import { checkPasswordConfirm, urlHelper } from "../../../helper.js";
+import axios from "axios";
+import { setToast } from "../../../reduxers/toast.jsx";
+import { useDispatch } from "react-redux";
 
 export default function Actions() {
+    const dispatch = useDispatch();
+
     const { t } = useTranslation();
+
+    function handleDestroyProfile(event) {
+        event.preventDefault();
+
+        checkPasswordConfirm();
+
+        axios
+            .delete(urlHelper("user/profile-destroy"))
+            .then((success) => {
+                dispatch(setToast(success.data));
+
+                setTimeout(() => (location.href = success.data.redirect), 5000);
+            })
+            .catch((error) => {
+                dispatch(setToast({ message: error.response.data.message }));
+            });
+    }
 
     return (
         <div className="offset-md-4">
@@ -23,14 +45,15 @@ export default function Actions() {
             >
                 {t("Change password")}
             </Link>
-            <Link
-                to={urlHelper("#")}
+            <a
+                href={urlHelper("user/profile-destroy")}
                 role="link"
                 className="btn btn-danger mb-2"
                 aria-label={t("Profile destroy")}
+                onClick={handleDestroyProfile}
             >
                 {t("Profile destroy")}
-            </Link>
+            </a>
         </div>
     );
 }

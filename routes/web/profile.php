@@ -14,7 +14,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
     Route::get('profile-edit', fn() => view('layouts.app'))
         ->name('user-profile-information.edit');
 
-    Route::delete('destroy', [ProfileController::class, 'destroy'])
+    Route::delete('profile-destroy', [ProfileController::class, 'destroy'])
         ->middleware('password.confirm')
         ->name('user-profile-information.destroy');
 
