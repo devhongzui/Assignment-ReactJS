@@ -1,6 +1,6 @@
 import { checkPasswordConfirm, initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
 import axios from "axios";
@@ -22,7 +22,9 @@ export default function ChangePassword() {
 
     initSite(web);
 
-    checkPasswordConfirm();
+    useEffect(() => {
+        checkPasswordConfirm();
+    }, []);
 
     const [validate, setValidate] = useState({});
 

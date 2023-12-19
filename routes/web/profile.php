@@ -18,6 +18,6 @@ Route::middleware(['auth', 'verified'])->prefix('user')->group(function () {
         ->middleware('password.confirm')
         ->name('user-profile-information.destroy');
 
-    Route::get('two-step-authentication', fn() => view('layouts.app'))
+    Route::get('profile-two-step-authentication', fn() => view('layouts.app'))
         ->name('user-profile-information.two-step-authentication');
 });

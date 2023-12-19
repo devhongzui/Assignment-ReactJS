@@ -131,6 +131,7 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Fortify::loginView('layouts.app');
+        Fortify::twoFactorChallengeView('layouts.app');
         Fortify::registerView('layouts.app');
         Fortify::requestPasswordResetLinkView('layouts.app');
         Fortify::resetPasswordView('layouts.app');
