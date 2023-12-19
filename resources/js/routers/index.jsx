@@ -14,7 +14,8 @@ import Contact from "../components/quick-link/Contact.jsx";
 import PrivacyPolicy from "../components/quick-link/privacy-policy/PrivacyPolicy.jsx";
 import SecurityPolicy from "../components/quick-link/security-policy/SecurityPolicy.jsx";
 import Edit from "../components/profile/edit/Edit.jsx";
-import TwoFactorAuthentication from "../components/profile/two-step-authentication/TwoFactorAuthentication.jsx";
+import TwoFactorAuthenticationProfile from "../components/profile/two-step-authentication/TwoFactorAuthentication.jsx";
+import TwoFactorAuthenticationChallenge from "../components/auth/two-step-authentication/TwoFactorAuthentication.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export default function () {
                 {
                     path: "login",
                     element: <Login />,
+                },
+                {
+                    path: "two-factor-challenge",
+                    element: <TwoFactorAuthenticationChallenge />,
                 },
                 {
                     path: "register",
@@ -80,7 +85,7 @@ export default function () {
                 },
                 {
                     path: "user/profile-two-step-authentication",
-                    element: <TwoFactorAuthentication />,
+                    element: <TwoFactorAuthenticationProfile />,
                 },
             ],
         },

@@ -223,5 +223,6 @@ return [
         'query' => 'từ khóa',
         'youtube_url' => 'liên kết youtube',
         'course_id' => 'mã khóa học',
+        'recovery_code' => 'mã khôi phục',
     ]
 ];
