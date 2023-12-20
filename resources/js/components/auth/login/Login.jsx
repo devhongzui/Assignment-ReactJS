@@ -11,9 +11,12 @@ import { useDispatch } from "react-redux";
 import { setToast } from "../../../reduxers/toast.jsx";
 import OAuth from "./OAuth.jsx";
 import ForgotPassword from "./ForgotPassword.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -43,8 +46,8 @@ export default function Login() {
                 setTimeout(
                     () =>
                         success.data.redirect
-                            ? (location.href = success.data.redirect)
-                            : location.reload(),
+                            ? navigate(success.data.redirect)
+                            : location.reload(false),
                     5000,
                 );
             })
