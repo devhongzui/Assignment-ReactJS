@@ -22,7 +22,6 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return response()->json([
-            'redirect' => route('home'),
             'message' => __('Account deleted successfully!')
         ]);
     }

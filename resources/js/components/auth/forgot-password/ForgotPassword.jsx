@@ -30,7 +30,16 @@ export default function ForgotPassword() {
         axios
             .post(urlHelper("forgot-password"), { email: email.value })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => dispatch(setToast(null));
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

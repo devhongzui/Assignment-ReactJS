@@ -4,15 +4,19 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setToast } from "../../../reduxers/toast.jsx";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import PasswordConfirmation from "./PasswordConfirmation.jsx";
+import i18next from "i18next";
+import { userData } from "../../../reduxers/user.jsx";
 
 export default function ResetPassword() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -31,8 +35,12 @@ export default function ResetPassword() {
 
     const email = searchParams.get("email");
 
+    const user = useSelector(userData);
+
     function callApi(event) {
         event.preventDefault();
+
+        setValidate({});
 
         const { password, password_confirmation } = event.target.elements;
 
@@ -44,9 +52,22 @@ export default function ResetPassword() {
                 password_confirmation: password_confirmation.value,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    user
+                        ? navigate(`/${i18next.language}`)
+                        : navigate(`/${i18next.language}/login`);
 
-                setTimeout(() => (location.href = success.data.redirect), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

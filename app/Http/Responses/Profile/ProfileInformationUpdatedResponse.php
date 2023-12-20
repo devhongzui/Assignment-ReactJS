@@ -16,7 +16,6 @@ class ProfileInformationUpdatedResponse extends \Laravel\Fortify\Http\Responses\
     public function toResponse($request): JsonResponse
     {
         return response()->json([
-            'redirect' => route('user-profile-information.request'),
             'message' => __('Profile updated successfully!'),
         ]);
     }
