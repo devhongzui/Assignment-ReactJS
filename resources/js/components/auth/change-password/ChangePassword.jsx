@@ -9,9 +9,13 @@ import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import PasswordConfirmation from "./PasswordConfirmation.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
+import i18next from "i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -31,6 +35,8 @@ export default function ChangePassword() {
     function callApi(event) {
         event.preventDefault();
 
+        setValidate({});
+
         const { email, password, password_confirmation } =
             event.target.elements;
 
@@ -41,9 +47,20 @@ export default function ChangePassword() {
                 password_confirmation: password_confirmation.value,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    navigate(`/${i18next.language}`);
 
-                setTimeout(() => (location.href = success.data.redirect), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
