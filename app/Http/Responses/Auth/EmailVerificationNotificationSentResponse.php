@@ -16,6 +16,7 @@ class EmailVerificationNotificationSentResponse extends \Laravel\Fortify\Http\Re
     public function toResponse($request): JsonResponse
     {
         return response()->json([
+            'verified' => false,
             'message' => __('Authentication mail has been sent!')
         ]);
     }

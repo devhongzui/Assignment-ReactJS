@@ -3,11 +3,15 @@ import Form from "../../../templates/Form.jsx";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { userData } from "../../../reduxers/user.jsx";
+import { refreshUser, userData } from "../../../reduxers/user.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
+import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
 
 export default function VerifyEmail() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -24,15 +28,24 @@ export default function VerifyEmail() {
         axios
             .post(urlHelper("email/verification-notification"))
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    if (success.data["verified"]) {
+                        dispatch(refreshUser());
 
-                setTimeout(
-                    () =>
-                        success.data.redirect
-                            ? (location.href = success.data.redirect)
-                            : location.reload(),
-                    5000,
+                        navigate(`/${i18next.language}`);
+                    }
+
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
                 );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 dispatch(setToast({ message: error.response.data.message }));
@@ -45,7 +58,7 @@ export default function VerifyEmail() {
         <Form title={web.title} image={web.image}>
             <div>
                 <span>{t("Verification email has been sent")} </span>
-                <strong>{user.email}</strong>
+                <strong>{user?.email}</strong>
             </div>
             <div>
                 {t("Please check your Inbox or")}{" "}

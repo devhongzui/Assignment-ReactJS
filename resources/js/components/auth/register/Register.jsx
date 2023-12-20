@@ -63,6 +63,8 @@ export default function Register() {
                 const close_event = () => {
                     navigate(`/${i18next.language}/email/verify`);
 
+                    dispatch(refreshUser());
+
                     dispatch(setToast(null));
                 };
 
@@ -72,8 +74,6 @@ export default function Register() {
                         close_event: close_event,
                     }),
                 );
-
-                dispatch(refreshUser());
 
                 setTimeout(close_event, 5000);
             })

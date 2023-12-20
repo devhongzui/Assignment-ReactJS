@@ -46,9 +46,13 @@ export default function Login() {
             })
             .then((success) => {
                 const close_event = () => {
-                    success.data["two_factor"]
-                        ? navigate(`/${i18next.language}/two-factor-challenge`)
-                        : navigate(`/${i18next.language}`);
+                    if (success.data["two_factor"]) {
+                        navigate(`/${i18next.language}/two-factor-challenge`);
+                    } else {
+                        navigate(`/${i18next.language}`);
+
+                        dispatch(refreshUser());
+                    }
 
                     dispatch(setToast(null));
                 };
@@ -59,8 +63,6 @@ export default function Login() {
                         close_event: close_event,
                     }),
                 );
-
-                if (!success.data["two_factor"]) dispatch(refreshUser());
 
                 setTimeout(close_event, 5000);
             })

@@ -18,6 +18,7 @@ class EmailVerificationNotificationController extends \Laravel\Fortify\Http\Cont
     {
         if ($request->user()->hasVerifiedEmail()) {
             return response()->json([
+                'verified' => true,
                 'message' => __('The account has previously authenticated email')
             ]);
         }

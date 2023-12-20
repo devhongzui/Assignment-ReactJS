@@ -54,6 +54,8 @@ export default function TwoFactorAuthentication() {
                 const close_event = () => {
                     navigate(`/${i18next.language}`);
 
+                    dispatch(refreshUser());
+
                     dispatch(setToast(null));
                 };
 
@@ -63,8 +65,6 @@ export default function TwoFactorAuthentication() {
                         close_event: close_event,
                     }),
                 );
-
-                dispatch(refreshUser());
 
                 setTimeout(close_event, 5000);
             })
