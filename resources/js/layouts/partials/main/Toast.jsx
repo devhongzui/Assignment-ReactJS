@@ -23,6 +23,7 @@ export default function Toast() {
                             role="button"
                             data-bs-dismiss="toast"
                             aria-label={t("Close")}
+                            onClick={toast["close_event"]}
                         ></button>
                     </div>
                 </div>

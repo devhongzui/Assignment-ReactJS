@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { assetHelper } from "../helper.js";
 
@@ -11,9 +11,16 @@ async function getUser() {
     }
 }
 
+export const refreshUser = createAsyncThunk("user/refreshUser", getUser);
+
 export const userSlice = createSlice({
     name: "user",
     initialState: { value: await getUser() },
+    extraReducers: (builder) => {
+        builder.addCase(refreshUser.fulfilled, (state, action) => {
+            state.value = action.payload;
+        });
+    },
 });
 
 export const userData = (state) => state.user.value;

@@ -7,9 +7,14 @@ import Submit from "../login/Submit.jsx";
 import { useState } from "react";
 import axios from "axios";
 import { setToast } from "../../../reduxers/toast.jsx";
+import i18next from "i18next";
+import { useNavigate } from "react-router-dom";
+import { refreshUser } from "../../../reduxers/user.jsx";
 
 export default function TwoFactorAuthentication() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -31,6 +36,8 @@ export default function TwoFactorAuthentication() {
     function callApi(event) {
         event.preventDefault();
 
+        setValidate({});
+
         const data =
             method === 0
                 ? { code: event.target.elements.code.value }
@@ -44,9 +51,22 @@ export default function TwoFactorAuthentication() {
         axios
             .post(urlHelper("two-factor-challenge"), data)
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    navigate(`/${i18next.language}`);
 
-                setTimeout(() => location.reload(), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                dispatch(refreshUser());
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

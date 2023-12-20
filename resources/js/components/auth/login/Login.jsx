@@ -12,6 +12,8 @@ import { setToast } from "../../../reduxers/toast.jsx";
 import OAuth from "./OAuth.jsx";
 import ForgotPassword from "./ForgotPassword.jsx";
 import { useNavigate } from "react-router-dom";
+import { refreshUser } from "../../../reduxers/user.jsx";
+import i18next from "i18next";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -32,6 +34,8 @@ export default function Login() {
     function callApi(event) {
         event.preventDefault();
 
+        setValidate({});
+
         const { email, password, remember_me } = event.target.elements;
 
         axios
@@ -41,15 +45,24 @@ export default function Login() {
                 remember_me: remember_me.checked,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    success.data["two_factor"]
+                        ? navigate(`/${i18next.language}/two-factor-challenge`)
+                        : navigate(`/${i18next.language}`);
 
-                setTimeout(
-                    () =>
-                        success.data.redirect
-                            ? navigate(success.data.redirect)
-                            : location.reload(false),
-                    5000,
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
                 );
+
+                if (!success.data["two_factor"]) dispatch(refreshUser());
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

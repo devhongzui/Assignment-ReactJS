@@ -25,7 +25,7 @@ class RedirectIfTwoFactorAuthenticatable extends \Laravel\Fortify\Actions\Redire
         TwoFactorAuthenticationChallenged::dispatch($user);
 
         return response()->json([
-            'redirect' => route('two-factor.login'),
+            'two_factor' => true,
             'message' => __('Complete two-step verification to sign in')
         ]);
     }

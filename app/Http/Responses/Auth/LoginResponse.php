@@ -16,6 +16,7 @@ class LoginResponse extends \Laravel\Fortify\Http\Responses\LoginResponse
     public function toResponse($request): JsonResponse
     {
         return response()->json([
+            'two_factor' => false,
             'message' => __('Logged in successfully!'),
         ]);
     }
