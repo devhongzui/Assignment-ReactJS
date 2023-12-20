@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { checkPasswordConfirm, initSite, urlHelper } from "../../../helper.js";
 import { useDispatch, useSelector } from "react-redux";
-import { userData } from "../../../reduxers/user.jsx";
+import { refreshUser, userData } from "../../../reduxers/user.jsx";
 import Form from "../../../templates/Form.jsx";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -70,9 +70,22 @@ export default function TwoFactorAuthentication() {
         axios
             .delete(urlHelper("user/two-factor-authentication"))
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    setQr(null);
 
-                setTimeout(() => location.reload(), 5000);
+                    dispatch(refreshUser());
+
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) =>
                 dispatch(setToast({ message: error.response.data.message })),

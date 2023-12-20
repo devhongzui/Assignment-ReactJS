@@ -6,6 +6,7 @@ import axios from "axios";
 import { urlHelper } from "../../../../helper.js";
 import { setToast } from "../../../../reduxers/toast.jsx";
 import Code from "./Code.jsx";
+import { refreshUser } from "../../../../reduxers/user.jsx";
 
 export default function ConfirmedEnableTwoFactorAuth({ qr }) {
     const dispatch = useDispatch();
@@ -17,6 +18,8 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
     function callApi(event) {
         event.preventDefault();
 
+        setValidate({});
+
         const { code } = event.target.elements;
 
         axios
@@ -24,9 +27,20 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
                 code: code.value,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    dispatch(refreshUser());
 
-                setTimeout(() => location.reload(), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
