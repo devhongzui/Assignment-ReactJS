@@ -5,6 +5,7 @@ import axios from "axios";
 import { setToast } from "../../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
 import { urlHelper } from "../../../../helper.js";
+import { refreshUser } from "../../../../reduxers/user.jsx";
 
 const ImageStyle = styled.img`
     width: 25px;
@@ -20,9 +21,20 @@ export default function User({ user }) {
         axios
             .post(urlHelper("logout"))
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    dispatch(refreshUser());
 
-                setTimeout(() => location.reload(), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 dispatch(setToast({ message: error.response.data.message }));
