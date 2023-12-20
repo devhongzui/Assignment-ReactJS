@@ -14,9 +14,14 @@ import Terms from "./Terms.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
 import OAuth from "../login/OAuth.jsx";
+import { useNavigate } from "react-router-dom";
+import i18next from "i18next";
+import { refreshUser } from "../../../reduxers/user.jsx";
 
 export default function Register() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -31,6 +36,8 @@ export default function Register() {
 
     function callApi(event) {
         event.preventDefault();
+
+        setValidate({});
 
         const {
             name,
@@ -53,9 +60,22 @@ export default function Register() {
                 terms: terms.checked,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    navigate(`/${i18next.language}/email/verify`);
 
-                setTimeout(() => location.reload(), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                dispatch(refreshUser());
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
