@@ -1,12 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { checkPasswordConfirm, urlHelper } from "../../../helper.js";
 import axios from "axios";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
+import i18next from "i18next";
+import { refreshUser } from "../../../reduxers/user.jsx";
 
 export default function Actions() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -18,9 +22,22 @@ export default function Actions() {
         axios
             .delete(urlHelper("user/profile-destroy"))
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    navigate(`/${i18next.language}`);
 
-                setTimeout(() => (location.href = success.data.redirect), 5000);
+                    dispatch(refreshUser());
+
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 dispatch(setToast({ message: error.response.data.message }));

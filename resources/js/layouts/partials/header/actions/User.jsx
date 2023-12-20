@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { setToast } from "../../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
 import { urlHelper } from "../../../../helper.js";
 import { refreshUser } from "../../../../reduxers/user.jsx";
+import i18next from "i18next";
 
 const ImageStyle = styled.img`
     width: 25px;
@@ -15,6 +16,8 @@ const ImageStyle = styled.img`
 export default function User({ user }) {
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const { t } = useTranslation();
 
     function callApi() {
@@ -22,6 +25,8 @@ export default function User({ user }) {
             .post(urlHelper("logout"))
             .then((success) => {
                 const close_event = () => {
+                    navigate(`/${i18next.language}`);
+
                     dispatch(refreshUser());
 
                     dispatch(setToast(null));
