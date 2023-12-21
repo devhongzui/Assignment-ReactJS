@@ -9,7 +9,7 @@ export default function Birthdate({ validate, user }) {
             <input
                 type="date"
                 className={
-                    validate["birthdate"]
+                    validate?.birthdate
                         ? "form-control is-invalid"
                         : "form-control"
                 }
@@ -17,7 +17,7 @@ export default function Birthdate({ validate, user }) {
                 defaultValue={user.birthdate}
             />
             <label>{t("Birthdate")}</label>
-            <ValidateMessage field={validate["birthdate"]} />
+            <ValidateMessage field={validate?.birthdate} />
         </div>
     );
 }

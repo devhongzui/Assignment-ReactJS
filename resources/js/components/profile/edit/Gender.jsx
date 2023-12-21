@@ -8,7 +8,7 @@ export default function Gender({ validate, user }) {
         <div className="form-floating mb-3">
             <select
                 className={
-                    validate["gender"]
+                    validate?.gender
                         ? "form-control is-invalid"
                         : "form-control"
                 }
@@ -21,7 +21,7 @@ export default function Gender({ validate, user }) {
                 <option value="2">{t("N/A")}</option>
             </select>
             <label>{t("Gender")}</label>
-            <ValidateMessage field={validate["gender"]} />
+            <ValidateMessage field={validate?.gender} />
         </div>
     );
 }

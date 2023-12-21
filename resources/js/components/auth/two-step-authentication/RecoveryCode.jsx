@@ -10,14 +10,14 @@ export default function RecoveryCode({ validate }) {
                 <input
                     type="text"
                     className={
-                        validate["recovery_code"]
+                        validate?.recovery_code
                             ? "form-control is-invalid"
                             : "form-control"
                     }
                     name="recovery_code"
                 />
                 <label>{t("Recovery Code")}</label>
-                <ValidateMessage field={validate["recovery_code"]} />
+                <ValidateMessage field={validate?.recovery_code} />
             </div>
         </div>
     );

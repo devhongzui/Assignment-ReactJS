@@ -9,7 +9,7 @@ export default function PhoneNumber({ validate, user }) {
             <input
                 type="text"
                 className={
-                    validate["phone_number"]
+                    validate?.phone_number
                         ? "form-control is-invalid"
                         : "form-control"
                 }
@@ -18,7 +18,7 @@ export default function PhoneNumber({ validate, user }) {
                 autoComplete="phone_number"
             />
             <label>{t("Phone number")}</label>
-            <ValidateMessage field={validate["phone_number"]} />
+            <ValidateMessage field={validate?.phone_number} />
         </div>
     );
 }
