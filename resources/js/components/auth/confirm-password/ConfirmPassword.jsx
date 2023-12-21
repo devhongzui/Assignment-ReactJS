@@ -39,9 +39,20 @@ export default function ConfirmPassword() {
                 password: password.value,
             })
             .then((success) => {
-                dispatch(setToast(success.data));
+                const close_event = () => {
+                    navigate(-1);
 
-                setTimeout(() => navigate(-1), 5000);
+                    dispatch(setToast(null));
+                };
+
+                dispatch(
+                    setToast({
+                        message: success.data.message,
+                        close_event: close_event,
+                    }),
+                );
+
+                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)
