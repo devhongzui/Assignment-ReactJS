@@ -1,7 +1,6 @@
-import axios from "axios";
-import { assetHelper } from "../../../helper.js";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { getSocials } from "../../../services/profile.jsx";
 
 export default function Socials() {
     const { t } = useTranslation();
@@ -9,9 +8,7 @@ export default function Socials() {
     const [socials, setSocials] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(assetHelper("api/user/social"))
-            .then((success) => setSocials(success.data));
+        getSocials().then((success) => setSocials(success.data));
     }, []);
 
     function getIcon(socialCode) {

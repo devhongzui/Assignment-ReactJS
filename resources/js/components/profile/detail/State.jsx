@@ -1,15 +1,14 @@
-import axios from "axios";
-import { assetHelper } from "../../../helper.js";
 import { useEffect, useState } from "react";
+import { getState } from "../../../services/profile.jsx";
 
 export default function State({ label, state, stateCode }) {
     const [stateName, setStateName] = useState(null);
 
     useEffect(() => {
         if (stateCode)
-            axios
-                .get(assetHelper(`api/address/${state}/${stateCode}`))
-                .then((success) => setStateName(success.data.name));
+            getState(state, stateCode).then((success) =>
+                setStateName(success.data.name),
+            );
     }, []);
 
     return (

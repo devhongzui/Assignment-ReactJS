@@ -1,12 +1,12 @@
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setToast } from "../../../reduxers/toast.jsx";
 import Email from "./Email.jsx";
+import { forgotPassword } from "../../../services/auth.jsx";
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
@@ -20,26 +20,16 @@ export default function ForgotPassword() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        const { email } = event.target.elements;
+        setValidate(null);
 
-        axios
-            .post(urlHelper("forgot-password"), { email: email.value })
+        forgotPassword(event.target.elements)
             .then((success) => {
-                const close_event = () => dispatch(setToast(null));
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                dispatch(setToast(success.data));
             })
             .catch((error) => {
                 if (error.response.data.errors)

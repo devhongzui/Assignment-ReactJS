@@ -1,9 +1,8 @@
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -12,6 +11,7 @@ import Password from "./Password.jsx";
 import PasswordConfirmation from "./PasswordConfirmation.jsx";
 import i18next from "i18next";
 import { userData } from "../../../reduxers/user.jsx";
+import { resetPassword } from "../../../services/auth.jsx";
 
 export default function ResetPassword() {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function ResetPassword() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     const { token } = useParams();
 
@@ -40,34 +40,17 @@ export default function ResetPassword() {
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const { password, password_confirmation } = event.target.elements;
-
-        axios
-            .post(urlHelper("reset-password"), {
-                token: token,
-                email: email,
-                password: password.value,
-                password_confirmation: password_confirmation.value,
-            })
+        resetPassword(event.target.elements, token, email)
             .then((success) => {
-                const close_event = () => {
+                dispatch(setToast(success.data));
+
+                navigate(
                     user
-                        ? navigate(`/${i18next.language}`)
-                        : navigate(`/${i18next.language}/login`);
-
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
+                        ? `/${i18next.language}`
+                        : `/${i18next.language}/login`,
                 );
-
-                setTimeout(close_event, 5000);
             })
             .catch((error) => {
                 if (error.response.data.errors)

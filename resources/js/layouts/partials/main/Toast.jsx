@@ -1,10 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { toastData } from "../../../reduxers/toast.jsx";
 
 export default function Toast() {
     const { t } = useTranslation();
 
-    const toast = useSelector((state) => state.toast.value);
+    const toast = useSelector(toastData);
 
     return (
         toast && (
@@ -23,7 +24,6 @@ export default function Toast() {
                             role="button"
                             data-bs-dismiss="toast"
                             aria-label={t("Close")}
-                            onClick={toast["close_event"]}
                         ></button>
                     </div>
                 </div>

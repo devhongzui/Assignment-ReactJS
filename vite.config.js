@@ -4,7 +4,9 @@ import laravel from "laravel-vite-plugin";
 
 export default defineConfig({
     plugins: [
-        laravel({ input: ["resources/js/main.jsx"], refresh: false }),
+        laravel({
+            input: ["resources/js/main.jsx"],
+        }),
         react(),
     ],
     build: {

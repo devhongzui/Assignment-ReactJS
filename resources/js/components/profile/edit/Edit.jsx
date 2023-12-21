@@ -1,10 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser, userData } from "../../../reduxers/user.jsx";
 import Form from "../../../templates/Form.jsx";
 import Submit from "../../auth/login/Submit.jsx";
-import axios from "axios";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useState } from "react";
 import Name from "./Name.jsx";
@@ -15,6 +14,7 @@ import Birthdate from "./Birthdate.jsx";
 import Gender from "./Gender.jsx";
 import i18next from "i18next";
 import { useNavigate } from "react-router-dom";
+import { edit } from "../../../services/profile.jsx";
 
 export default function Edit() {
     const dispatch = useDispatch();
@@ -30,54 +30,20 @@ export default function Edit() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const {
-            name,
-            email,
-            phone_number,
-            province_code,
-            district_code,
-            sub_district_code,
-            address_detail,
-            birthdate,
-            gender,
-        } = event.target.elements;
-
-        axios
-            .put(urlHelper("user/profile-information"), {
-                name: name.value,
-                email: email.value,
-                phone_number: phone_number.value,
-                province_code: province_code.value,
-                district_code: district_code.value,
-                sub_district_code: sub_district_code.value,
-                address_detail: address_detail.value,
-                birthdate: birthdate.value,
-                gender: gender.value,
-            })
+        edit(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    navigate(`/${i18next.language}/user/profile-information`);
+                dispatch(setToast(success.data));
 
-                    dispatch(refreshUser());
+                dispatch(refreshUser());
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                navigate(`/${i18next.language}/user/profile-information`);
             })
             .catch((error) => {
                 if (error.response.data.errors)

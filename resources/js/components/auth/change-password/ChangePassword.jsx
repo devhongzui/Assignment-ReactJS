@@ -1,9 +1,8 @@
-import { checkPasswordConfirm, initSite, urlHelper } from "../../../helper.js";
+import { checkPasswordConfirm, initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -11,6 +10,7 @@ import PasswordConfirmation from "./PasswordConfirmation.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 import i18next from "i18next";
 import { useNavigate } from "react-router-dom";
+import { changePassword } from "../../../services/auth.jsx";
 
 export default function ChangePassword() {
     const dispatch = useDispatch();
@@ -30,37 +30,18 @@ export default function ChangePassword() {
         checkPasswordConfirm();
     }, []);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const { email, password, password_confirmation } =
-            event.target.elements;
-
-        axios
-            .put(urlHelper("user/password"), {
-                email: email.value,
-                password: password.value,
-                password_confirmation: password_confirmation.value,
-            })
+        changePassword(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    navigate(`/${i18next.language}`);
+                dispatch(setToast(success.data));
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                navigate(`/${i18next.language}`);
             })
             .catch((error) => {
                 if (error.response.data.errors)

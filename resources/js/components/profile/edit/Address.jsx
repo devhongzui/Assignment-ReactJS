@@ -1,8 +1,11 @@
 import ValidateMessage from "../../auth/login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { assetHelper } from "../../../helper.js";
+import {
+    getDistricts,
+    getProvinces,
+    getSubDistricts,
+} from "../../../services/profile.jsx";
 
 export default function Address({ validate, user }) {
     const { t } = useTranslation();
@@ -19,22 +22,16 @@ export default function Address({ validate, user }) {
         user.district_code === null ? "" : user.district_code,
     );
 
-    const [sub_districts, setSubDistricts] = useState([]);
+    const [subDistricts, setSubDistricts] = useState([]);
 
-    const [sub_district, setSubDistrict] = useState(
+    const [subDistrict, setSubDistrict] = useState(
         user.sub_district_code === null ? "" : user.sub_district_code,
     );
 
     useEffect(() => {
-        axios
-            .get(assetHelper("api/address/provinces"))
-            .then((success) => setProvinces(success.data));
-        axios
-            .get(assetHelper("api/address/districts"))
-            .then((success) => setDistricts(success.data));
-        axios
-            .get(assetHelper("api/address/sub_districts"))
-            .then((success) => setSubDistricts(success.data));
+        getProvinces().then((success) => setProvinces(success.data));
+        getDistricts().then((success) => setDistricts(success.data));
+        getSubDistricts().then((success) => setSubDistricts(success.data));
     }, []);
 
     function changeProvince(event) {
@@ -114,13 +111,13 @@ export default function Address({ validate, user }) {
                                     : "form-control"
                             }
                             name="sub_district_code"
-                            value={sub_district}
+                            value={subDistrict}
                             onChange={changeSubDistrict}
                         >
-                            <option disabled={sub_district !== ""}>
+                            <option disabled={subDistrict !== ""}>
                                 {t("Choose")}
                             </option>
-                            {sub_districts.map(
+                            {subDistricts.map(
                                 (value, index) =>
                                     value.district_code === district && (
                                         <option key={index} value={value.code}>

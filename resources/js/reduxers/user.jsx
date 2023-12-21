@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { assetHelper } from "../helper.js";
+import { user } from "../services/auth.jsx";
 
 async function getUser() {
     try {
-        const success = await axios.get(assetHelper("api/user"));
+        const success = await user();
         return success.data;
     } catch (error) {
         return null;

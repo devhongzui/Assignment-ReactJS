@@ -1,9 +1,8 @@
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import axios from "axios";
 import Name from "./Name.jsx";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -17,6 +16,7 @@ import OAuth from "../login/OAuth.jsx";
 import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
 import { refreshUser } from "../../../reduxers/user.jsx";
+import { register } from "../../../services/auth.jsx";
 
 export default function Register() {
     const dispatch = useDispatch();
@@ -32,50 +32,20 @@ export default function Register() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const {
-            name,
-            email,
-            password,
-            password_confirmation,
-            birthdate,
-            gender,
-            terms,
-        } = event.target.elements;
-
-        axios
-            .post(urlHelper("register"), {
-                name: name.value,
-                email: email.value,
-                password: password.value,
-                password_confirmation: password_confirmation.value,
-                birthdate: birthdate.value,
-                gender: gender.value,
-                terms: terms.checked,
-            })
+        register(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    navigate(`/${i18next.language}/email/verify`);
+                dispatch(setToast(success.data));
 
-                    dispatch(refreshUser());
+                dispatch(refreshUser());
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                navigate(`/${i18next.language}/email/verify`);
             })
             .catch((error) => {
                 if (error.response.data.errors)

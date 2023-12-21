@@ -1,9 +1,8 @@
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Submit from "../login/Submit.jsx";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
@@ -11,6 +10,7 @@ import { setToast } from "../../../reduxers/toast.jsx";
 import { useNavigate } from "react-router-dom";
 import OAuth from "../login/OAuth.jsx";
 import ForgotPassword from "../login/ForgotPassword.jsx";
+import { confirmPassword } from "../../../services/auth.jsx";
 
 export default function ConfirmPassword() {
     const dispatch = useDispatch();
@@ -26,33 +26,18 @@ export default function ConfirmPassword() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        const { email, password } = event.target.elements;
+        setValidate(null);
 
-        axios
-            .post(urlHelper("user/confirm-password"), {
-                email: email.value,
-                password: password.value,
-            })
+        confirmPassword(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    navigate(-1);
+                dispatch(setToast(success.data));
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                navigate(-1);
             })
             .catch((error) => {
                 if (error.response.data.errors)

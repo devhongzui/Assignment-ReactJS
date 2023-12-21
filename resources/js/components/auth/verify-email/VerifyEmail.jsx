@@ -1,12 +1,12 @@
 import { initSite, urlHelper } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser, userData } from "../../../reduxers/user.jsx";
 import { setToast } from "../../../reduxers/toast.jsx";
 import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
+import { verifyEmail } from "../../../services/auth.jsx";
 
 export default function VerifyEmail() {
     const dispatch = useDispatch();
@@ -25,27 +25,15 @@ export default function VerifyEmail() {
     function callApi(event) {
         event.preventDefault();
 
-        axios
-            .post(urlHelper("email/verification-notification"))
+        verifyEmail()
             .then((success) => {
-                const close_event = () => {
-                    if (success.data["verified"]) {
-                        dispatch(refreshUser());
+                dispatch(setToast(success.data));
 
-                        navigate(`/${i18next.language}`);
-                    }
+                if (success.data["verified"]) {
+                    dispatch(refreshUser());
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                    navigate(`/${i18next.language}`);
+                }
             })
             .catch((error) => {
                 dispatch(setToast({ message: error.response.data.message }));

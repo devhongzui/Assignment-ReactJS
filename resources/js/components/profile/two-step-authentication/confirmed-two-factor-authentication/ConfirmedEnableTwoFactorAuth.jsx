@@ -2,45 +2,28 @@ import Submit from "../../../auth/login/Submit.jsx";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import axios from "axios";
-import { urlHelper } from "../../../../helper.js";
 import { setToast } from "../../../../reduxers/toast.jsx";
 import Code from "./Code.jsx";
 import { refreshUser } from "../../../../reduxers/user.jsx";
+import { confirmedTwoFactorAuthentication } from "../../../../services/profile.jsx";
 
 export default function ConfirmedEnableTwoFactorAuth({ qr }) {
     const dispatch = useDispatch();
 
     const { t } = useTranslation();
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const { code } = event.target.elements;
-
-        axios
-            .post(urlHelper("user/confirmed-two-factor-authentication"), {
-                code: code.value,
-            })
+        confirmedTwoFactorAuthentication(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    dispatch(refreshUser());
+                dispatch(setToast(success.data));
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                dispatch(refreshUser());
             })
             .catch((error) => {
                 if (error.response.data.errors)

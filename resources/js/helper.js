@@ -1,8 +1,8 @@
-import i18next from "i18next";
-import axios from "axios";
+import i18n from "i18next";
+import { confirmedPasswordStatus } from "./services/auth.jsx";
 
 export const urlHelper = (path) =>
-    [location.origin, i18next.language, path].join("/");
+    [location.origin, i18n.language, path].join("/");
 
 export const assetHelper = (path) => [location.origin, path].join("/");
 
@@ -28,7 +28,7 @@ export const initSite = ({ title, description, image }) => {
 };
 
 export const checkPasswordConfirm = () => {
-    axios.get(urlHelper("user/confirmed-password-status")).then((success) => {
+    confirmedPasswordStatus().then((success) => {
         if (!success.data["confirmed"])
             location.href = urlHelper("user/confirm-password");
     });

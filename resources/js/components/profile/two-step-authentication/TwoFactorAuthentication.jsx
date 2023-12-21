@@ -1,13 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { checkPasswordConfirm, initSite, urlHelper } from "../../../helper.js";
+import { checkPasswordConfirm, initSite } from "../../../helper.js";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser, userData } from "../../../reduxers/user.jsx";
 import Form from "../../../templates/Form.jsx";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { setToast } from "../../../reduxers/toast.jsx";
 import ConfirmedEnableTwoFactorAuth from "./confirmed-two-factor-authentication/ConfirmedEnableTwoFactorAuth.jsx";
 import TwoFactorRecoveryCodes from "./TwoFactorRecoveryCodes.jsx";
+import {
+    disableTwoFactorAuthentication,
+    enableTwoFactorAuthentication,
+} from "../../../services/profile.jsx";
 
 export default function TwoFactorAuthentication() {
     const dispatch = useDispatch();
@@ -49,43 +52,32 @@ export default function TwoFactorAuthentication() {
               button: {
                   class: "btn-success",
                   label: t("Enable"),
-                  handleEvent: enableTwoStepAuthentication,
+                  handleEvent: () => {
+                      enableTwoFactorAuthentication()
+                          .then((success) => {
+                              dispatch(setToast(success.data));
+
+                              setQr({ __html: success.data["qr_code"]["svg"] });
+                          })
+                          .catch((error) =>
+                              dispatch(
+                                  setToast({
+                                      message: error.response.data.message,
+                                  }),
+                              ),
+                          );
+                  },
               },
           };
 
-    function enableTwoStepAuthentication() {
-        axios
-            .post(urlHelper("user/two-factor-authentication"))
+    function disableTwoStepAuthentication() {
+        disableTwoFactorAuthentication()
             .then((success) => {
                 dispatch(setToast(success.data));
 
-                setQr({ __html: success.data["qr_code"]["svg"] });
-            })
-            .catch((error) =>
-                dispatch(setToast({ message: error.response.data.message })),
-            );
-    }
+                setQr(null);
 
-    function disableTwoStepAuthentication() {
-        axios
-            .delete(urlHelper("user/two-factor-authentication"))
-            .then((success) => {
-                const close_event = () => {
-                    setQr(null);
-
-                    dispatch(refreshUser());
-
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                dispatch(refreshUser());
             })
             .catch((error) =>
                 dispatch(setToast({ message: error.response.data.message })),

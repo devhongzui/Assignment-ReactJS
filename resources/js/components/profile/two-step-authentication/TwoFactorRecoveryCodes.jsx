@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { urlHelper } from "../../../helper.js";
+import { twoFactorRecoveryCodes } from "../../../services/profile.jsx";
 
 export default function TwoFactorRecoveryCodes() {
     const { t } = useTranslation();
@@ -9,12 +8,10 @@ export default function TwoFactorRecoveryCodes() {
     const [recovery_codes, setRecoveryCodes] = useState([]);
 
     useEffect(() => {
-        axios
-            .get(urlHelper("user/two-factor-recovery-codes"))
-            .then((success) => {
-                if (typeof success.data === "object")
-                    setRecoveryCodes(success.data);
-            });
+        twoFactorRecoveryCodes().then((success) => {
+            if (typeof success.data === "object")
+                setRecoveryCodes(success.data);
+        });
     }, []);
 
     return (

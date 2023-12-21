@@ -12,4 +12,6 @@ export const toastSlice = createSlice({
 
 export const { setToast } = toastSlice.actions;
 
+export const toastData = (state) => state.toast.value;
+
 export default toastSlice.reducer;

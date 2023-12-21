@@ -1,8 +1,7 @@
-import { initSite, urlHelper } from "../../../helper.js";
+import { initSite } from "../../../helper.js";
 import Form from "../../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import Email from "./Email.jsx";
 import Password from "./Password.jsx";
 import RememberMe from "./RememberMe.jsx";
@@ -14,6 +13,7 @@ import ForgotPassword from "./ForgotPassword.jsx";
 import { useNavigate } from "react-router-dom";
 import { refreshUser } from "../../../reduxers/user.jsx";
 import i18next from "i18next";
+import { login } from "../../../services/auth.jsx";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -29,42 +29,24 @@ export default function Login() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState({});
+    const [validate, setValidate] = useState(null);
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate({});
+        setValidate(null);
 
-        const { email, password, remember_me } = event.target.elements;
-
-        axios
-            .post(urlHelper("login"), {
-                email: email.value,
-                password: password.value,
-                remember_me: remember_me.checked,
-            })
+        login(event.target.elements)
             .then((success) => {
-                const close_event = () => {
-                    if (success.data["two_factor"]) {
-                        navigate(`/${i18next.language}/two-factor-challenge`);
-                    } else {
-                        navigate(`/${i18next.language}`);
+                dispatch(setToast(success.data));
 
-                        dispatch(refreshUser());
-                    }
+                if (success.data["two_factor"]) {
+                    navigate(`/${i18next.language}/two-factor-challenge`);
+                } else {
+                    dispatch(refreshUser());
 
-                    dispatch(setToast(null));
-                };
-
-                dispatch(
-                    setToast({
-                        message: success.data.message,
-                        close_event: close_event,
-                    }),
-                );
-
-                setTimeout(close_event, 5000);
+                    navigate(`/${i18next.language}`);
+                }
             })
             .catch((error) => {
                 if (error.response.data.errors)
