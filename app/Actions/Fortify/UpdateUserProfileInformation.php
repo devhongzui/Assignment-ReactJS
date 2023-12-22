@@ -25,7 +25,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:50',
                 Rule::unique(User::class)->ignore($user->id)
             ],
-            'phone_number' => ['nullable', 'numeric', 'digits:10'],
+            'phone_number' => [
+                'nullable',
+                'numeric',
+                'digits:10',
+                Rule::unique(User::class)->ignore($user->id)
+            ],
             'province_code' => ['nullable', 'numeric'],
             'district_code' => ['required_with:province_code', 'numeric'],
             'sub_district_code' => ['required_with:province_code', 'numeric'],
