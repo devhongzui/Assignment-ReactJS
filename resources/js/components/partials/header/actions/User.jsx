@@ -22,8 +22,8 @@ export default function User({ user }) {
 
     function callApi() {
         logout()
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(setToast({ message: t("Signed out successfully!") }));
 
                 dispatch(refreshUser());
 

@@ -14,10 +14,8 @@ class ResetUserPassword implements ResetsUserPasswords
      */
     public function reset(User $user, array $input): void
     {
-        $password = bcrypt($input['password']);
-
         $user
-            ->forceFill(['password' => $password])
+            ->forceFill(['password' => bcrypt($input['password'])])
             ->save();
     }
 }

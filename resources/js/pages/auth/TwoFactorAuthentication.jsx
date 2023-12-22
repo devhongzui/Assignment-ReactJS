@@ -44,8 +44,10 @@ export default function TwoFactorAuthentication() {
                 ? twoFactorAuthentication(event.target.elements)
                 : twoFactorAuthenticationRecovery(event.target.elements);
 
-        api.then((success) => {
-            dispatch(setToast(success.data));
+        api.then(() => {
+            dispatch(
+                setToast({ message: t("Complete two-step verification!") }),
+            );
 
             dispatch(refreshUser());
 

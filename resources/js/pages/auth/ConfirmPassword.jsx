@@ -34,8 +34,12 @@ export default function ConfirmPassword() {
         setValidate({});
 
         confirmPassword(event.target.elements)
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(
+                    setToast({
+                        message: t("Password confirmation successful!"),
+                    }),
+                );
 
                 navigate(-1);
             })

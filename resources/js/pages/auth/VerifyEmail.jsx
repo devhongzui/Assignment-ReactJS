@@ -27,12 +27,29 @@ export default function VerifyEmail() {
 
         verifyEmail()
             .then((success) => {
-                dispatch(setToast(success.data));
+                switch (success.status) {
+                    case 202:
+                        dispatch(
+                            setToast({
+                                message: t(
+                                    "Authentication mail has been sent!",
+                                ),
+                            }),
+                        );
+                        break;
+                    case 204:
+                        dispatch(
+                            setToast({
+                                message: t(
+                                    "The account has previously authenticated email",
+                                ),
+                            }),
+                        );
 
-                if (success.data["verified"]) {
-                    dispatch(refreshUser());
+                        dispatch(refreshUser());
 
-                    navigate(`/${i18next.language}`);
+                        navigate(`/${i18next.language}`);
+                        break;
                 }
             })
             .catch((error) => {

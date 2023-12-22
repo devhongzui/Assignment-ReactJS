@@ -27,6 +27,7 @@ class Tool extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */
@@ -45,6 +46,7 @@ class Tool extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */

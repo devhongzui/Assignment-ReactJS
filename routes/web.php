@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Actions\ChangeThemeController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +36,6 @@ Route::get('search', fn() => view('layouts.app'))
 
 Route::get('search/{query}', [SearchController::class, 'show'])
     ->name('search.show');
-
-Route::post('theme', [ChangeThemeController::class, 'store'])
-    ->name('theme');
 
 require base_path('vendor/laravel/fortify/routes/routes.php');
 require __DIR__ . '/web/auth.php';

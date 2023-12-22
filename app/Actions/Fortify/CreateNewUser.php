@@ -19,15 +19,16 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        $after = Carbon::parse('this day 80 years ago');
-        $before = Carbon::parse('this day 10 years ago');
-        $user = User::class;
-
         $validated = Validator::validate($input, [
             'name' => ['required', 'string', 'max:50'],
-            'birthdate' => ['required', 'date', 'after:' . $after, 'before:' . $before],
+            'birthdate' => [
+                'required',
+                'date',
+                'after:' . Carbon::parse('this day 80 years ago'),
+                'before:' . Carbon::parse('this day 10 years ago')
+            ],
             'gender' => ['required', 'int'],
-            'email' => ['required', 'email:rfc,dns', 'max:50', 'unique:' . $user],
+            'email' => ['required', 'email:rfc,dns', 'max:50', 'unique:' . User::class],
             'terms' => ['required', 'accepted'],
             'password' => $this->passwordRegister(),
         ]);

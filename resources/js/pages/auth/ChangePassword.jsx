@@ -38,8 +38,10 @@ export default function ChangePassword() {
         setValidate({});
 
         changePassword(event.target.elements)
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(
+                    setToast({ message: t("Password changed successfully!") }),
+                );
 
                 navigate(`/${i18next.language}`);
             })

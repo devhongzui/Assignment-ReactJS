@@ -28,6 +28,7 @@ class Channel extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */
@@ -41,6 +42,7 @@ class Channel extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */
@@ -51,6 +53,7 @@ class Channel extends Model
         'custom_url',
         'publish_at',
     ];
+
     /**
      * @var string[]
      */

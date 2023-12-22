@@ -43,8 +43,14 @@ export default function TwoFactorAuthentication() {
                   label: t("Disable"),
                   handleEvent: () => {
                       disableTwoFactorAuthentication()
-                          .then((success) => {
-                              dispatch(setToast(success.data));
+                          .then(() => {
+                              dispatch(
+                                  setToast({
+                                      message: t(
+                                          "Turn off two-step verification successfully!",
+                                      ),
+                                  }),
+                              );
 
                               setQr(null);
 

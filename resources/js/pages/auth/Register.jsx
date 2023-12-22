@@ -40,8 +40,8 @@ export default function Register() {
         setValidate({});
 
         register(event.target.elements)
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(setToast({ message: t("Register successfully!") }));
 
                 dispatch(refreshUser());
 

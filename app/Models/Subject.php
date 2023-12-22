@@ -30,6 +30,7 @@ class Subject extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */
@@ -44,6 +45,7 @@ class Subject extends Model
         'created_at',
         'updated_at',
     ];
+
     /**
      * @var string[]
      */
@@ -55,6 +57,7 @@ class Subject extends Model
         'description',
         'publish_at',
     ];
+
     /**
      * @var string[]
      */

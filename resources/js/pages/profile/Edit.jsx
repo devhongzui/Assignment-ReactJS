@@ -38,8 +38,10 @@ export default function Edit() {
         setValidate({});
 
         edit(event.target.elements)
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(
+                    setToast({ message: t("Profile updated successfully!") }),
+                );
 
                 dispatch(refreshUser());
 

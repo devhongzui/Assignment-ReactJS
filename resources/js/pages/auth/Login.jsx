@@ -38,11 +38,21 @@ export default function Login() {
 
         login(event.target.elements)
             .then((success) => {
-                dispatch(setToast(success.data));
-
                 if (success.data["two_factor"]) {
+                    dispatch(
+                        setToast({
+                            message: t(
+                                "Complete two-step verification to sign in",
+                            ),
+                        }),
+                    );
+
                     navigate(`/${i18next.language}/two-factor-challenge`);
                 } else {
+                    dispatch(
+                        setToast({ message: t("Logged in successfully!") }),
+                    );
+
                     dispatch(refreshUser());
 
                     navigate(`/${i18next.language}`);

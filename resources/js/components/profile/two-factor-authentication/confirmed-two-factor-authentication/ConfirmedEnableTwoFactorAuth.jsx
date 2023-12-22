@@ -20,8 +20,14 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
         setValidate({});
 
         confirmedTwoFactorAuthentication(event.target.elements)
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(
+                    setToast({
+                        message: t(
+                            "Enabled two-step verification successfully!",
+                        ),
+                    }),
+                );
 
                 dispatch(refreshUser());
             })
