@@ -7,7 +7,7 @@ import {
     getSubDistricts,
 } from "../../../services/profile.jsx";
 
-export default function Address({ validate, user }) {
+export default function Address({ user, validate }) {
     const { t } = useTranslation();
 
     const [provinces, setProvinces] = useState([]);
@@ -52,7 +52,7 @@ export default function Address({ validate, user }) {
                 <div className="form-floating mb-3">
                     <select
                         className={
-                            validate?.province_code
+                            validate.province_code
                                 ? "form-control is-invalid"
                                 : "form-control"
                         }
@@ -70,7 +70,7 @@ export default function Address({ validate, user }) {
                         ))}
                     </select>
                     <label>{t("Province")}</label>
-                    <ValidateMessage field={validate?.province_code} />
+                    <ValidateMessage field={validate.province_code} />
                 </div>
             )}
             <div className="row">
@@ -78,7 +78,7 @@ export default function Address({ validate, user }) {
                     <div className="form-floating mb-3">
                         <select
                             className={
-                                validate?.district_code
+                                validate.district_code
                                     ? "form-control is-invalid"
                                     : "form-control"
                             }
@@ -99,14 +99,14 @@ export default function Address({ validate, user }) {
                             )}
                         </select>
                         <label>{t("District")}</label>
-                        <ValidateMessage field={validate?.district_code} />
+                        <ValidateMessage field={validate.district_code} />
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="form-floating mb-3">
                         <select
                             className={
-                                validate?.sub_district_code
+                                validate.sub_district_code
                                     ? "form-control is-invalid"
                                     : "form-control"
                             }
@@ -127,7 +127,7 @@ export default function Address({ validate, user }) {
                             )}
                         </select>
                         <label>{t("Sub district")}</label>
-                        <ValidateMessage field={validate?.sub_district_code} />
+                        <ValidateMessage field={validate.sub_district_code} />
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ export default function Address({ validate, user }) {
                 <input
                     type="text"
                     className={
-                        validate?.address_detail
+                        validate.address_detail
                             ? "form-control is-invalid"
                             : "form-control"
                     }
@@ -144,7 +144,7 @@ export default function Address({ validate, user }) {
                     autoComplete="address_detail"
                 />
                 <label>{t("Address detail")}</label>
-                <ValidateMessage field={validate?.address_detail} />
+                <ValidateMessage field={validate.address_detail} />
             </div>
         </>
     );

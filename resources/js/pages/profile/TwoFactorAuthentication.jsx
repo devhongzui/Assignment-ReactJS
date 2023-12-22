@@ -1,16 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { checkPasswordConfirm, initSite } from "../../../helper.js";
+import { checkPasswordConfirm, initSite } from "../../helper.js";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshUser, userData } from "../../../reduxers/user.jsx";
-import Form from "../../../templates/Form.jsx";
+import { refreshUser, userData } from "../../reduxers/user.jsx";
+import Form from "../../templates/Form.jsx";
 import { useEffect, useState } from "react";
-import { setToast } from "../../../reduxers/toast.jsx";
-import ConfirmedEnableTwoFactorAuth from "./confirmed-two-factor-authentication/ConfirmedEnableTwoFactorAuth.jsx";
-import TwoFactorRecoveryCodes from "./TwoFactorRecoveryCodes.jsx";
+import { setToast } from "../../reduxers/toast.jsx";
+import ConfirmedEnableTwoFactorAuth from "../../components/profile/two-factor-authentication/confirmed-two-factor-authentication/ConfirmedEnableTwoFactorAuth.jsx";
+import TwoFactorRecoveryCodes from "../../components/profile/two-factor-authentication/TwoFactorRecoveryCodes.jsx";
 import {
     disableTwoFactorAuthentication,
     enableTwoFactorAuthentication,
-} from "../../../services/profile.jsx";
+} from "../../services/profile.jsx";
 
 export default function TwoFactorAuthentication() {
     const dispatch = useDispatch();
@@ -41,7 +41,23 @@ export default function TwoFactorAuthentication() {
               button: {
                   class: "btn-danger",
                   label: t("Disable"),
-                  handleEvent: disableTwoStepAuthentication,
+                  handleEvent: () => {
+                      disableTwoFactorAuthentication()
+                          .then((success) => {
+                              dispatch(setToast(success.data));
+
+                              setQr(null);
+
+                              dispatch(refreshUser());
+                          })
+                          .catch((error) =>
+                              dispatch(
+                                  setToast({
+                                      message: error.response.data.message,
+                                  }),
+                              ),
+                          );
+                  },
               },
           }
         : {
@@ -69,20 +85,6 @@ export default function TwoFactorAuthentication() {
                   },
               },
           };
-
-    function disableTwoStepAuthentication() {
-        disableTwoFactorAuthentication()
-            .then((success) => {
-                dispatch(setToast(success.data));
-
-                setQr(null);
-
-                dispatch(refreshUser());
-            })
-            .catch((error) =>
-                dispatch(setToast({ message: error.response.data.message })),
-            );
-    }
 
     return (
         <Form title={web.title} image={web.image}>

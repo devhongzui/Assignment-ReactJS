@@ -30,7 +30,7 @@ export default function User({ user }) {
                 navigate(`/${i18next.language}`);
             })
             .catch((error) => {
-                dispatch(setToast({ message: error.response.data.message }));
+                dispatch(setToast(error.response.data));
             });
     }
 

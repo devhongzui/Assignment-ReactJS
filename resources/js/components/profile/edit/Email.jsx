@@ -1,7 +1,7 @@
 import ValidateMessage from "../../auth/login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
 
-export default function Email({ validate, user }) {
+export default function Email({ email, validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -9,14 +9,16 @@ export default function Email({ validate, user }) {
             <input
                 type="email"
                 className={
-                    validate?.email ? "form-control is-invalid" : "form-control"
+                    validate_message
+                        ? "form-control is-invalid"
+                        : "form-control"
                 }
                 name="email"
-                defaultValue={user.email}
+                defaultValue={email}
                 autoComplete="email"
             />
             <label>{t("Email")}</label>
-            <ValidateMessage field={validate?.email} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { userData } from "../../../reduxers/user.jsx";
 import { useTranslation } from "react-i18next";
 
-export default function Email({ validate }) {
+export default function Email({ validate_message }) {
     const { t } = useTranslation();
 
     const user = useSelector(userData);
@@ -13,7 +13,9 @@ export default function Email({ validate }) {
             <input
                 type="email"
                 className={
-                    validate?.email ? "form-control is-invalid" : "form-control"
+                    validate_message
+                        ? "form-control is-invalid"
+                        : "form-control"
                 }
                 name="email"
                 value={user.email}
@@ -21,7 +23,7 @@ export default function Email({ validate }) {
                 autoComplete="email"
             />
             <label>{t("Email")}</label>
-            <ValidateMessage field={validate?.email} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }

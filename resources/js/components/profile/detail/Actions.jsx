@@ -28,7 +28,7 @@ export default function Actions() {
                 navigate(`/${i18next.language}`);
             })
             .catch((error) => {
-                dispatch(setToast({ message: error.response.data.message }));
+                dispatch(setToast(error.response.data));
             });
     }
 

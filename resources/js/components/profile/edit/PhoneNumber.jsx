@@ -1,7 +1,7 @@
 import ValidateMessage from "../../auth/login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
 
-export default function PhoneNumber({ validate, user }) {
+export default function PhoneNumber({ phone_number, validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -9,16 +9,16 @@ export default function PhoneNumber({ validate, user }) {
             <input
                 type="text"
                 className={
-                    validate?.phone_number
+                    validate_message
                         ? "form-control is-invalid"
                         : "form-control"
                 }
                 name="phone_number"
-                defaultValue={user["phone_number"]}
+                defaultValue={phone_number}
                 autoComplete="phone_number"
             />
             <label>{t("Phone number")}</label>
-            <ValidateMessage field={validate?.phone_number} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }

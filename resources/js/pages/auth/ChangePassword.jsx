@@ -1,16 +1,16 @@
-import { checkPasswordConfirm, initSite } from "../../../helper.js";
-import Form from "../../../templates/Form.jsx";
+import { checkPasswordConfirm, initSite } from "../../helper.js";
+import Form from "../../templates/Form.jsx";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Submit from "../login/Submit.jsx";
+import Submit from "../../components/auth/login/Submit.jsx";
 import { useDispatch } from "react-redux";
-import Email from "./Email.jsx";
-import Password from "./Password.jsx";
-import PasswordConfirmation from "./PasswordConfirmation.jsx";
-import { setToast } from "../../../reduxers/toast.jsx";
+import Email from "../../components/auth/change-password/Email.jsx";
+import Password from "../../components/auth/change-password/Password.jsx";
+import PasswordConfirmation from "../../components/auth/change-password/PasswordConfirmation.jsx";
+import { setToast } from "../../reduxers/toast.jsx";
 import i18next from "i18next";
 import { useNavigate } from "react-router-dom";
-import { changePassword } from "../../../services/auth.jsx";
+import { changePassword } from "../../services/auth.jsx";
 
 export default function ChangePassword() {
     const dispatch = useDispatch();
@@ -30,12 +30,12 @@ export default function ChangePassword() {
         checkPasswordConfirm();
     }, []);
 
-    const [validate, setValidate] = useState(null);
+    const [validate, setValidate] = useState({});
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate(null);
+        setValidate({});
 
         changePassword(event.target.elements)
             .then((success) => {
@@ -46,10 +46,7 @@ export default function ChangePassword() {
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-                else
-                    dispatch(
-                        setToast({ message: error.response.data.message }),
-                    );
+                else dispatch(setToast(error.response.data));
             });
     }
 
@@ -57,10 +54,10 @@ export default function ChangePassword() {
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
                 <fieldset>
-                    <Email validate={validate} />
+                    <Email validate_message={validate.email} />
                     <div className="row">
                         <div className="col-md-6">
-                            <Password validate={validate} />
+                            <Password validate_message={validate.password} />
                         </div>
                         <div className="col-md-6">
                             <PasswordConfirmation />

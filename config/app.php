@@ -18,16 +18,6 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
-    'name_html' => env('APP_NAME_HTML'),
-
-    'dev_link' => env('APP_DEV_LINK'),
-
-    'dev_name' => env('APP_DEV_NAME'),
-
-    'dev_mail' => env('APP_DEV_MAIL'),
-
-    'dev_phone' => env('APP_DEV_PHONE'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Environment

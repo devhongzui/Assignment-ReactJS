@@ -9,9 +9,9 @@ export default function Toast() {
 
     return (
         toast && (
-            <div className="toast-container p-3 bottom-0 end-0">
+            <div className="toast-container position-fixed bottom-0 end-0 p-3">
                 <div
-                    className={`toast show align-items-center ${toast.background}`}
+                    className={`toast fade show align-items-center ${toast.background}`}
                     role="alert"
                     aria-live="assertive"
                     aria-atomic="true"

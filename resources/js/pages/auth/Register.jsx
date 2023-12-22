@@ -1,22 +1,22 @@
-import { initSite } from "../../../helper.js";
-import Form from "../../../templates/Form.jsx";
+import { initSite } from "../../helper.js";
+import Form from "../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Submit from "../login/Submit.jsx";
-import Name from "./Name.jsx";
-import Email from "./Email.jsx";
-import Password from "./Password.jsx";
-import PasswordConfirmation from "./PasswordConfirmation.jsx";
-import Birthdate from "./Birthdate.jsx";
-import Gender from "./Gender.jsx";
-import Terms from "./Terms.jsx";
-import { setToast } from "../../../reduxers/toast.jsx";
+import Submit from "../../components/auth/login/Submit.jsx";
+import Name from "../../components/auth/register/Name.jsx";
+import Email from "../../components/auth/register/Email.jsx";
+import Password from "../../components/auth/register/Password.jsx";
+import PasswordConfirmation from "../../components/auth/register/PasswordConfirmation.jsx";
+import Birthdate from "../../components/auth/register/Birthdate.jsx";
+import Gender from "../../components/auth/register/Gender.jsx";
+import Terms from "../../components/auth/register/Terms.jsx";
+import { setToast } from "../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
-import OAuth from "../login/OAuth.jsx";
+import OAuth from "../../components/auth/login/OAuth.jsx";
 import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
-import { refreshUser } from "../../../reduxers/user.jsx";
-import { register } from "../../../services/auth.jsx";
+import { refreshUser } from "../../reduxers/user.jsx";
+import { register } from "../../services/auth.jsx";
 
 export default function Register() {
     const dispatch = useDispatch();
@@ -32,12 +32,12 @@ export default function Register() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState(null);
+    const [validate, setValidate] = useState({});
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate(null);
+        setValidate({});
 
         register(event.target.elements)
             .then((success) => {
@@ -50,10 +50,7 @@ export default function Register() {
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-                else
-                    dispatch(
-                        setToast({ message: error.response.data.message }),
-                    );
+                else dispatch(setToast(error.response.data));
             });
     }
 
@@ -61,25 +58,25 @@ export default function Register() {
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
                 <fieldset>
-                    <Name validate={validate} />
-                    <Email validate={validate} />
+                    <Name validate_message={validate.name} />
+                    <Email validate_message={validate.email} />
                     <div className="row">
                         <div className="col-md-6">
-                            <Password validate={validate} />
+                            <Password validate_message={validate.password} />
                         </div>
                         <div className="col-md-6">
-                            <PasswordConfirmation validate={validate} />
+                            <PasswordConfirmation />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-6">
-                            <Birthdate validate={validate} />
+                            <Birthdate validate_message={validate.birthdate} />
                         </div>
                         <div className="col-md-6">
-                            <Gender validate={validate} />
+                            <Gender validate_message={validate.gender} />
                         </div>
                     </div>
-                    <Terms validate={validate} />
+                    <Terms validate_message={validate.terms} />
                 </fieldset>
                 <Submit label={t("Register")} />
                 <OAuth />

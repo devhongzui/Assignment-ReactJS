@@ -1,12 +1,12 @@
-import { initSite, urlHelper } from "../../../helper.js";
-import Form from "../../../templates/Form.jsx";
+import { initSite, urlHelper } from "../../helper.js";
+import Form from "../../templates/Form.jsx";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshUser, userData } from "../../../reduxers/user.jsx";
-import { setToast } from "../../../reduxers/toast.jsx";
+import { refreshUser, userData } from "../../reduxers/user.jsx";
+import { setToast } from "../../reduxers/toast.jsx";
 import { useNavigate } from "react-router-dom";
 import i18next from "i18next";
-import { verifyEmail } from "../../../services/auth.jsx";
+import { verifyEmail } from "../../services/auth.jsx";
 
 export default function VerifyEmail() {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export default function VerifyEmail() {
                 }
             })
             .catch((error) => {
-                dispatch(setToast({ message: error.response.data.message }));
+                dispatch(setToast(error.response.data));
             });
     }
 

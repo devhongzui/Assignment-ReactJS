@@ -1,12 +1,12 @@
-import { initSite } from "../../../helper.js";
-import Form from "../../../templates/Form.jsx";
+import { initSite } from "../../helper.js";
+import Form from "../../templates/Form.jsx";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Submit from "../login/Submit.jsx";
+import Submit from "../../components/auth/login/Submit.jsx";
 import { useDispatch } from "react-redux";
-import { setToast } from "../../../reduxers/toast.jsx";
-import Email from "./Email.jsx";
-import { forgotPassword } from "../../../services/auth.jsx";
+import { setToast } from "../../reduxers/toast.jsx";
+import Email from "../../components/auth/forgot-password/Email.jsx";
+import { forgotPassword } from "../../services/auth.jsx";
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
@@ -20,12 +20,12 @@ export default function ForgotPassword() {
 
     initSite(web);
 
-    const [validate, setValidate] = useState(null);
+    const [validate, setValidate] = useState({});
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate(null);
+        setValidate({});
 
         forgotPassword(event.target.elements)
             .then((success) => {
@@ -34,10 +34,7 @@ export default function ForgotPassword() {
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-                else
-                    dispatch(
-                        setToast({ message: error.response.data.message }),
-                    );
+                else dispatch(setToast(error.response.data));
             });
     }
 
@@ -45,7 +42,7 @@ export default function ForgotPassword() {
         <Form title={web.title} image={web.image}>
             <form onSubmit={callApi}>
                 <fieldset>
-                    <Email validate={validate} />
+                    <Email validate_message={validate.email} />
                 </fieldset>
                 <Submit label={t("Submit")} />
             </form>

@@ -1,7 +1,7 @@
 import ValidateMessage from "../../auth/login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
 
-export default function Birthdate({ validate, user }) {
+export default function Birthdate({ birthdate, validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -9,15 +9,15 @@ export default function Birthdate({ validate, user }) {
             <input
                 type="date"
                 className={
-                    validate?.birthdate
+                    validate_message
                         ? "form-control is-invalid"
                         : "form-control"
                 }
                 name="birthdate"
-                defaultValue={user.birthdate}
+                defaultValue={birthdate}
             />
             <label>{t("Birthdate")}</label>
-            <ValidateMessage field={validate?.birthdate} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }

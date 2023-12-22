@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import TableOfContents from "../privacy-policy/TableOfContents.jsx";
-import CollectInformation from "./CollectInformation.jsx";
-import Introduce from "./Introduce.jsx";
-import OtherRules from "./OtherRules.jsx";
-import Competition from "./Competition.jsx";
-import Partner from "./Partner.jsx";
-import Cookie from "./Cookie.jsx";
-import Security from "./Security.jsx";
-import Permission from "./Permission.jsx";
-import { assetHelper, initSite } from "../../../helper.js";
+import TableOfContents from "../../components/quick-link/privacy-policy/TableOfContents.jsx";
+import CollectInformation from "../../components/quick-link/security-policy/CollectInformation.jsx";
+import Introduce from "../../components/quick-link/security-policy/Introduce.jsx";
+import OtherRules from "../../components/quick-link/security-policy/OtherRules.jsx";
+import Competition from "../../components/quick-link/security-policy/Competition.jsx";
+import Partner from "../../components/quick-link/security-policy/Partner.jsx";
+import Cookie from "../../components/quick-link/security-policy/Cookie.jsx";
+import Security from "../../components/quick-link/security-policy/Security.jsx";
+import Permission from "../../components/quick-link/security-policy/Permission.jsx";
+import { assetHelper, initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;

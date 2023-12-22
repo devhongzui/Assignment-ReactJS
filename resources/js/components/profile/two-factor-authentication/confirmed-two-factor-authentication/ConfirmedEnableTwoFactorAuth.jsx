@@ -12,12 +12,12 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
 
     const { t } = useTranslation();
 
-    const [validate, setValidate] = useState(null);
+    const [validate, setValidate] = useState({});
 
     function callApi(event) {
         event.preventDefault();
 
-        setValidate(null);
+        setValidate({});
 
         confirmedTwoFactorAuthentication(event.target.elements)
             .then((success) => {
@@ -28,10 +28,7 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
             .catch((error) => {
                 if (error.response.data.errors)
                     setValidate(error.response.data.errors);
-                else
-                    dispatch(
-                        setToast({ message: error.response.data.message }),
-                    );
+                else dispatch(setToast(error.response.data));
             });
     }
 
@@ -54,7 +51,7 @@ export default function ConfirmedEnableTwoFactorAuth({ qr }) {
                         <div className="col-lg-6">
                             <form onSubmit={callApi}>
                                 <fieldset>
-                                    <Code validate={validate} />
+                                    <Code validate_message={validate.code} />
                                 </fieldset>
                                 <Submit label={t("Submit")} />
                             </form>

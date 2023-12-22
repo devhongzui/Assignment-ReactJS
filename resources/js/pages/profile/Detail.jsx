@@ -1,19 +1,19 @@
 import { useTranslation } from "react-i18next";
-import { initSite } from "../../../helper.js";
+import { initSite } from "../../helper.js";
 import { useSelector } from "react-redux";
-import { userData } from "../../../reduxers/user.jsx";
-import Form from "../../../templates/Form.jsx";
-import Socials from "./Socials.jsx";
-import TwoFactorAuth from "./TwoFactorAuth.jsx";
-import AddressDetail from "./AddressDetail.jsx";
-import Gender from "./Gender.jsx";
-import Avatar from "./Avatar.jsx";
-import Fullname from "./Fullname.jsx";
-import Birthdate from "./Birthdate.jsx";
-import Email from "./Email.jsx";
-import PhoneNumber from "./PhoneNumber.jsx";
-import Actions from "./Actions.jsx";
-import State from "./State.jsx";
+import { userData } from "../../reduxers/user.jsx";
+import Form from "../../templates/Form.jsx";
+import Socials from "../../components/profile/detail/Socials.jsx";
+import TwoFactorAuth from "../../components/profile/detail/TwoFactorAuth.jsx";
+import AddressDetail from "../../components/profile/detail/AddressDetail.jsx";
+import Gender from "../../components/profile/detail/Gender.jsx";
+import Avatar from "../../components/profile/detail/Avatar.jsx";
+import Fullname from "../../components/profile/detail/Fullname.jsx";
+import Birthdate from "../../components/profile/detail/Birthdate.jsx";
+import Email from "../../components/profile/detail/Email.jsx";
+import PhoneNumber from "../../components/profile/detail/PhoneNumber.jsx";
+import Actions from "../../components/profile/detail/Actions.jsx";
+import State from "../../components/profile/detail/State.jsx";
 
 export default function Detail() {
     const { t } = useTranslation();

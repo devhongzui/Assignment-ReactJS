@@ -1,7 +1,7 @@
 import ValidateMessage from "../login/ValidateMessage.jsx";
 import { useTranslation } from "react-i18next";
 
-export default function RecoveryCode({ validate }) {
+export default function RecoveryCode({ validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -10,14 +10,14 @@ export default function RecoveryCode({ validate }) {
                 <input
                     type="text"
                     className={
-                        validate?.recovery_code
+                        validate_message
                             ? "form-control is-invalid"
                             : "form-control"
                     }
                     name="recovery_code"
                 />
                 <label>{t("Recovery Code")}</label>
-                <ValidateMessage field={validate?.recovery_code} />
+                <ValidateMessage field={validate_message} />
             </div>
         </div>
     );

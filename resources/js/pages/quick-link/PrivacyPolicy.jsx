@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import TableOfContents from "./TableOfContents.jsx";
-import Introduce from "./Introduce.jsx";
-import GeneralPersonalData from "./GeneralPersonalData.jsx";
-import SensitivePersonalData from "./SensitivePersonalData.jsx";
-import SharePersonalData from "./SharePersonalData.jsx";
-import ThirdPartySupplier from "./ThirdPartySupplier.jsx";
-import Permission from "./Permission.jsx";
-import Cookie from "./Cookie.jsx";
-import DataSecurity from "./DataSecurity.jsx";
-import OptionsCenter from "./OptionsCenter.jsx";
-import { assetHelper, initSite } from "../../../helper.js";
+import TableOfContents from "../../components/quick-link/privacy-policy/TableOfContents.jsx";
+import Introduce from "../../components/quick-link/privacy-policy/Introduce.jsx";
+import GeneralPersonalData from "../../components/quick-link/privacy-policy/GeneralPersonalData.jsx";
+import SensitivePersonalData from "../../components/quick-link/privacy-policy/SensitivePersonalData.jsx";
+import SharePersonalData from "../../components/quick-link/privacy-policy/SharePersonalData.jsx";
+import ThirdPartySupplier from "../../components/quick-link/privacy-policy/ThirdPartySupplier.jsx";
+import Permission from "../../components/quick-link/privacy-policy/Permission.jsx";
+import Cookie from "../../components/quick-link/privacy-policy/Cookie.jsx";
+import DataSecurity from "../../components/quick-link/privacy-policy/DataSecurity.jsx";
+import OptionsCenter from "../../components/quick-link/privacy-policy/OptionsCenter.jsx";
+import { assetHelper, initSite } from "../../helper.js";
 
 const ImageStyle = styled.img`
     height: 300px;

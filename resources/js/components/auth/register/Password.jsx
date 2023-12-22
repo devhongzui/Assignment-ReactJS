@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import ValidateMessage from "../login/ValidateMessage.jsx";
 
-export default function Password({ validate }) {
+export default function Password({ validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -9,14 +9,14 @@ export default function Password({ validate }) {
             <input
                 type="password"
                 className={
-                    validate?.password
+                    validate_message
                         ? "form-control is-invalid"
                         : "form-control"
                 }
                 name="password"
             />
             <label>{t("Password")}</label>
-            <ValidateMessage field={validate?.password} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }

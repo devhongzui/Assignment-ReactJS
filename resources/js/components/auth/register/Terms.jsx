@@ -3,7 +3,7 @@ import ValidateMessage from "../login/ValidateMessage.jsx";
 import { Link } from "react-router-dom";
 import { urlHelper } from "../../../helper.js";
 
-export default function Terms({ validate }) {
+export default function Terms({ validate_message }) {
     const { t } = useTranslation();
 
     return (
@@ -12,7 +12,7 @@ export default function Terms({ validate }) {
                 id="terms-register-form"
                 type="checkbox"
                 className={
-                    validate?.terms
+                    validate_message
                         ? "form-check-input is-invalid"
                         : "form-check-input"
                 }
@@ -39,7 +39,7 @@ export default function Terms({ validate }) {
                     {t("Security policy")}
                 </Link>
             </label>
-            <ValidateMessage field={validate?.terms} />
+            <ValidateMessage field={validate_message} />
         </div>
     );
 }
