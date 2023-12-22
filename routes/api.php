@@ -22,3 +22,4 @@ Route::middleware(['auth:sanctum'])
     });
 
 require __DIR__ . '/api/address.php';
+require __DIR__ . '/api/study.php';

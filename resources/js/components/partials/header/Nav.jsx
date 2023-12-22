@@ -13,7 +13,7 @@ export default function Nav() {
         <ul className="navbar-nav">
             <li className="nav-item">
                 <Link
-                    to={urlHelper("#")}
+                    to={urlHelper("courses")}
                     role="link"
                     className="nav-link text-end px-2"
                     aria-label={t("Courses")}

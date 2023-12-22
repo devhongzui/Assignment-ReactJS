@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Study;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('verified')->group(function () {
-    Route::get('courses', [CourseController::class, 'show'])
+    Route::get('courses', fn() => view('layouts.app'))
         ->name('courses');
 
     Route::get('course/{course_id}', [CourseController::class, 'subjects'])

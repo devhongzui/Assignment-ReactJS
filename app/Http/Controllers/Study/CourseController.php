@@ -11,37 +11,6 @@ use Illuminate\View\View;
 class CourseController extends Controller
 {
     /**
-     * @param Request $request
-     * @return View
-     */
-    public function show(Request $request): View
-    {
-        $courses = Course::inRandomOrder('id')
-            ->paginate(8)
-            ->onEachSide(1);
-
-        return $request->wantsJson()
-            ? view('study.courses.lazy')->with([
-                'data' => $courses,
-                'route' => 'course',
-                'is_lazy' => true,
-            ])
-            : view('study.courses')->with([
-                'web_title' => __('Summary of programming courses'),
-                'web_description' => implode(' ', [
-                    __('Welcome to the top programming course aggregator!'),
-                    __('We offer a variety of programming courses, from basic to advanced, to help you improve your programming skills.'),
-                    __('With courses in Python, Java, JavaScript, and many other languages, you have the opportunity to learn syntax, programming logic, and practice through real-life projects.'),
-                    __('Experienced teaching staff ensure your learning brings real value. Explore new opportunities with us today!'),
-                ]),
-                'web_image' => asset('storage/images/undraw/Learning.png'),
-                'data' => $courses,
-                'route' => 'course',
-                'course_page' => true,
-            ]);
-    }
-
-    /**
      * @param int $course_id
      * @param Request $request
      * @return View
@@ -56,7 +25,7 @@ class CourseController extends Controller
                 ->paginate(8)
                 ->appends($query);
 
-            return view('study.course.lazy')->with([
+            return view('layouts.app')->with([
                 'data' => $subjects,
                 'route' => 'subject',
                 'is_lazy' => true,
@@ -70,7 +39,7 @@ class CourseController extends Controller
                 ->onEachSide(1)
                 ->appends($query);
 
-            return view('study.course')->with([
+            return view('layouts.app')->with([
                 'web_title' => $course->title,
                 'web_description' => $course->description,
                 'web_image' => asset($course->image),

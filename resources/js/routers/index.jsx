@@ -16,6 +16,7 @@ import SecurityPolicy from "../pages/quick-link/SecurityPolicy.jsx";
 import Edit from "../pages/profile/Edit.jsx";
 import TwoFactorAuthenticationProfile from "../pages/profile/TwoFactorAuthentication.jsx";
 import TwoFactorAuthenticationChallenge from "../pages/auth/TwoFactorAuthentication.jsx";
+import Courses from "../pages/study/Courses.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -86,6 +87,10 @@ export default function () {
                 {
                     path: "user/profile-two-step-authentication",
                     element: <TwoFactorAuthenticationProfile />,
+                },
+                {
+                    path: "courses",
+                    element: <Courses />,
                 },
             ],
         },

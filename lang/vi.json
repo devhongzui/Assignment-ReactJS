@@ -77,10 +77,11 @@
     "Models": "Mô hình",
     "Summary of programming courses": "Tổng hợp Khóa học lập trình",
     "The subject is already in the Database": "Môn học đã có trong Cơ sở dữ liệu",
-    "Welcome to the top programming course aggregator!": "Chào mừng bạn đến với trang tổng hợp khóa học lập trình hàng đầu!",
-    "We offer a variety of programming courses, from basic to advanced, to help you improve your programming skills.": "Chúng tôi cung cấp các khóa học lập trình đa dạng, từ cơ bản đến nâng cao, giúp bạn nâng cao kỹ năng lập trình của mình.",
-    "With courses in Python, Java, JavaScript, and many other languages, you have the opportunity to learn syntax, programming logic, and practice through real-life projects.": "Với các khóa học về Python, Java, JavaScript, và nhiều ngôn ngữ khác, bạn có cơ hội học cú pháp, logic lập trình và thực hành thông qua dự án thực tế.",
-    "Experienced teaching staff ensure your learning brings real value. Explore new opportunities with us today!": "Đội ngũ giảng viên giàu kinh nghiệm đảm bảo việc học của bạn mang lại giá trị thực tế. Hãy khám phá cơ hội mới cùng chúng tôi ngay hôm nay!",
+    "Welcome to the top programming course aggregator": "Chào mừng bạn đến với trang tổng hợp khóa học lập trình hàng đầu",
+    "We offer a variety of programming courses, from basic to advanced, to help you improve your programming skills": "Chúng tôi cung cấp các khóa học lập trình đa dạng, từ cơ bản đến nâng cao, giúp bạn nâng cao kỹ năng lập trình của mình",
+    "With courses in Python, Java, JavaScript, and many other languages, you have the opportunity to learn syntax, programming logic, and practice through real-life projects": "Với các khóa học về Python, Java, JavaScript, và nhiều ngôn ngữ khác, bạn có cơ hội học cú pháp, logic lập trình và thực hành thông qua dự án thực tế",
+    "Experienced teaching staff ensure your learning brings real value": "Đội ngũ giảng viên giàu kinh nghiệm đảm bảo việc học của bạn mang lại giá trị thực tế",
+    "Explore new opportunities with us today!": "Hãy khám phá cơ hội mới cùng chúng tôi ngay hôm nay!",
     "Summary of Tools": "Tổng hợp Công cụ",
     "Diverse sources of documents and information to support those who are passionate about programming and Information Technology": "Nguồn tài liệu và thông tin đa dạng, nhằm hỗ trợ cho những người đam mê lập trình và Công nghệ thông tin",
     "We've compiled useful tools, resources, and information to help you improve your programming skills, learn IT, and solve problems related to the industry.": "Chúng tôi đã tổng hợp các công cụ, tài liệu, và thông tin hữu ích để giúp bạn nâng cao kỹ năng lập trình, học tập về CNTT, và giải quyết các vấn đề liên quan đến ngành này.",
@@ -453,5 +454,7 @@
     "Verification email has been sent": "Thư xác thực đã được gửi đến",
     "Please check your Inbox or": "Vui lòng kiểm tra Hộp thư đến hoặc",
     "click here to try again": "nhấp vào đây để thử lại",
-    "Choose another method": "Chọn phương thức khác"
+    "Choose another method": "Chọn phương thức khác",
+    "Previous": "Trang trước",
+    "Next": "Trang sau"
 }
