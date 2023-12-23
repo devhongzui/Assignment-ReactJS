@@ -11,10 +11,7 @@ Route::middleware('verified')->group(function () {
     Route::get('course/{course_id}', fn() => view('layouts.app'))
         ->name('course');
 
-    Route::get('subjects', [SubjectController::class, 'show'])
-        ->name('subjects');
-
-    Route::get('subject/{subject_id}', [SubjectController::class, 'lessons'])
+    Route::get('subject/{subject_id}', fn() => view('layouts.app'))
         ->name('subject');
 
     Route::get('channels', [ChannelController::class, 'show'])

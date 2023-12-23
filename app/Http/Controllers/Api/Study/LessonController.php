@@ -3,27 +3,27 @@
 namespace App\Http\Controllers\Api\Study;
 
 use App\Http\Controllers\Controller;
-use App\Models\Subject;
+use App\Models\Lesson;
 use App\Models\Thumbnail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class LessonController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        return $request->exists('course_id')
-            ? Subject::whereCourseId($request->course_id)
+        return $request->exists('subject_id')
+            ? Lesson::whereSubjectId($request->subject_id)
                 ->with([
                     'thumbnails' =>
                         fn(HasMany $builder) => $builder->where('type', '=', Thumbnail::getTypeCode('maxres'))
                 ])
                 ->paginate(8)
                 ->appends($request->query())
-            : Subject::inRandomOrder('id')
+            : Lesson::inRandomOrder('id')
                 ->paginate($request->get('limit', 8))
                 ->onEachSide(1);
     }
@@ -32,11 +32,11 @@ class SubjectController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Subject
+     * @return Lesson
      */
-    public function show(int $id): Subject
+    public function show(int $id): Lesson
     {
-        return Subject::with([
+        return Lesson::with([
             'thumbnails' =>
                 fn(HasMany $builder) => $builder->where('type', '=', Thumbnail::getTypeCode('maxres'))
         ])

@@ -10,4 +10,7 @@ Route::prefix('study')->group(function () {
 
     Route::apiResource('subject', SubjectController::class)
         ->only('index', 'show');
+
+    Route::apiResource('lesson', LessonController::class)
+        ->only('index', 'show');
 });

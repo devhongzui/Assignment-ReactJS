@@ -17,14 +17,7 @@ const DescriptionDesktopStyle = styled.pre`
     -webkit-line-clamp: 3;
 `;
 
-export default function Detail({
-    title,
-    subTitle,
-    description,
-    link,
-    image,
-    pills,
-}) {
+export default function Detail({ title, subTitle, description, image, pills }) {
     return (
         <>
             <div className="card border-0 d-lg-none">
@@ -41,32 +34,15 @@ export default function Detail({
 
             <div className="row d-none d-lg-flex align-items-end">
                 <div className="col-3 mt-2">
-                    <a
-                        href={link}
-                        target="_blank"
-                        role="link"
-                        aria-label={title}
-                    >
-                        <ImageStyle
-                            src={image.src}
-                            className={`card-img rounded-4 ${image.class}`}
-                            alt={title}
-                        />
-                    </a>
+                    <ImageStyle
+                        src={image.src}
+                        className={`card-img rounded-4 ${image.class}`}
+                        alt={title}
+                    />
                 </div>
                 <div className="col-9 mt-2">
                     <div className="h5">{subTitle}</div>
-                    <div className="h2">
-                        <a
-                            href={link}
-                            target="_blank"
-                            role="link"
-                            aria-label={title}
-                            className="text-decoration-none"
-                        >
-                            {title}
-                        </a>
-                    </div>
+                    <div className="h2">{title}</div>
                     <DescriptionDesktopStyle className="overflow-hidden">
                         {description}
                     </DescriptionDesktopStyle>

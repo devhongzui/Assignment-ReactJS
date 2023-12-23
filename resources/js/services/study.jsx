@@ -20,3 +20,15 @@ export const subjects = (course_id, page, limit) =>
             limit,
         },
     });
+
+export const subject = (subject_id) =>
+    axios.get(urlHelper(`api/study/subject/${subject_id}`));
+
+export const lessons = (subject_id, page, limit) =>
+    axios.get(urlHelper("api/study/lesson"), {
+        params: {
+            subject_id,
+            page,
+            limit,
+        },
+    });

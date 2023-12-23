@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { assetHelper, urlHelper } from "../../../helper.js";
 import Empty from "./Empty.jsx";
+import { Link } from "react-router-dom";
 
 const ImageStyle = styled.img`
     height: 100px;
@@ -25,8 +26,8 @@ export default function List({ list, route }) {
             {list.map((value, index) => (
                 <div key={index} className="col-sm-6 col-xl-3 mt-2 mb-4">
                     <div className="card border-0 bg-dark-subtle shadow-lg">
-                        <a
-                            href={urlHelper(`${route}/${value.id}`)}
+                        <Link
+                            to={urlHelper(`${route}/${value.id}`)}
                             role="link"
                             aria-label={value.title}
                         >
@@ -40,17 +41,17 @@ export default function List({ list, route }) {
                                 alt={value.title}
                                 className="card-img-top img-fluid bg-light object-fit-contain p-2"
                             />
-                        </a>
+                        </Link>
                         <div className="card-body">
-                            <a
-                                href={urlHelper(`${route}/${value.id}`)}
+                            <Link
+                                to={urlHelper(`${route}/${value.id}`)}
                                 role="link"
                                 aria-label={value.title}
                             >
                                 <TitleStyle className="card-title h5 overflow-hidden">
                                     {value.title}
                                 </TitleStyle>
-                            </a>
+                            </Link>
                             <DescriptionStyle className="card-text overflow-hidden">
                                 {value.description}
                             </DescriptionStyle>
