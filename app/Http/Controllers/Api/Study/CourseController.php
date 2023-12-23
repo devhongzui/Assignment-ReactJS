@@ -20,9 +20,12 @@ class CourseController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param int $id
+     * @return Course
      */
-    public function show(string $id)
+    public function show(int $id): Course
     {
-        //
+        return Course::find($id);
     }
 }

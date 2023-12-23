@@ -17,6 +17,7 @@ import Edit from "../pages/profile/Edit.jsx";
 import TwoFactorAuthenticationProfile from "../pages/profile/TwoFactorAuthentication.jsx";
 import TwoFactorAuthenticationChallenge from "../pages/auth/TwoFactorAuthentication.jsx";
 import Courses from "../pages/study/Courses.jsx";
+import Course from "../pages/study/Course.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -91,6 +92,10 @@ export default function () {
                 {
                     path: "courses",
                     element: <Courses />,
+                },
+                {
+                    path: "course/:course_id",
+                    element: <Course />,
                 },
             ],
         },

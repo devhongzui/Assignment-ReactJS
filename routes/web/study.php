@@ -8,7 +8,7 @@ Route::middleware('verified')->group(function () {
     Route::get('courses', fn() => view('layouts.app'))
         ->name('courses');
 
-    Route::get('course/{course_id}', [CourseController::class, 'subjects'])
+    Route::get('course/{course_id}', fn() => view('layouts.app'))
         ->name('course');
 
     Route::get('subjects', [SubjectController::class, 'show'])

@@ -1,28 +1,10 @@
-import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { assetHelper, initSite } from "../../helper.js";
+import { initSite } from "../../helper.js";
 import { useEffect, useState } from "react";
 import { courses } from "../../services/study.jsx";
-import Empty from "../../components/study/courses/Empty.jsx";
 import Paginate from "../../components/study/courses/Paginate.jsx";
 import { useSearchParams } from "react-router-dom";
-
-const ImageStyle = styled.img`
-    height: 100px;
-`;
-
-const TitleStyle = styled.div`
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-`;
-
-const DescriptionStyle = styled.p`
-    min-height: 70px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-`;
+import List from "../../components/study/courses/List.jsx";
 
 export default function Courses() {
     const { t } = useTranslation();
@@ -55,63 +37,25 @@ export default function Courses() {
 
     const [listCourse, setListCourse] = useState(null);
 
-    function getCourses(page, limit) {
+    function getCourses(page) {
         courses(page, limit).then((success) => setListCourse(success.data));
     }
 
     useEffect(() => {
-        getCourses(page, limit);
+        getCourses(page);
     }, []);
 
     function switchPage(event) {
         event.preventDefault();
 
-        getCourses(event.target.getAttribute("data-page"), limit);
+        getCourses(event.target.getAttribute("data-page"));
     }
 
     return (
         listCourse && (
             <div className="container my-3">
-                {listCourse.data ? (
-                    <div className="row">
-                        {listCourse.data.map((value, index) => (
-                            <div
-                                key={index}
-                                className="col-sm-6 col-xl-3 mt-2 mb-4"
-                            >
-                                <div className="card border-0 bg-dark-subtle shadow-lg">
-                                    <a
-                                        href=""
-                                        role="link"
-                                        aria-label={value.title}
-                                    >
-                                        <ImageStyle
-                                            src={assetHelper(value.image)}
-                                            alt={value.title}
-                                            className="card-img-top img-fluid bg-light object-fit-contain p-2"
-                                        />
-                                    </a>
-                                    <div className="card-body">
-                                        <a href="" role="link" aria-label="">
-                                            <TitleStyle className="card-title h5 overflow-hidden">
-                                                {value.title}
-                                            </TitleStyle>
-                                        </a>
-                                        <DescriptionStyle className="card-text overflow-hidden">
-                                            {value.description}
-                                        </DescriptionStyle>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <Empty />
-                )}
-
-                <div className="d-flex justify-content-center d-md-block mt-2">
-                    <Paginate page={listCourse} handlePageEvent={switchPage} />
-                </div>
+                <List list={listCourse.data} route="course" />
+                <Paginate page={listCourse} handlePageEvent={switchPage} />
             </div>
         )
     );

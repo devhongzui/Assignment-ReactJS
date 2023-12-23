@@ -1,4 +1,4 @@
-import "../scss/App.scss";
+import "../scss/main.scss";
 import "bootstrap";
 import React from "react";
 import ReactDOM from "react-dom/client";
