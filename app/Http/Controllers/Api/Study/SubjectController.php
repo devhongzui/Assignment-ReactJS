@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\Study;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
-use App\Models\Thumbnail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -18,8 +17,8 @@ class SubjectController extends Controller
         return $request->exists('course_id')
             ? Subject::whereCourseId($request->course_id)
                 ->with([
-                    'thumbnails' =>
-                        fn(HasMany $builder) => $builder->where('type', '=', Thumbnail::getTypeCode('maxres'))
+                    'thumbnails',
+                    'channel' => fn(BelongsTo $query) => $query->with('thumbnails'),
                 ])
                 ->paginate(8)
                 ->appends($request->query())
@@ -37,8 +36,8 @@ class SubjectController extends Controller
     public function show(int $id): Subject
     {
         return Subject::with([
-            'thumbnails' =>
-                fn(HasMany $builder) => $builder->where('type', '=', Thumbnail::getTypeCode('maxres'))
+            'thumbnails',
+            'channel' => fn(BelongsTo $query) => $query->with('thumbnails'),
         ])
             ->find($id);
     }

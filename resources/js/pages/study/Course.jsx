@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { course, subjects } from "../../services/study.jsx";
 import { useParams, useSearchParams } from "react-router-dom";
 import Detail from "../../components/study/course/Detail.jsx";
-import List from "../../components/study/courses/List.jsx";
+import List from "../../components/study/course/List.jsx";
 import Paginate from "../../components/study/courses/Paginate.jsx";
 
 export default function Course() {

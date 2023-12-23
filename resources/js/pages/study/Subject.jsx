@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { lessons, subject } from "../../services/study.jsx";
 import { useParams, useSearchParams } from "react-router-dom";
 import Detail from "../../components/study/course/Detail.jsx";
-import List from "../../components/study/courses/List.jsx";
+import List from "../../components/study/course/List.jsx";
 import Paginate from "../../components/study/courses/Paginate.jsx";
 
 export default function Subject() {
@@ -59,8 +59,9 @@ export default function Subject() {
                     description={subjectInformation.description}
                     image={{
                         src:
-                            subjectInformation["thumbnails"][0]?.url ??
-                            assetHelper("logo.png"),
+                            subjectInformation["thumbnails"][
+                                subjectInformation["thumbnails"].length - 1
+                            ]?.url ?? assetHelper("logo.png"),
                         class: "object-fit-cover",
                     }}
                     pills={[]}

@@ -32,12 +32,7 @@ export default function List({ list, route }) {
                             aria-label={value.title}
                         >
                             <ImageStyle
-                                src={
-                                    value.image
-                                        ? assetHelper(value.image)
-                                        : value["thumbnails"][0]?.url ??
-                                          assetHelper("logo.png")
-                                }
+                                src={assetHelper(value.image)}
                                 alt={value.title}
                                 className="card-img-top img-fluid bg-light object-fit-contain p-2"
                             />
