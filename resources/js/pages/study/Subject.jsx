@@ -69,7 +69,7 @@ export default function Subject() {
             )}
             {listLesson && (
                 <>
-                    <List list={listLesson.data} route="subject" />
+                    <List list={listLesson.data} route="lesson" />
                     <Paginate page={listLesson} handlePageEvent={switchPage} />
                 </>
             )}

@@ -11,6 +11,7 @@ const ImageChannelStyle = styled.img`
     width: 45px;
     height: 45px;
 `;
+
 const TitleStyle = styled.div`
     min-height: 50px;
     display: -webkit-box;

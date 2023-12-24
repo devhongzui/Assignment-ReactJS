@@ -32,3 +32,8 @@ export const lessons = (subject_id, page, limit) =>
             limit,
         },
     });
+
+export const lesson = (lesson_id, next_lesson) =>
+    axios.get(urlHelper(`api/study/lesson/${lesson_id}`), {
+        params: { next_lesson },
+    });

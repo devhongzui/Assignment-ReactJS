@@ -19,6 +19,7 @@ import TwoFactorAuthenticationChallenge from "../pages/auth/TwoFactorAuthenticat
 import Courses from "../pages/study/Courses.jsx";
 import Course from "../pages/study/Course.jsx";
 import Subject from "../pages/study/Subject.jsx";
+import Lesson from "../pages/study/Lesson.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -101,6 +102,10 @@ export default function () {
                 {
                     path: "subject/:subject_id",
                     element: <Subject />,
+                },
+                {
+                    path: "lesson/:lesson_id",
+                    element: <Lesson />,
                 },
             ],
         },
