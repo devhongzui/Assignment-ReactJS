@@ -60,6 +60,16 @@ class Course extends Model
      */
     public function subjects(): HasMany
     {
-        return $this->hasMany(Subject::class);
+        return $this
+            ->hasMany(Subject::class)
+            ->with('thumbnails');
+    }
+
+    /**
+     * @return array
+     */
+    public static function relationships(): array
+    {
+        return ['subjects'];
     }
 }

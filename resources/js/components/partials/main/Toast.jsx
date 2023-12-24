@@ -14,7 +14,7 @@ export default function Toast() {
                     className={`toast fade show align-items-center ${toast.background}`}
                     role="alert"
                     aria-live="assertive"
-                    aria-atomic="true"
+                    aria-atomic
                 >
                     <div className="d-flex">
                         <div className="toast-body">{toast.message}</div>

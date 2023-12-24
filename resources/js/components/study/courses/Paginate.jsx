@@ -33,7 +33,7 @@ export default function Paginate({ page, handlePageEvent }) {
                         ) : (
                             <li
                                 className="page-item disabled"
-                                aria-disabled="true"
+                                aria-disabled
                             >
                                 <span className="page-link">
                                     {t("Previous")}
@@ -55,7 +55,7 @@ export default function Paginate({ page, handlePageEvent }) {
                         ) : (
                             <li
                                 className="page-item disabled"
-                                aria-disabled="true"
+                                aria-disabled
                             >
                                 <span className="page-link">{t("Next")}</span>
                             </li>
@@ -94,12 +94,12 @@ export default function Paginate({ page, handlePageEvent }) {
                             ) : (
                                 <li
                                     className="page-item disabled"
-                                    aria-disabled="true"
+                                    aria-disabled
                                     aria-label={t("Previous")}
                                 >
                                     <span
                                         className="page-link"
-                                        aria-hidden="true"
+                                        aria-hidden
                                     >
                                         &lsaquo;
                                     </span>
@@ -147,12 +147,12 @@ export default function Paginate({ page, handlePageEvent }) {
                             ) : (
                                 <li
                                     className="page-item disabled"
-                                    aria-disabled="true"
+                                    aria-disabled
                                     aria-label={t("Next")}
                                 >
                                     <span
                                         className="page-link"
-                                        aria-hidden="true"
+                                        aria-hidden
                                     >
                                         &rsaquo;
                                     </span>

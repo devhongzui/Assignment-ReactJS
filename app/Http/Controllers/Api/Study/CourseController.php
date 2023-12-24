@@ -14,6 +14,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         return Course::inRandomOrder('id')
+            ->with(Course::relationships())
             ->paginate($request->get('limit', 8))
             ->onEachSide(1);
     }
@@ -26,6 +27,7 @@ class CourseController extends Controller
      */
     public function show(int $id): Course
     {
-        return Course::find($id);
+        return Course::with(Course::relationships())
+            ->find($id);
     }
 }

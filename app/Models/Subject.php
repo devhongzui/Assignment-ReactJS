@@ -86,7 +86,9 @@ class Subject extends Model
      */
     public function channel(): BelongsTo
     {
-        return $this->belongsTo(Channel::class);
+        return $this
+            ->belongsTo(Channel::class)
+            ->with('thumbnails');
     }
 
     /**
@@ -94,6 +96,21 @@ class Subject extends Model
      */
     public function lessons(): HasMany
     {
-        return $this->hasMany(Lesson::class);
+        return $this
+            ->hasMany(Lesson::class)
+            ->with('thumbnails');
+    }
+
+    /**
+     * @return array
+     */
+    public static function relationships(): array
+    {
+        return [
+            'thumbnails',
+            'course',
+            'channel',
+            'lessons',
+        ];
     }
 }

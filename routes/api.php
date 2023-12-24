@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::middleware(['auth:sanctum'])
         Route::get('/', fn(Request $request) => $request->user());
         Route::get('social', fn(Request $request) => $request->user()->socials);
     });
+
+Route::get('search', SearchController::class);
 
 require __DIR__ . '/api/address.php';
 require __DIR__ . '/api/study.php';

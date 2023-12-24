@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,12 +29,6 @@ Route::middleware('verified')->group(function () {
     Route::get('security-policy', fn() => view('layouts.app'))
         ->name('security-policy');
 });
-
-Route::get('search', fn() => view('layouts.app'))
-    ->name('search');
-
-Route::get('search/{query}', [SearchController::class, 'show'])
-    ->name('search.show');
 
 require base_path('vendor/laravel/fortify/routes/routes.php');
 require __DIR__ . '/web/auth.php';

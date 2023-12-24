@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Study;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -16,13 +15,11 @@ class SubjectController extends Controller
     {
         return $request->exists('course_id')
             ? Subject::whereCourseId($request->course_id)
-                ->with([
-                    'thumbnails',
-                    'channel' => fn(BelongsTo $query) => $query->with('thumbnails'),
-                ])
+                ->with(Subject::relationships())
                 ->paginate(8)
                 ->appends($request->query())
             : Subject::inRandomOrder('id')
+                ->with(Subject::relationships())
                 ->paginate($request->get('limit', 8))
                 ->onEachSide(1);
     }
@@ -35,10 +32,7 @@ class SubjectController extends Controller
      */
     public function show(int $id): Subject
     {
-        return Subject::with([
-            'thumbnails',
-            'channel' => fn(BelongsTo $query) => $query->with('thumbnails'),
-        ])
+        return Subject::with(Subject::relationships())
             ->find($id);
     }
 }

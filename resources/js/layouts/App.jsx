@@ -3,7 +3,8 @@ import Footer from "./partials/Footer.jsx";
 import { Outlet } from "react-router-dom";
 import Toast from "../components/partials/main/Toast.jsx";
 import { Suspense } from "react";
-import Actions from "../components/partials/main/Actions.jsx";
+import Actions from "../components/partials/main/actions/Actions.jsx";
+import Modals from "../components/partials/main/modals/Modals.jsx";
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
             <main>
                 <Outlet />
                 <Toast />
+                <Modals />
                 <Actions />
             </main>
             <Footer />
