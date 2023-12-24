@@ -20,7 +20,7 @@ export default function List({ listLesson, lessonId }) {
     return (
         listLesson && (
             <div className="card">
-                <h3 className="card-header">{t("Next lesson")}</h3>
+                <div className="card-header h3">{t("Next lesson")}</div>
                 <div className="card-body">
                     {listLesson.map((value, index) => (
                         <Link

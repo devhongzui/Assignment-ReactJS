@@ -70,17 +70,23 @@ export default function Video({ lesson }) {
                     </div>
                 </div>
             </DescriptionStyle>
-            <div className="card-header">
+            <div className="card-header rounded-bottom-2">
                 <Link to="" aria-label={lesson.channel.title} role="link">
-                    <ImageChannelStyle
-                        src={
-                            lesson.channel["thumbnails"][1]?.url ??
-                            assetHelper("logo.png")
-                        }
-                        alt={lesson.channel.title}
-                        className="rounded-5"
-                    />
-                    <span className="h5 ms-2">{lesson.channel.title}</span>
+                    <div className="row align-items-center">
+                        <div className="col-1">
+                            <ImageChannelStyle
+                                src={
+                                    lesson.channel["thumbnails"][1]?.url ??
+                                    assetHelper("logo.png")
+                                }
+                                alt={lesson.channel.title}
+                                className="rounded-5"
+                            />
+                        </div>
+                        <span className="h5 col-9 mb-0">
+                            {lesson.channel.title}
+                        </span>
+                    </div>
                 </Link>
             </div>
         </div>

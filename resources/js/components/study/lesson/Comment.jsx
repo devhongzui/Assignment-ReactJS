@@ -8,10 +8,8 @@ export default function Comment() {
     function getFullLocale() {
         switch (i18next.language) {
             case "vi":
-                console.log("219371937");
                 return "vi_VN";
             case "en":
-                console.log("dasdsddsa");
                 return "en_US";
         }
     }
@@ -33,8 +31,8 @@ export default function Comment() {
                             href={document.location.href}
                             width="100%"
                             colorScheme="dark"
-                            mobile={true}
-                            lazy={true}
+                            mobile
+                            lazy
                         />
                     </FacebookProvider>
                 </div>
