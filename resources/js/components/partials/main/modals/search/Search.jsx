@@ -71,13 +71,13 @@ export default function Search() {
     return (
         <div className="modal fade" id="searchModal" tabIndex="-1" aria-hidden>
             <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                <div className="modal-content">
+                <div className="modal-content" style={{ minHeight: "300px" }}>
                     <div className="modal-body">
                         <form role="search">
                             <fieldset>
                                 <input
                                     type="search"
-                                    className="form-control form-control border-primary me-2"
+                                    className="form-control border-primary me-2"
                                     placeholder={t("Search")}
                                     aria-label={t("Search")}
                                     onChange={getQuery}

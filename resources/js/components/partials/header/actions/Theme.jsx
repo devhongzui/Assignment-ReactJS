@@ -31,7 +31,7 @@ export default function Theme() {
 
     return (
         <button
-            className="btn"
+            className="btn btn-sm"
             type="button"
             role="button"
             aria-label={t("Theme")}

@@ -65,6 +65,18 @@ class Lesson extends Model
     ];
 
     /**
+     * @return array
+     */
+    public static function relationships(): array
+    {
+        return [
+            'thumbnails',
+            'channel',
+            'subject',
+        ];
+    }
+
+    /**
      * @return string
      */
     public function identifiableName(): string
@@ -90,17 +102,5 @@ class Lesson extends Model
         return $this
             ->belongsTo(Subject::class)
             ->with('thumbnails');
-    }
-
-    /**
-     * @return array
-     */
-    public static function relationships(): array
-    {
-        return [
-            'thumbnails',
-            'channel',
-            'subject',
-        ];
     }
 }

@@ -57,7 +57,7 @@ export default function List({ list, route }) {
                                                     ?.url ??
                                                 assetHelper("logo.png")
                                             }
-                                            className="rounded-5 img-fluid"
+                                            className="rounded-5"
                                             alt={value.channel.title}
                                         />
                                     </Link>

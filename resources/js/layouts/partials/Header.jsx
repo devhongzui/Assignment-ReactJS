@@ -9,7 +9,7 @@ export default function Header() {
 
     return (
         <header className="position-fixed z-3 w-100">
-            <nav className="navbar navbar-expand-xl bg-body-tertiary p-3">
+            <nav className="navbar navbar-expand-xl bg-body-secondary p-3">
                 <div className="container">
                     <Logo />
 
@@ -29,9 +29,17 @@ export default function Header() {
                         className="collapse navbar-collapse"
                         id="navbarSupportedContent"
                     >
-                        <Nav />
-                        <Search />
-                        <Actions />
+                        <div className="row align-items-center w-100">
+                            <div className="col-xl-3">
+                                <Nav />
+                            </div>
+                            <div className="col-xl-6">
+                                <Search />
+                            </div>
+                            <div className="col-xl-3">
+                                <Actions />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>

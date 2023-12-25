@@ -9,7 +9,7 @@ export default function Footer() {
 
     return user && !user["email_verified_at"] ? null : (
         <footer>
-            <nav className="navbar bg-body-tertiary py-5">
+            <nav className="navbar bg-body-secondary py-5">
                 <div className="container">
                     <div className="row w-100">
                         <Nav />

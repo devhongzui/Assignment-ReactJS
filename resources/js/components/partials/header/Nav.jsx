@@ -15,7 +15,7 @@ export default function Nav() {
                 <Link
                     to={urlHelper("courses")}
                     role="link"
-                    className="nav-link text-end px-2"
+                    className="nav-link"
                     aria-label={t("Courses")}
                 >
                     {t("Courses")}
@@ -25,7 +25,7 @@ export default function Nav() {
                 <Link
                     to={urlHelper("#")}
                     role="link"
-                    className="nav-link text-end px-2"
+                    className="nav-link"
                     aria-label={t("Tools")}
                 >
                     {t("Tools")}
@@ -35,7 +35,7 @@ export default function Nav() {
                 <Link
                     to={urlHelper("#")}
                     role="link"
-                    className="nav-link text-end px-2"
+                    className="nav-link"
                     aria-label={t("Musics")}
                 >
                     {t("Musics")}

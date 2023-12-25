@@ -31,10 +31,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                 </a>
                             </li>
                         ) : (
-                            <li
-                                className="page-item disabled"
-                                aria-disabled
-                            >
+                            <li className="page-item disabled" aria-disabled>
                                 <span className="page-link">
                                     {t("Previous")}
                                 </span>
@@ -53,10 +50,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                 </a>
                             </li>
                         ) : (
-                            <li
-                                className="page-item disabled"
-                                aria-disabled
-                            >
+                            <li className="page-item disabled" aria-disabled>
                                 <span className="page-link">{t("Next")}</span>
                             </li>
                         )}
@@ -97,10 +91,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     aria-disabled
                                     aria-label={t("Previous")}
                                 >
-                                    <span
-                                        className="page-link"
-                                        aria-hidden
-                                    >
+                                    <span className="page-link" aria-hidden>
                                         &lsaquo;
                                     </span>
                                 </li>
@@ -150,10 +141,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     aria-disabled
                                     aria-label={t("Next")}
                                 >
-                                    <span
-                                        className="page-link"
-                                        aria-hidden
-                                    >
+                                    <span className="page-link" aria-hidden>
                                         &rsaquo;
                                     </span>
                                 </li>

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { setToast } from "../../../../reduxers/toast.jsx";
+import { setToast } from "../../../../../reduxers/toast.jsx";
 import { useDispatch } from "react-redux";
-import { urlHelper } from "../../../../helper.js";
-import { refreshUser } from "../../../../reduxers/user.jsx";
+import { urlHelper } from "../../../../../helper.js";
+import { refreshUser } from "../../../../../reduxers/user.jsx";
 import i18next from "i18next";
-import { logout } from "../../../../services/auth.jsx";
+import { logout } from "../../../../../services/auth.jsx";
 
 const ImageStyle = styled.img`
     width: 25px;
