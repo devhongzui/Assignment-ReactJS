@@ -71,7 +71,11 @@ export default function Video({ lesson }) {
                 </div>
             </DescriptionStyle>
             <div className="card-header rounded-bottom-2">
-                <Link to="" aria-label={lesson.channel.title} role="link">
+                <Link
+                    to={urlHelper(`channel/${lesson.channel.id}`)}
+                    aria-label={lesson.channel.title}
+                    role="link"
+                >
                     <div className="row align-items-center">
                         <div className="col-1">
                             <ImageChannelStyle

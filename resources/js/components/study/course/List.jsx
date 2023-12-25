@@ -50,7 +50,12 @@ export default function List({ list, route }) {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-3">
-                                    <Link to="" aria-label="">
+                                    <Link
+                                        to={urlHelper(
+                                            `channel/${value.channel.id}`,
+                                        )}
+                                        aria-label={value.channel.title}
+                                    >
                                         <ImageChannelStyle
                                             src={
                                                 value.channel["thumbnails"][0]
@@ -74,7 +79,9 @@ export default function List({ list, route }) {
                                     </Link>
                                     <DescriptionStyle className="card-text overflow-hidden">
                                         <Link
-                                            to=""
+                                            to={urlHelper(
+                                                `channel/${value.channel.id}`,
+                                            )}
                                             role="link"
                                             aria-label={value.channel.title}
                                         >

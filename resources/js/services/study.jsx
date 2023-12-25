@@ -37,3 +37,6 @@ export const lesson = (lesson_id, next_lesson) =>
     axios.get(urlHelper(`api/study/lesson/${lesson_id}`), {
         params: { next_lesson },
     });
+
+export const channel = (channel_id) =>
+    axios.get(urlHelper(`api/study/channel/${channel_id}`));

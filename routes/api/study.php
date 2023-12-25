@@ -13,4 +13,7 @@ Route::prefix('study')->group(function () {
 
     Route::apiResource('lesson', LessonController::class)
         ->only('index', 'show');
+
+    Route::apiResource('channel', ChannelController::class)
+        ->only('show');
 });

@@ -20,6 +20,7 @@ import Courses from "../pages/study/Courses.jsx";
 import Course from "../pages/study/Course.jsx";
 import Subject from "../pages/study/Subject.jsx";
 import Lesson from "../pages/study/Lesson.jsx";
+import Channel from "../pages/study/Channel.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -106,6 +107,10 @@ export default function () {
                 {
                     path: "lesson/:lesson_id",
                     element: <Lesson />,
+                },
+                {
+                    path: "channel/:channel_id",
+                    element: <Channel />,
                 },
             ],
         },

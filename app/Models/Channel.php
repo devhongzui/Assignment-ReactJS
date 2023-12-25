@@ -62,6 +62,18 @@ class Channel extends Model
     ];
 
     /**
+     * @return array
+     */
+    public static function relationships(): array
+    {
+        return [
+            'thumbnails',
+            'lessons',
+            'subjects',
+        ];
+    }
+
+    /**
      * @return string
      */
     public function identifiableName(): string
@@ -74,7 +86,9 @@ class Channel extends Model
      */
     public function lessons(): HasMany
     {
-        return $this->hasMany(Lesson::class);
+        return $this
+            ->hasMany(Lesson::class)
+            ->with('thumbnails');
     }
 
     /**
@@ -82,6 +96,8 @@ class Channel extends Model
      */
     public function subjects(): HasMany
     {
-        return $this->hasMany(Subject::class);
+        return $this
+            ->hasMany(Subject::class)
+            ->with('thumbnails');
     }
 }
