@@ -27,7 +27,7 @@ const DescriptionStyle = styled.p`
 `;
 
 export default function List({ list, route }) {
-    return list ? (
+    return list.length ? (
         <div className="row">
             {list.map((value, index) => (
                 <div key={index} className="col-sm-6 col-xl-3 mt-2 mb-4">

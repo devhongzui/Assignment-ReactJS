@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { assetHelper, urlHelper } from "../../../helper.js";
-import Empty from "./Empty.jsx";
+import Empty from "../courses/Empty.jsx";
 import { Link } from "react-router-dom";
 
 const ImageStyle = styled.img`
@@ -32,7 +32,10 @@ export default function List({ list, route }) {
                             aria-label={value.title}
                         >
                             <ImageStyle
-                                src={assetHelper(value.image)}
+                                src={
+                                    value["thumbnails"][0]?.url ??
+                                    assetHelper("logo.png")
+                                }
                                 alt={value.title}
                                 className="card-img-top img-fluid bg-light object-fit-contain p-2"
                             />

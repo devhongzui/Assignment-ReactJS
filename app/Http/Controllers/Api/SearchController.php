@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Channel;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Subject;
@@ -27,17 +28,21 @@ class SearchController extends Controller
         $limit = $request->get('limit', 4);
 
         switch ($request->type) {
-            case 'course':
-                return Course::search($query)
-                    ->query(fn(Builder $query) => $query->with(Course::relationships()))
+            case 'lesson':
+                return Lesson::search($query)
+                    ->query(fn(Builder $query) => $query->with(Lesson::relationships()))
                     ->paginate($limit);
             case 'subject':
                 return Subject::search($query)
                     ->query(fn(Builder $query) => $query->with(Subject::relationships()))
                     ->paginate($limit);
-            case 'lesson':
-                return Lesson::search($query)
-                    ->query(fn(Builder $query) => $query->with(Lesson::relationships()))
+            case 'channel':
+                return Channel::search($query)
+                    ->query(fn(Builder $query) => $query->with(Channel::relationships()))
+                    ->paginate($limit);
+            case 'course':
+                return Course::search($query)
+                    ->query(fn(Builder $query) => $query->with(Course::relationships()))
                     ->paginate($limit);
             default:
                 abort(405);
