@@ -51,7 +51,7 @@ export default function User({ user }) {
     return (
         <div className="dropdown">
             <button
-                className="btn btn-outline-primary mb-2"
+                className="btn btn-sm btn-outline-primary mb-2"
                 type="button"
                 role="button"
                 data-bs-toggle="dropdown"
