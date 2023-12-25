@@ -33,26 +33,40 @@ export default function Welcome() {
     return (
         <div className="container">
             <div className="row mt-3">
-                <img
-                    src={assetHelper("storage/images/techicons/ViteJS.png")}
-                    className="col-3 object-fit-cover img-fluid logo vite"
-                    alt="Vite"
-                />
-                <img
-                    src={assetHelper("storage/images/techicons/ReactJS.png")}
-                    className="col-3 object-fit-cover img-fluid logo react"
-                    alt="ReactJS"
-                />
-                <img
-                    src={assetHelper("storage/images/techicons/Bootstrap.png")}
-                    className="col-3 object-fit-cover img-fluid logo bootstrap"
-                    alt="Bootstrap"
-                />
-                <img
-                    src={assetHelper("storage/images/techicons/Laravel.png")}
-                    className="col-3 object-fit-cover img-fluid logo laravel"
-                    alt="Laravel"
-                />
+                <div className="col-3">
+                    <img
+                        src={assetHelper("storage/images/techicons/ViteJS.png")}
+                        className="logo vite"
+                        alt="Vite"
+                    />
+                </div>
+                <div className="col-3">
+                    <img
+                        src={assetHelper(
+                            "storage/images/techicons/ReactJS.png",
+                        )}
+                        className="logo react"
+                        alt="ReactJS"
+                    />
+                </div>
+                <div className="col-3">
+                    <img
+                        src={assetHelper(
+                            "storage/images/techicons/Bootstrap.png",
+                        )}
+                        className="logo bootstrap"
+                        alt="Bootstrap"
+                    />
+                </div>
+                <div className="col-3">
+                    <img
+                        src={assetHelper(
+                            "storage/images/techicons/Laravel.png",
+                        )}
+                        className="logo laravel"
+                        alt="Laravel"
+                    />
+                </div>
             </div>
             <div className="h2 my-3 text-center">
                 {t("Simple Web App with")}

@@ -1,6 +1,8 @@
 .logo {
     will-change: filter;
     transition: filter 300ms;
+    max-width: 150px;
+    max-height: 150px;
 
     &.vite:hover {
         filter: drop-shadow(0 0 2em rgba(127, 8, 231, 0.67));
