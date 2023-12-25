@@ -1,0 +1,33 @@
+.logo {
+    will-change: filter;
+    transition: filter 300ms;
+
+    &.vite:hover {
+        filter: drop-shadow(0 0 2em rgba(127, 8, 231, 0.67));
+    }
+
+    &.react {
+        animation: logo-spin infinite 20s linear;
+
+        &:hover {
+            filter: drop-shadow(0 0 2em rgba(8, 191, 241, 0.67));
+        }
+    }
+
+    &.bootstrap:hover {
+        filter: drop-shadow(0 0 2em rgba(10, 22, 242, 0.67));
+    }
+
+    &.laravel:hover {
+        filter: drop-shadow(0 0 2em rgba(228, 8, 8, 0.67));
+    }
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
