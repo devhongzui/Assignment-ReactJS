@@ -1,11 +1,13 @@
 .logo {
     will-change: filter;
     transition: filter 300ms;
-    max-width: 150px;
-    max-height: 150px;
 
     &.vite:hover {
         filter: drop-shadow(0 0 2em rgba(127, 8, 231, 0.67));
+    }
+
+    &.bootstrap:hover {
+        filter: drop-shadow(0 0 2em rgba(10, 22, 242, 0.67));
     }
 
     &.react {
@@ -14,10 +16,6 @@
         &:hover {
             filter: drop-shadow(0 0 2em rgba(8, 191, 241, 0.67));
         }
-    }
-
-    &.bootstrap:hover {
-        filter: drop-shadow(0 0 2em rgba(10, 22, 242, 0.67));
     }
 
     &.laravel:hover {
