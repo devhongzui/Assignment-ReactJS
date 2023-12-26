@@ -21,31 +21,36 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if (!$request->exists('query'))
-            abort(403);
-
         $query = $request->get('query');
         $limit = $request->get('limit', 4);
 
         switch ($request->type) {
             case 'lesson':
                 return Lesson::search($query)
-                    ->query(fn(Builder $query) => $query->with(Lesson::relationships()))
+                    ->query(fn(Builder $query) => $query->with([
+                        'thumbnails',
+                        'channel',
+                        'subject',
+                    ]))
                     ->paginate($limit);
             case 'subject':
                 return Subject::search($query)
-                    ->query(fn(Builder $query) => $query->with(Subject::relationships()))
+                    ->query(fn(Builder $query) => $query->with([
+                        'thumbnails',
+                        'course',
+                        'channel',
+                    ]))
                     ->paginate($limit);
             case 'channel':
                 return Channel::search($query)
-                    ->query(fn(Builder $query) => $query->with(Channel::relationships()))
+                    ->query(fn(Builder $query) => $query->with([
+                        'thumbnails',
+                    ]))
                     ->paginate($limit);
             case 'course':
-                return Course::search($query)
-                    ->query(fn(Builder $query) => $query->with(Course::relationships()))
-                    ->paginate($limit);
+                return Course::search($query)->paginate($limit);
             default:
-                abort(405);
+                abort(404);
         }
     }
 }

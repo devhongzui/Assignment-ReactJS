@@ -66,19 +66,6 @@ class Subject extends Model
     ];
 
     /**
-     * @return array
-     */
-    public static function relationships(): array
-    {
-        return [
-            'thumbnails',
-            'course',
-            'channel',
-            'lessons',
-        ];
-    }
-
-    /**
      * @return string
      */
     public function identifiableName(): string

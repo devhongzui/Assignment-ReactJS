@@ -14,15 +14,16 @@ class LessonController extends Controller
      */
     public function index(Request $request)
     {
+        $lesson = Lesson::with([
+            'thumbnails',
+            'channel',
+            'subject',
+        ]);
+        $limit = $request->get('limit', 8);
+
         return $request->exists('subject_id')
-            ? Lesson::whereSubjectId($request->subject_id)
-                ->with(Lesson::relationships())
-                ->paginate(8)
-                ->appends($request->query())
-            : Lesson::inRandomOrder('id')
-                ->with(Lesson::relationships())
-                ->paginate($request->get('limit', 8))
-                ->onEachSide(1);
+            ? $lesson->whereSubjectId($request->subject_id)->paginate($limit)
+            : $lesson->inRandomOrder('id')->paginate($limit)->onEachSide(1);
     }
 
     /**
@@ -34,28 +35,29 @@ class LessonController extends Controller
      */
     public function show(Request $request, int $id)
     {
-        if ($request->exists('next_lesson')) {
-            $lessonMiddle = app(Lesson::class)
-                ->with(Lesson::relationships())
-                ->find($id);
+        $lesson = Lesson::with([
+            'thumbnails',
+            'channel',
+            'subject',
+        ])
+            ->find($id);
 
-            $lessonsBefore = Lesson::whereSubjectId($lessonMiddle->subject_id)
-                ->with(Lesson::relationships())
+        if ($request->exists('next_lesson')) {
+            $lessonsBefore = Lesson::whereSubjectId($lesson->subject_id)
+                ->with(['thumbnails'])
                 ->where('id', '<', $id)
                 ->orderBy('id', 'desc')
                 ->take(5)
                 ->get();
 
-            $lessonsAfter = Lesson::whereSubjectId($lessonMiddle->subject_id)
-                ->with(Lesson::relationships())
+            $lessonsAfter = Lesson::whereSubjectId($lesson->subject_id)
+                ->with(['thumbnails'])
                 ->where('id', '>', $id)
                 ->orderBy('id')
                 ->take(5)
                 ->get();
 
-            return $lessonsBefore->merge([$lessonMiddle])->merge($lessonsAfter);
-        } else return app(Lesson::class)
-            ->with(Lesson::relationships())
-            ->find($id);
+            return $lessonsBefore->merge([$lesson])->merge($lessonsAfter);
+        } else return $lesson;
     }
 }

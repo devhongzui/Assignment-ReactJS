@@ -42,7 +42,7 @@ export default function Subject() {
 
             getSubjects(page);
         });
-    }, []);
+    }, [subject_id]);
 
     function switchPage(event) {
         event.preventDefault();
@@ -54,7 +54,7 @@ export default function Subject() {
         <div className="container my-3">
             {subjectInformation && (
                 <Detail
-                    title={subjectInformation.title}
+                    title={[t("Subject"), subjectInformation.title].join(": ")}
                     subTitle={""}
                     description={subjectInformation.description}
                     image={{

@@ -48,14 +48,6 @@ class Course extends Model
     ];
 
     /**
-     * @return array
-     */
-    public static function relationships(): array
-    {
-        return ['subjects'];
-    }
-
-    /**
      * @return string
      */
     public function identifiableName(): string

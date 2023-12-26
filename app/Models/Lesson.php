@@ -65,18 +65,6 @@ class Lesson extends Model
     ];
 
     /**
-     * @return array
-     */
-    public static function relationships(): array
-    {
-        return [
-            'thumbnails',
-            'channel',
-            'subject',
-        ];
-    }
-
-    /**
      * @return string
      */
     public function identifiableName(): string

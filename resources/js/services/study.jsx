@@ -38,5 +38,19 @@ export const lesson = (lesson_id, next_lesson) =>
         params: { next_lesson },
     });
 
+export const getRelationshipByChannelId = (
+    channel_id,
+    relationship,
+    page,
+    limit,
+) =>
+    axios.get(urlHelper(`api/study/channel/${channel_id}`), {
+        params: {
+            relationship,
+            page,
+            limit,
+        },
+    });
+
 export const channel = (channel_id) =>
     axios.get(urlHelper(`api/study/channel/${channel_id}`));

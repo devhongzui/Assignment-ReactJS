@@ -13,10 +13,9 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        return Course::inRandomOrder('id')
-            ->with(Course::relationships())
-            ->paginate($request->get('limit', 8))
-            ->onEachSide(1);
+        $limit = $request->get('limit', 8);
+
+        return Course::inRandomOrder('id')->paginate($limit)->onEachSide(1);
     }
 
     /**
@@ -27,7 +26,6 @@ class CourseController extends Controller
      */
     public function show(int $id): Course
     {
-        return Course::with(Course::relationships())
-            ->find($id);
+        return Course::find($id);
     }
 }

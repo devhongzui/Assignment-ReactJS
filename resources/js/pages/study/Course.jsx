@@ -40,7 +40,7 @@ export default function Course() {
 
             getSubjects(page);
         });
-    }, []);
+    }, [course_id]);
 
     function switchPage(event) {
         event.preventDefault();
@@ -52,7 +52,7 @@ export default function Course() {
         <div className="container my-3">
             {courseInformation && (
                 <Detail
-                    title={courseInformation.title}
+                    title={[t("Course"), courseInformation.title].join(": ")}
                     subTitle={""}
                     description={courseInformation.description}
                     image={{

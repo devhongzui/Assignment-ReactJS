@@ -4,18 +4,28 @@ namespace App\Http\Controllers\Api\Study;
 
 use App\Http\Controllers\Controller;
 use App\Models\Channel;
+use App\Models\Lesson;
+use App\Models\Subject;
+use Illuminate\Http\Request;
 
 class ChannelController extends Controller
 {
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param int $id
-     * @return Channel
+     * @return Channel|Lesson[]|Subject[]
      */
-    public function show(int $id): Channel
+    public function show(Request $request, int $id)
     {
-        return Channel::with(Channel::relationships())
-            ->find($id);
+        $channel = Channel::with(['thumbnails'])->find($id);
+        $limit = $request->get('limit', 8);
+
+        return match ($request->relationship) {
+            'lesson' => $channel->lessons()->paginate($limit),
+            'subject' => $channel->subjects()->paginate($limit),
+            default => $channel,
+        };
     }
 }

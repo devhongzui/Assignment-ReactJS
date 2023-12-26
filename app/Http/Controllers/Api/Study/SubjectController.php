@@ -13,15 +13,16 @@ class SubjectController extends Controller
      */
     public function index(Request $request)
     {
+        $subject = Subject::with([
+            'thumbnails',
+            'course',
+            'channel',
+        ]);
+        $limit = $request->get('limit', 8);
+
         return $request->exists('course_id')
-            ? Subject::whereCourseId($request->course_id)
-                ->with(Subject::relationships())
-                ->paginate(8)
-                ->appends($request->query())
-            : Subject::inRandomOrder('id')
-                ->with(Subject::relationships())
-                ->paginate($request->get('limit', 8))
-                ->onEachSide(1);
+            ? $subject->whereCourseId($request->course_id)->paginate($limit)
+            : $subject->inRandomOrder('id')->paginate($limit)->onEachSide(1);
     }
 
     /**
@@ -32,7 +33,11 @@ class SubjectController extends Controller
      */
     public function show(int $id): Subject
     {
-        return Subject::with(Subject::relationships())
+        return Subject::with([
+            'thumbnails',
+            'course',
+            'channel',
+        ])
             ->find($id);
     }
 }
