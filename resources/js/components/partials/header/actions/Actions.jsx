@@ -5,7 +5,7 @@ import Others from "./others/Others.jsx";
 export default function Actions() {
     return (
         <div className="mt-2 mt-xl-0">
-            <div className="row">
+            <div className="row justify-content-end">
                 <div className="col-md-6 col-xl-auto mb-2 mb-xl-0">
                     <Theme />
                     <Language />

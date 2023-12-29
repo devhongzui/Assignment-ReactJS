@@ -45,7 +45,6 @@ export default function Video({ lesson }) {
                     <div className="col-9 col-xl-10">
                         <Link
                             to={urlHelper(`subject/${lesson.subject.id}`)}
-                            role="link"
                             className="text-decoration-underline"
                             aria-label={lesson.subject.title}
                         >
@@ -74,7 +73,6 @@ export default function Video({ lesson }) {
                 <Link
                     to={urlHelper(`channel/${lesson.channel.id}`)}
                     aria-label={lesson.channel.title}
-                    role="link"
                 >
                     <div className="row align-items-center">
                         <div className="col-1">

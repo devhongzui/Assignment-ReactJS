@@ -20,9 +20,7 @@ export default function Language() {
 
     return (
         <button
-            className="btn btn-sm"
-            type="button"
-            role="button"
+            className="btn"
             aria-label={t("Language")}
             onClick={handleLanguage}
         >

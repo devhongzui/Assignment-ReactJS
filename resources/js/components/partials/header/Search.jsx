@@ -10,7 +10,7 @@ export default function Search() {
     return user && !user["email_verified_at"] ? null : (
         <input
             type="search"
-            className="form-control form-control-sm bg-transparent w-75 mx-xl-auto"
+            className="form-control bg-transparent w-75 mx-xl-auto"
             placeholder={t("Search")}
             aria-label={t("Search")}
             data-bs-toggle="modal"

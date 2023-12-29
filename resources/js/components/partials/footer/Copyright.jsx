@@ -31,7 +31,6 @@ export default function Copyright() {
                 {links.map((value, index) => (
                     <li key={index} className="ms-3">
                         <a
-                            // External links
                             href={value.link}
                             className="btn btn-lg"
                             target="_blank"

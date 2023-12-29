@@ -21,7 +21,6 @@ export default function Subscribe() {
                         <button
                             className="btn btn-primary mt-2 mt-md-0 w-100"
                             type="submit"
-                            role="button"
                             aria-label={t("Subscribe")}
                         >
                             {t("Subscribe")}

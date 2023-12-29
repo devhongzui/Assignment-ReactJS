@@ -70,7 +70,6 @@ export default function VerifyEmail() {
                 <a
                     href={urlHelper("email/verification-notification")}
                     className="text-decoration-underline link-underline-primary"
-                    role="link"
                     aria-label={t("click here to try again")}
                     onClick={callApi}
                 >

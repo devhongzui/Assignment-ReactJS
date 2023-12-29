@@ -9,7 +9,6 @@ export default function ForgotPassword() {
         <Link
             to={urlHelper("forgot-password")}
             className="btn text-primary me-2 mb-2"
-            role="link"
             aria-label={t("Forgot password")}
         >
             {t("Forgot password")}

@@ -10,6 +10,7 @@ export default function PasswordConfirmation() {
                 className="form-control"
                 name="password_confirmation"
                 autoFocus
+                autoComplete="new-password"
             />
             <label>{t("Password confirm")}</label>
         </div>

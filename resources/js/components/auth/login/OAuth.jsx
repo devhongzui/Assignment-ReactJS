@@ -58,7 +58,6 @@ export default function OAuth() {
                         <a
                             href={urlHelper(value.link)}
                             className="w-100 mb-2 me-2 btn btn-primary"
-                            role="link"
                             aria-label={value.name}
                         >
                             <i className={value.icon}></i>
@@ -69,8 +68,6 @@ export default function OAuth() {
                 <div className="col-xl-4">
                     <button
                         className="mb-2 btn btn-outline-primary"
-                        type="button"
-                        role="button"
                         aria-label={t("Others")}
                         data-bs-toggle="collapse"
                         data-bs-target="#oauth-collapse"
@@ -83,7 +80,6 @@ export default function OAuth() {
                                 href={urlHelper(value.link)}
                                 key={index}
                                 className="w-100 mb-2 me-2 btn btn-primary"
-                                role="link"
                                 aria-label={value.name}
                             >
                                 <i className={value.icon}></i>

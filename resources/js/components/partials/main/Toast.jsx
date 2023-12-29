@@ -20,8 +20,6 @@ export default function Toast() {
                         <div className="toast-body">{toast.message}</div>
                         <button
                             className="btn-close me-2 m-auto"
-                            type="button"
-                            role="button"
                             data-bs-dismiss="toast"
                             aria-label={t("Close")}
                         ></button>

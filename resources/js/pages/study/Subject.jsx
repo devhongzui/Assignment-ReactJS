@@ -22,12 +22,6 @@ export default function Subject() {
 
     const [listLesson, setListLesson] = useState(null);
 
-    function getSubjects(page) {
-        lessons(subject_id, page, limit).then((success) =>
-            setListLesson(success.data),
-        );
-    }
-
     useEffect(() => {
         subject(subject_id).then((success) => {
             setSubjectInformation(success.data);
@@ -39,16 +33,14 @@ export default function Subject() {
                     success.data["thumbnails"][0]?.url ??
                     assetHelper("logo.png"),
             });
-
-            getSubjects(page);
         });
     }, [subject_id]);
 
-    function switchPage(event) {
-        event.preventDefault();
-
-        getSubjects(event.target.getAttribute("data-page"));
-    }
+    useEffect(() => {
+        lessons(subject_id, page, limit).then((success) =>
+            setListLesson(success.data),
+        );
+    }, [page]);
 
     return (
         <div className="container my-3">
@@ -70,7 +62,7 @@ export default function Subject() {
             {listLesson && (
                 <>
                     <List list={listLesson.data} route="lesson" />
-                    <Paginate page={listLesson} handlePageEvent={switchPage} />
+                    <Paginate page={listLesson} />
                 </>
             )}
         </div>

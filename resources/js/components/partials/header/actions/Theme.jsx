@@ -30,13 +30,7 @@ export default function Theme() {
     }
 
     return (
-        <button
-            className="btn btn-sm"
-            type="button"
-            role="button"
-            aria-label={t("Theme")}
-            onClick={changeTheme}
-        >
+        <button className="btn" aria-label={t("Theme")} onClick={changeTheme}>
             <i
                 className={
                     theme === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun"

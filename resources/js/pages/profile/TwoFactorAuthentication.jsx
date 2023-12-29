@@ -77,7 +77,13 @@ export default function TwoFactorAuthentication() {
                   handleEvent: () => {
                       enableTwoFactorAuthentication()
                           .then((success) => {
-                              dispatch(setToast(success.data));
+                              dispatch(
+                                  setToast({
+                                      message: t(
+                                          "Scan the QR code and enter the confirmation code to complete",
+                                      ),
+                                  }),
+                              );
 
                               setQr({ __html: success.data["qr_code"]["svg"] });
                           })
@@ -106,8 +112,6 @@ export default function TwoFactorAuthentication() {
                     <div className="d-flex align-items-center">
                         <button
                             className={`btn ${status.button.class} mb-2 me-2`}
-                            type="button"
-                            role="button"
                             aria-label={status.button.label}
                             onClick={status.button.handleEvent}
                         >

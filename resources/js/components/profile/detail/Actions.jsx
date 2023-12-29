@@ -20,8 +20,10 @@ export default function Actions() {
         checkPasswordConfirm();
 
         destroy()
-            .then((success) => {
-                dispatch(setToast(success.data));
+            .then(() => {
+                dispatch(
+                    setToast({ message: t("Account deleted successfully!") }),
+                );
 
                 dispatch(refreshUser());
 
@@ -36,7 +38,6 @@ export default function Actions() {
         <div className="offset-md-4">
             <Link
                 to={urlHelper("user/profile-edit")}
-                role="link"
                 className="btn btn-primary mb-2 me-2"
                 aria-label={t("Profile edit")}
             >
@@ -44,7 +45,6 @@ export default function Actions() {
             </Link>
             <Link
                 to={urlHelper("user/change-password")}
-                role="link"
                 className="btn btn-warning mb-2 me-2"
                 aria-label={t("Change password")}
             >
@@ -52,7 +52,6 @@ export default function Actions() {
             </Link>
             <a
                 href={urlHelper("user/profile-destroy")}
-                role="link"
                 className="btn btn-danger mb-2"
                 aria-label={t("Profile destroy")}
                 onClick={handleDestroyProfile}

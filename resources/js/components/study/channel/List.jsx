@@ -28,7 +28,6 @@ export default function List({ list, route }) {
                     <div className="card border-0 bg-dark-subtle shadow-lg">
                         <Link
                             to={urlHelper(`${route}/${value.id}`)}
-                            role="link"
                             aria-label={value.title}
                         >
                             <ImageStyle
@@ -43,7 +42,6 @@ export default function List({ list, route }) {
                         <div className="card-body">
                             <Link
                                 to={urlHelper(`${route}/${value.id}`)}
-                                role="link"
                                 aria-label={value.title}
                             >
                                 <TitleStyle className="card-title h5 overflow-hidden">

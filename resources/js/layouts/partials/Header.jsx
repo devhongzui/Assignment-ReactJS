@@ -15,7 +15,6 @@ export default function Header() {
 
                     <button
                         className="navbar-toggler"
-                        type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent"
@@ -30,13 +29,13 @@ export default function Header() {
                         id="navbarSupportedContent"
                     >
                         <div className="row align-items-center w-100">
-                            <div className="col-xl-3">
+                            <div className="col-xl-4">
                                 <Nav />
                             </div>
-                            <div className="col-xl-6">
+                            <div className="col-xl-4">
                                 <Search />
                             </div>
-                            <div className="col-xl-3">
+                            <div className="col-xl-4">
                                 <Actions />
                             </div>
                         </div>

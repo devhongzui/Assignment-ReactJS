@@ -9,12 +9,7 @@ export default function TableOfContents({ list }) {
             <ol>
                 {list.map((value, index) => (
                     <li key={index}>
-                        <a
-                            // External links
-                            href={"#" + value.tag}
-                            role="link"
-                            aria-label={value.title}
-                        >
+                        <a href={"#" + value.tag} aria-label={value.title}>
                             {value.title}
                         </a>
                     </li>

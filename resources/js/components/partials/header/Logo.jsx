@@ -26,12 +26,7 @@ export default function Logo() {
     return user && !user["email_verified_at"] ? (
         <div className="navbar-brand">{image}</div>
     ) : (
-        <Link
-            to={urlHelper("")}
-            className="nav-brand"
-            role="link"
-            aria-label={t("Logo")}
-        >
+        <Link to={urlHelper("")} className="nav-brand" aria-label={t("Logo")}>
             {image}
         </Link>
     );

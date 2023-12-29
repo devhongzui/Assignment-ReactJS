@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 
 export default function Paginate({ page, handlePageEvent }) {
     const { t } = useTranslation();
+
+    const [_, setSearchParams] = useSearchParams();
 
     const {
         current_page,
@@ -12,6 +15,18 @@ export default function Paginate({ page, handlePageEvent }) {
         total,
         links,
     } = page;
+
+    function switchPage(event) {
+        event.preventDefault();
+
+        setSearchParams((prev) => {
+            const newQuery = new URLSearchParams(prev);
+
+            newQuery.set("page", event.target.getAttribute("data-page"));
+
+            return newQuery.toString();
+        });
+    }
 
     return (
         <div className="d-flex justify-content-center d-md-block mt-2">
@@ -25,7 +40,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     href={prev_page_url}
                                     rel="prev"
                                     data-page={current_page - 1}
-                                    onClick={handlePageEvent}
+                                    onClick={handlePageEvent ?? switchPage}
                                 >
                                     {t("Previous")}
                                 </a>
@@ -44,7 +59,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     href={next_page_url}
                                     rel="next"
                                     data-page={current_page + 1}
-                                    onClick={handlePageEvent}
+                                    onClick={handlePageEvent ?? switchPage}
                                 >
                                     {t("Next")}
                                 </a>
@@ -80,7 +95,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                         rel="prev"
                                         aria-label={t("Previous")}
                                         data-page={current_page - 1}
-                                        onClick={handlePageEvent}
+                                        onClick={handlePageEvent ?? switchPage}
                                     >
                                         &lsaquo;
                                     </a>
@@ -115,7 +130,9 @@ export default function Paginate({ page, handlePageEvent }) {
                                             className="page-link"
                                             href={value.url}
                                             data-page={value.label}
-                                            onClick={handlePageEvent}
+                                            onClick={
+                                                handlePageEvent ?? switchPage
+                                            }
                                         >
                                             {value.label}
                                         </a>
@@ -130,7 +147,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                         rel="next"
                                         aria-label={t("Next")}
                                         data-page={current_page + 1}
-                                        onClick={handlePageEvent}
+                                        onClick={handlePageEvent ?? switchPage}
                                     >
                                         &rsaquo;
                                     </a>

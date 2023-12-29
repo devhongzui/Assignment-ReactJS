@@ -38,8 +38,6 @@ export default function User({ user }) {
         <li>
             <button
                 className="dropdown-item"
-                type="button"
-                role="button"
                 aria-label={t("Logout")}
                 onClick={callApi}
             >
@@ -51,9 +49,7 @@ export default function User({ user }) {
     return (
         <div className="dropdown">
             <button
-                className="btn btn-sm btn-outline-primary mb-2"
-                type="button"
-                role="button"
+                className="btn btn-outline-primary mb-2"
                 data-bs-toggle="dropdown"
             >
                 <ImageStyle
@@ -72,7 +68,6 @@ export default function User({ user }) {
                             <Link
                                 to={urlHelper("#")}
                                 className="dropdown-item"
-                                role="link"
                                 aria-label={t("Dashboard")}
                             >
                                 {t("Dashboard")}
@@ -82,7 +77,6 @@ export default function User({ user }) {
                             <Link
                                 to={urlHelper("user/profile-information")}
                                 className="dropdown-item"
-                                role="link"
                                 aria-label={t("Profile")}
                             >
                                 {t("Profile")}
@@ -92,7 +86,6 @@ export default function User({ user }) {
                             <Link
                                 to={urlHelper("user/change-password")}
                                 className="dropdown-item"
-                                role="link"
                                 aria-label={t("Change password")}
                             >
                                 {t("Change password")}

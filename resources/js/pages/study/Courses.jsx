@@ -37,25 +37,15 @@ export default function Courses() {
 
     const [listCourse, setListCourse] = useState(null);
 
-    function getCourses(page) {
-        courses(page, limit).then((success) => setListCourse(success.data));
-    }
-
     useEffect(() => {
-        getCourses(page);
-    }, []);
-
-    function switchPage(event) {
-        event.preventDefault();
-
-        getCourses(event.target.getAttribute("data-page"));
-    }
+        courses(page, limit).then((success) => setListCourse(success.data));
+    }, [page]);
 
     return (
         listCourse && (
             <div className="container my-3">
                 <List list={listCourse.data} route="course" />
-                <Paginate page={listCourse} handlePageEvent={switchPage} />
+                <Paginate page={listCourse} />
             </div>
         )
     );

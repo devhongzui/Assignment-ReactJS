@@ -24,7 +24,6 @@ export default function Terms({ validate_message }) {
                 <Link
                     to={urlHelper("privacy-policy")}
                     className="link fw-bolder"
-                    role="link"
                     aria-label={t("Privacy policy")}
                 >
                     {t("Privacy policy")}
@@ -33,7 +32,6 @@ export default function Terms({ validate_message }) {
                 <Link
                     to={urlHelper("security-policy")}
                     className="link fw-bolder"
-                    role="link"
                     aria-label={t("Security policy")}
                 >
                     {t("Security policy")}

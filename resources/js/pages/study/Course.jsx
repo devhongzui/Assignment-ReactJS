@@ -22,12 +22,6 @@ export default function Course() {
 
     const [listSubject, setListSubject] = useState(null);
 
-    function getSubjects(page) {
-        subjects(course_id, page, limit).then((success) =>
-            setListSubject(success.data),
-        );
-    }
-
     useEffect(() => {
         course(course_id).then((success) => {
             setCourseInformation(success.data);
@@ -37,16 +31,14 @@ export default function Course() {
                 description: success.data.description,
                 image: assetHelper(success.data.image),
             });
-
-            getSubjects(page);
         });
     }, [course_id]);
 
-    function switchPage(event) {
-        event.preventDefault();
-
-        getSubjects(event.target.getAttribute("data-page"));
-    }
+    useEffect(() => {
+        subjects(course_id, page, limit).then((success) =>
+            setListSubject(success.data),
+        );
+    }, [page]);
 
     return (
         <div className="container my-3">
@@ -65,7 +57,7 @@ export default function Course() {
             {listSubject && (
                 <>
                     <List list={listSubject.data} route="subject" />
-                    <Paginate page={listSubject} handlePageEvent={switchPage} />
+                    <Paginate page={listSubject} />
                 </>
             )}
         </div>

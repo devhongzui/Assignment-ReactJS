@@ -27,7 +27,6 @@ export default function List({ listLesson, lessonId }) {
                             key={index}
                             to={urlHelper(`lesson/${value.id}`)}
                             aria-label={value.title}
-                            role="link"
                             className={
                                 value.id < lessonId ? "opacity-50" : null
                             }

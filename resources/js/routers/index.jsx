@@ -21,6 +21,7 @@ import Course from "../pages/study/Course.jsx";
 import Subject from "../pages/study/Subject.jsx";
 import Lesson from "../pages/study/Lesson.jsx";
 import Channel from "../pages/study/Channel.jsx";
+import Patient from "../pages/health/Patient.jsx";
 
 export default function () {
     const router = createBrowserRouter([
@@ -111,6 +112,10 @@ export default function () {
                 {
                     path: "channel/:channel_id",
                     element: <Channel />,
+                },
+                {
+                    path: "patients",
+                    element: <Patient />,
                 },
             ],
         },

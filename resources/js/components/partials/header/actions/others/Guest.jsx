@@ -9,16 +9,14 @@ export default function Guest() {
         <>
             <Link
                 to={urlHelper("login")}
-                role="button"
-                className="btn btn-sm btn-outline-primary me-2"
+                className="btn btn-outline-primary me-2"
                 aria-label={t("Login")}
             >
                 {t("Login")}
             </Link>
             <Link
                 to={urlHelper("register")}
-                role="button"
-                className="btn btn-sm btn-primary"
+                className="btn btn-primary"
                 aria-label={t("Register")}
             >
                 {t("Register")}

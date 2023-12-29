@@ -72,7 +72,6 @@ export default function Information() {
                                 {t("Email")}
                             </strong>
                             <a
-                                // External links
                                 href="mailto:trind@devhongzui.com"
                                 aria-label={t("Email")}
                                 className="col-12 col-xxl-8"
@@ -95,7 +94,6 @@ export default function Information() {
                                 {t("Phone number")}
                             </strong>
                             <a
-                                // External links
                                 href="tel:0982213854"
                                 aria-label={t("Phone number")}
                                 className="col-12 col-xxl-7"
@@ -116,10 +114,8 @@ export default function Information() {
                                 {links.map((value, index) => (
                                     <div key={index} className="mb-2 me-2">
                                         <a
-                                            // External links
                                             href={value.link}
                                             target="_blank"
-                                            role="link"
                                             aria-label={value.title}
                                         >
                                             <LogoStyle

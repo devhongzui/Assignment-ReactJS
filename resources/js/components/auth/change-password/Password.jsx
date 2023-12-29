@@ -15,6 +15,7 @@ export default function Password({ validate_message }) {
                 }
                 name="password"
                 autoFocus
+                autoComplete="new-password"
             />
             <label>{t("New password")}</label>
             <ValidateMessage field={validate_message} />

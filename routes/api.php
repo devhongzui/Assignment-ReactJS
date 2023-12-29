@@ -26,3 +26,4 @@ Route::get('search', SearchController::class);
 
 require __DIR__ . '/api/address.php';
 require __DIR__ . '/api/study.php';
+require __DIR__ . '/api/heath.php';

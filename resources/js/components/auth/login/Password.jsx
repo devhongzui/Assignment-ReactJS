@@ -14,6 +14,7 @@ export default function Password({ validate_message }) {
                         : "form-control"
                 }
                 name="password"
+                autoComplete="current-password"
             />
             <label>{t("Password")}</label>
             <ValidateMessage field={validate_message} />

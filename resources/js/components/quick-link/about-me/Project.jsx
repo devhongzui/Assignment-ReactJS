@@ -105,10 +105,8 @@ export default function Project() {
                     <div key={index} className="col-xl-4 mt-3 mb-5">
                         <div className="card mx-auto">
                             <a
-                                // External links
                                 href={value.url}
                                 target="_blank"
-                                role="link"
                                 aria-label={value.project_name}
                             >
                                 <ImageStyle
@@ -136,10 +134,8 @@ export default function Project() {
                                     </DescriptionStyle>
                                 </div>
                                 <a
-                                    // External links
                                     href={value.url}
                                     target="_blank"
-                                    role="link"
                                     aria-label={t("Quick view")}
                                     className="btn btn-primary w-100"
                                 >

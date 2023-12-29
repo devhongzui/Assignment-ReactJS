@@ -1,8 +1,8 @@
 import axios from "axios";
-import { urlHelper } from "../helper.js";
+import { assetHelper } from "../helper.js";
 
 export const search = (type, query, page, limit) =>
-    axios.get(urlHelper(`api/search`), {
+    axios.get(assetHelper(`api/search`), {
         params: {
             type,
             query,

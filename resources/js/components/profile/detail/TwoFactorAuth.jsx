@@ -25,7 +25,6 @@ export default function TwoFactorAuth({ user }) {
                 <div className="d-flex align-items-center">
                     <Link
                         to={urlHelper("user/profile-two-step-authentication")}
-                        role="link"
                         className="btn btn-primary mb-2 me-2"
                         aria-label={t("Setup")}
                     >

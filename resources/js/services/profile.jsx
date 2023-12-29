@@ -1,17 +1,19 @@
 import axios from "axios";
-import { urlHelper } from "../helper.js";
+import { assetHelper, urlHelper } from "../helper.js";
 
 export const getState = (state, stateCode) =>
-    axios.get(urlHelper(`api/address/${state}/${stateCode}`));
+    axios.get(assetHelper(`api/address/${state}/${stateCode}`));
 
-export const getProvinces = () => axios.get(urlHelper("api/address/provinces"));
+export const getProvinces = () =>
+    axios.get(assetHelper("api/address/provinces"));
 
-export const getDistricts = () => axios.get(urlHelper("api/address/districts"));
+export const getDistricts = () =>
+    axios.get(assetHelper("api/address/districts"));
 
 export const getSubDistricts = () =>
-    axios.get(urlHelper("api/address/sub_districts"));
+    axios.get(assetHelper("api/address/sub_districts"));
 
-export const getSocials = () => axios.get(urlHelper("api/user/social"));
+export const getSocials = () => axios.get(assetHelper("api/user/social"));
 
 export const edit = ({
     name,
