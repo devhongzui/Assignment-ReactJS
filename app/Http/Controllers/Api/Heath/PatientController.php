@@ -77,10 +77,10 @@ class PatientController extends Controller
             case 'activity':
                 $activities = $patient->activities();
 
-                if ($request->exists(['sorting.activity_sorting_direction', 'sorting.activity_sorting_field']))
+                if ($request->exists(['sorting.activity_sorting_field', 'sorting.activity_sorting_direction']))
                     $activities->orderBy(
-                        $request->sorting['activity_sorting_direction'],
-                        $request->sorting['activity_sorting_field']
+                        $request->sorting['activity_sorting_field'],
+                        $request->sorting['activity_sorting_direction']
                     );
 
                 return $activities->paginate($limit);
