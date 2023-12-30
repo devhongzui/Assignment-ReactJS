@@ -79,8 +79,8 @@ export default function Register() {
                     <Terms validate_message={validate.terms} />
                 </fieldset>
                 <Submit label={t("Register")} />
-                <OAuth />
             </form>
+            <OAuth />
         </Form>
     );
 }

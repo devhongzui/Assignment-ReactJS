@@ -81,8 +81,8 @@ export default function Login() {
                 </fieldset>
                 <Submit label={t("Login")} />
                 <ForgotPassword />
-                <OAuth />
             </form>
+            <OAuth />
         </Form>
     );
 }

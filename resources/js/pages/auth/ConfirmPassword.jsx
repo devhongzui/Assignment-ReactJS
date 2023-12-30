@@ -63,8 +63,8 @@ export default function ConfirmPassword() {
                 </fieldset>
                 <Submit label={t("Submit")} />
                 <ForgotPassword />
-                <OAuth />
             </form>
+            <OAuth />
         </Form>
     );
 }
