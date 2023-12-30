@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\Study;
 
 use App\Http\Controllers\Controller;
-use App\Models\Channel;
-use App\Models\Lesson;
-use App\Models\Subject;
+use App\Models\Study\Channel;
+use App\Models\Study\Lesson;
+use App\Models\Study\Subject;
 use Illuminate\Http\Request;
 
 class ChannelController extends Controller

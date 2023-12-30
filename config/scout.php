@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Channel;
-use App\Models\Course;
-use App\Models\Lesson;
-use App\Models\Subject;
+use App\Models\Study\Channel;
+use App\Models\Study\Course;
+use App\Models\Study\Lesson;
+use App\Models\Study\Subject;
 use App\Models\Tool;
 
 return [

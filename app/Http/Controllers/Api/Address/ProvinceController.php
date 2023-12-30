@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Address;
 
 use App\Http\Controllers\Controller;
-use App\Models\Province;
+use App\Models\Address\Province;
 
 class ProvinceController extends Controller
 {

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { urlHelper } from "../../../../helper.js";
 
 export default function Table({
     list,
@@ -9,26 +10,45 @@ export default function Table({
 }) {
     const { t } = useTranslation();
 
-    const [sorted, setSorted] = useState({});
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const sorting_field = searchParams.get("sorting_field");
+
+    const sorting_direction = searchParams.get("sorting_direction");
 
     function handleSort(event) {
         event.preventDefault();
 
         const name = event.target.getAttribute("data-name");
 
-        sorted.name === name && sorted.type === "desc"
-            ? setSorted({
-                  name: name,
-                  type: "asc",
-              })
-            : setSorted({
-                  name: name,
-                  type: "desc",
-              });
+        setSearchParams((prev) => {
+            const newQuery = new URLSearchParams(prev);
+
+            if (sorting_field === name && sorting_direction === "desc") {
+                newQuery.set("sorting_field", name);
+                newQuery.set("sorting_direction", "asc");
+            } else {
+                newQuery.set("sorting_field", name);
+                newQuery.set("sorting_direction", "desc");
+            }
+
+            return newQuery.toString();
+        });
+    }
+
+    function handleUnSort() {
+        setSearchParams((prev) => {
+            const newQuery = new URLSearchParams(prev);
+
+            newQuery.delete("sorting_field");
+            newQuery.delete("sorting_direction");
+
+            return newQuery.toString();
+        });
     }
 
     function getSortTextIcon() {
-        return sorted.type === "desc" ? (
+        return sorting_direction === "asc" ? (
             <i className="fa-solid fa-arrow-down-a-z"></i>
         ) : (
             <i className="fa-solid fa-arrow-down-z-a"></i>
@@ -36,7 +56,7 @@ export default function Table({
     }
 
     function getSortIcon() {
-        return sorted.type === "desc" ? (
+        return sorting_direction === "asc" ? (
             <i className="fa-solid fa-sort-down"></i>
         ) : (
             <i className="fa-solid fa-sort-up"></i>
@@ -64,9 +84,10 @@ export default function Table({
                                 href="#"
                                 data-name="first_name"
                                 onClick={handleSort}
+                                onDoubleClick={handleUnSort}
                             >
                                 {t("First name")}
-                                {sorted.name === "first_name" &&
+                                {sorting_field === "first_name" &&
                                     getSortTextIcon()}
                             </a>
                         </th>
@@ -75,16 +96,22 @@ export default function Table({
                                 href="#"
                                 data-name="last_name"
                                 onClick={handleSort}
+                                onDoubleClick={handleUnSort}
                             >
                                 {t("Last name")}
-                                {sorted.name === "last_name" &&
+                                {sorting_field === "last_name" &&
                                     getSortTextIcon()}
                             </a>
                         </th>
                         <th scope="col">
-                            <a href="#" data-name="status" onClick={handleSort}>
+                            <a
+                                href="#"
+                                data-name="status"
+                                onClick={handleSort}
+                                onDoubleClick={handleUnSort}
+                            >
                                 {t("Status")}
-                                {sorted.name === "status" && getSortIcon()}
+                                {sorting_field === "status" && getSortIcon()}
                             </a>
                         </th>
                         <th scope="col">{t("Last Measurement")}</th>
@@ -114,16 +141,15 @@ export default function Table({
                                 <i className={getStatusClass(value.status)}></i>
                             </td>
                             <td>
-                                <p className="mb-0">
-                                    {value["measurement"][0]["index1"]}/
-                                    {value["measurement"][0]["index2"]} -{" "}
-                                    {value["measurement"][0]["index3"]} BPM
-                                </p>
-                                <p className="mb-0 text-secondary">
-                                    {value["measurement"][0]["time"]}
-                                </p>
+                                {value["measurements"][0]["index1"]}/
+                                {value["measurements"][0]["index2"]} -{" "}
+                                {value["measurements"][0]["index3"]} BPM
+                                <br />
+                                <span className="text-secondary">
+                                    {value["measurements"][0]["time"]}
+                                </span>
                             </td>
-                            <td>{value["visit"][0]}</td>
+                            <td>{value["activities"][0].time}</td>
                             <td>
                                 <a href={`tel:${value["contacts"]["phone"]}`}>
                                     <i className="fa-solid fa-phone mx-4 mb-2"></i>
@@ -131,7 +157,9 @@ export default function Table({
                                 <a href={`mailto:${value["contacts"]["mail"]}`}>
                                     <i className="fa-regular fa-envelope mx-4 mb-2"></i>
                                 </a>
-                                <i className="fa-solid fa-ellipsis mx-4 mb-2"></i>
+                                <Link to={urlHelper(`patient/${value["_id"]}`)}>
+                                    <i className="fa-solid fa-ellipsis mx-4 mb-2"></i>
+                                </Link>
                             </td>
                         </tr>
                     ))}

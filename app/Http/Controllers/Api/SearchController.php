@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Channel;
-use App\Models\Course;
-use App\Models\Lesson;
-use App\Models\Subject;
+use App\Models\Study\Channel;
+use App\Models\Study\Course;
+use App\Models\Study\Lesson;
+use App\Models\Study\Subject;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class SearchController extends Controller
         switch ($request->type) {
             case 'lesson':
                 return Lesson::search($query)
-                    ->query(fn(Builder $query) => $query->with([
+                    ->query(fn(Builder $builder): Builder => $builder->with([
                         'thumbnails',
                         'channel',
                         'subject',
@@ -35,7 +35,7 @@ class SearchController extends Controller
                     ->paginate($limit);
             case 'subject':
                 return Subject::search($query)
-                    ->query(fn(Builder $query) => $query->with([
+                    ->query(fn(Builder $builder): Builder => $builder->with([
                         'thumbnails',
                         'course',
                         'channel',
@@ -43,9 +43,7 @@ class SearchController extends Controller
                     ->paginate($limit);
             case 'channel':
                 return Channel::search($query)
-                    ->query(fn(Builder $query) => $query->with([
-                        'thumbnails',
-                    ]))
+                    ->query(fn(Builder $builder): Builder => $builder->with('thumbnails'))
                     ->paginate($limit);
             case 'course':
                 return Course::search($query)->paginate($limit);

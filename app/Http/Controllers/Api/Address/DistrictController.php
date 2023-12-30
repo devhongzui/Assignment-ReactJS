@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Address;
 
 use App\Http\Controllers\Controller;
-use App\Models\District;
+use App\Models\Address\District;
 
 class DistrictController extends Controller
 {

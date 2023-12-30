@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Study;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Venturecraft\Revisionable\RevisionableTrait;
 
-class Course extends Model
+class Subject extends Model
 {
     use CrudTrait;
     use RevisionableTrait;
+    use ThumbnailTrait;
     use Searchable;
 
     /**
@@ -19,9 +21,12 @@ class Course extends Model
      */
     static public array $filterableAttributes = [
         'id',
-        'image',
+        'course_id',
+        'channel_id',
+        'url',
         'title',
         'description',
+        'publish_at',
         'created_at',
         'updated_at',
     ];
@@ -31,9 +36,12 @@ class Course extends Model
      */
     static public array $sortableAttributes = [
         'id',
-        'image',
+        'course_id',
+        'channel_id',
+        'url',
         'title',
         'description',
+        'publish_at',
         'created_at',
         'updated_at',
     ];
@@ -42,9 +50,19 @@ class Course extends Model
      * @var string[]
      */
     protected $fillable = [
-        'image',
+        'course_id',
+        'channel_id',
+        'url',
         'title',
         'description',
+        'publish_at',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+        'publish_at' => 'datetime',
     ];
 
     /**
@@ -56,12 +74,30 @@ class Course extends Model
     }
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function subjects(): HasMany
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function channel(): BelongsTo
     {
         return $this
-            ->hasMany(Subject::class)
+            ->belongsTo(Channel::class)
+            ->with('thumbnails');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function lessons(): HasMany
+    {
+        return $this
+            ->hasMany(Lesson::class)
             ->with('thumbnails');
     }
 }

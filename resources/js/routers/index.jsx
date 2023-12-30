@@ -21,6 +21,7 @@ import Course from "../pages/study/Course.jsx";
 import Subject from "../pages/study/Subject.jsx";
 import Lesson from "../pages/study/Lesson.jsx";
 import Channel from "../pages/study/Channel.jsx";
+import Patients from "../pages/health/Patients.jsx";
 import Patient from "../pages/health/Patient.jsx";
 
 export default function () {
@@ -115,6 +116,10 @@ export default function () {
                 },
                 {
                     path: "patients",
+                    element: <Patients />,
+                },
+                {
+                    path: "patient/:patient_id",
                     element: <Patient />,
                 },
             ],

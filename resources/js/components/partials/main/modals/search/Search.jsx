@@ -89,7 +89,10 @@ export default function Search() {
             <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal-content" style={{ minHeight: "300px" }}>
                     <div className="modal-body">
-                        <form role="search">
+                        <form
+                            role="search"
+                            onSubmit={(event) => event.preventDefault()}
+                        >
                             <fieldset>
                                 <input
                                     type="search"

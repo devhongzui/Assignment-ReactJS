@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Study;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Venturecraft\Revisionable\RevisionableTrait;
 
-class Channel extends Model
+class Course extends Model
 {
     use CrudTrait;
     use RevisionableTrait;
-    use ThumbnailTrait;
     use Searchable;
 
     /**
@@ -20,11 +19,9 @@ class Channel extends Model
      */
     static public array $filterableAttributes = [
         'id',
-        'url',
+        'image',
         'title',
         'description',
-        'custom_url',
-        'publish_at',
         'created_at',
         'updated_at',
     ];
@@ -34,11 +31,9 @@ class Channel extends Model
      */
     static public array $sortableAttributes = [
         'id',
-        'url',
+        'image',
         'title',
         'description',
-        'custom_url',
-        'publish_at',
         'created_at',
         'updated_at',
     ];
@@ -47,18 +42,9 @@ class Channel extends Model
      * @var string[]
      */
     protected $fillable = [
-        'url',
+        'image',
         'title',
         'description',
-        'custom_url',
-        'publish_at',
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $casts = [
-        'publish_at' => 'datetime',
     ];
 
     /**
@@ -72,26 +58,10 @@ class Channel extends Model
     /**
      * @return HasMany
      */
-    public function lessons(): HasMany
-    {
-        return $this
-            ->hasMany(Lesson::class)
-            ->with([
-                'thumbnails',
-                'channel',
-            ]);
-    }
-
-    /**
-     * @return HasMany
-     */
     public function subjects(): HasMany
     {
         return $this
             ->hasMany(Subject::class)
-            ->with([
-                'thumbnails',
-                'channel',
-            ]);
+            ->with('thumbnails');
     }
 }

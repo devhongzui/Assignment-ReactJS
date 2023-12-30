@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Address;
 
 use MongoDB\Laravel\Eloquent\Model;
 
-class District extends Model
+class Province extends Model
 {
     /**
      * @var string
