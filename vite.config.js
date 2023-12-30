@@ -7,6 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 "resources/js/main.jsx",
+                "resources/js/gtag.js",
                 "resources/js/app-admin.js",
                 "resources/scss/app-admin.scss",
             ],
