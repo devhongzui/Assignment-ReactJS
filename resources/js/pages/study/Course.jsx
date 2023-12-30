@@ -38,7 +38,7 @@ export default function Course() {
         subjects(course_id, page, limit).then((success) =>
             setListSubject(success.data),
         );
-    }, [page]);
+    }, [page, limit]);
 
     return (
         <div className="container my-3">

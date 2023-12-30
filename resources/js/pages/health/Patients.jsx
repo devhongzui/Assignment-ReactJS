@@ -57,6 +57,7 @@ export default function Patients() {
         ).then((success) => setListPatient(success.data));
     }, [
         page,
+        limit,
         sorting_field,
         sorting_direction,
         first_name,

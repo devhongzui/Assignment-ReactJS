@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Heath;
 
 use App\Http\Controllers\Controller;
+use App\Models\Heath\Activity;
+use App\Models\Heath\Measurement;
 use App\Models\Heath\Patient;
 use Illuminate\Http\Request;
 
@@ -52,11 +54,38 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param string $id
-     * @return Patient
+     * @return Patient|Measurement[]|Activity[]
      */
-    public function show(string $id): Patient
+    public function show(Request $request, string $id)
     {
-        return Patient::find($id);
+        $patient = Patient::find($id);
+        $limit = $request->get('limit', 8);
+
+        switch ($request->relationship) {
+            case 'measurement':
+                $measurements = $patient->measurements();
+
+                if ($request->exists(['sorting.measurement_sorting_field', 'sorting.measurement_sorting_direction']))
+                    $measurements->orderBy(
+                        $request->sorting['measurement_sorting_field'],
+                        $request->sorting['measurement_sorting_direction']
+                    );
+
+                return $measurements->paginate($limit);
+            case 'activity':
+                $activities = $patient->activities();
+
+                if ($request->exists(['sorting.activity_sorting_direction', 'sorting.activity_sorting_field']))
+                    $activities->orderBy(
+                        $request->sorting['activity_sorting_direction'],
+                        $request->sorting['activity_sorting_field']
+                    );
+
+                return $activities->paginate($limit);
+            default:
+                return $patient;
+        }
     }
 }

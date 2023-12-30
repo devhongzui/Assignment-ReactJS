@@ -12,5 +12,21 @@ export const patients = (page, limit, query, sorting, filters) =>
         },
     });
 
+export const getRelationshipByPatientId = (
+    patient_id,
+    relationship,
+    page,
+    limit,
+    sorting,
+) =>
+    axios.get(assetHelper(`api/heath/patient/${patient_id}`), {
+        params: {
+            relationship,
+            page,
+            limit,
+            sorting,
+        },
+    });
+
 export const patient = (patient_id) =>
     axios.get(assetHelper(`api/heath/patient/${patient_id}`));

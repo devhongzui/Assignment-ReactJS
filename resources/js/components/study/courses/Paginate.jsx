@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
-export default function Paginate({ page, handlePageEvent }) {
+export default function Paginate({ page, param }) {
     const { t } = useTranslation();
 
     const [_, setSearchParams] = useSearchParams();
@@ -22,7 +22,10 @@ export default function Paginate({ page, handlePageEvent }) {
         setSearchParams((prev) => {
             const newQuery = new URLSearchParams(prev);
 
-            newQuery.set("page", event.target.getAttribute("data-page"));
+            newQuery.set(
+                param ?? "page",
+                event.target.getAttribute("data-page"),
+            );
 
             return newQuery.toString();
         });
@@ -40,7 +43,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     href={prev_page_url}
                                     rel="prev"
                                     data-page={current_page - 1}
-                                    onClick={handlePageEvent ?? switchPage}
+                                    onClick={switchPage}
                                 >
                                     {t("Previous")}
                                 </a>
@@ -59,7 +62,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                     href={next_page_url}
                                     rel="next"
                                     data-page={current_page + 1}
-                                    onClick={handlePageEvent ?? switchPage}
+                                    onClick={switchPage}
                                 >
                                     {t("Next")}
                                 </a>
@@ -95,7 +98,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                         rel="prev"
                                         aria-label={t("Previous")}
                                         data-page={current_page - 1}
-                                        onClick={handlePageEvent ?? switchPage}
+                                        onClick={switchPage}
                                     >
                                         &lsaquo;
                                     </a>
@@ -130,9 +133,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                             className="page-link"
                                             href={value.url}
                                             data-page={value.label}
-                                            onClick={
-                                                handlePageEvent ?? switchPage
-                                            }
+                                            onClick={switchPage}
                                         >
                                             {value.label}
                                         </a>
@@ -147,7 +148,7 @@ export default function Paginate({ page, handlePageEvent }) {
                                         rel="next"
                                         aria-label={t("Next")}
                                         data-page={current_page + 1}
-                                        onClick={handlePageEvent ?? switchPage}
+                                        onClick={switchPage}
                                     >
                                         &rsaquo;
                                     </a>

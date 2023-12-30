@@ -38,7 +38,7 @@ export default function Card({ item }) {
                                 {t("Full name")}
                             </strong>
                             <div className="col-md-10">
-                                {item["first_name"]} {item["last_name"]}
+                                {item.first_name} {item.last_name}
                             </div>
                         </div>
                         <div className="row mb-2">

@@ -183,11 +183,7 @@ export default function Card({
                                             BPM
                                             <br />
                                             <span className="text-secondary">
-                                                {
-                                                    value["measurements"][0][
-                                                        "time"
-                                                    ]
-                                                }
+                                                {value["measurements"][0].time}
                                             </span>
                                         </div>
                                     </div>

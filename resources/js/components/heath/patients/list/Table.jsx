@@ -146,7 +146,7 @@ export default function Table({
                                 {value["measurements"][0]["index3"]} BPM
                                 <br />
                                 <span className="text-secondary">
-                                    {value["measurements"][0]["time"]}
+                                    {value["measurements"][0].time}
                                 </span>
                             </td>
                             <td>{value["activities"][0].time}</td>

@@ -39,7 +39,7 @@ export default function Courses() {
 
     useEffect(() => {
         courses(page, limit).then((success) => setListCourse(success.data));
-    }, [page]);
+    }, [page, limit]);
 
     return (
         listCourse && (

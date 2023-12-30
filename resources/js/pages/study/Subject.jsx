@@ -40,7 +40,7 @@ export default function Subject() {
         lessons(subject_id, page, limit).then((success) =>
             setListLesson(success.data),
         );
-    }, [page]);
+    }, [page, limit]);
 
     return (
         <div className="container my-3">
